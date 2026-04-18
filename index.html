@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Biblioteca pessoal de resumos ortopedicos do Dr. Tales.">
 <title>Resumos do Tales</title>
-
-<!-- Favicon: osso estilizado em vermelho editorial -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='%238c2910' d='M120.1 37.4c-38.5-7.4-75 23.2-73 62.4c.9 18.1 9.9 34.2 23.6 44.4C76.8 153.8 82 167.5 82 182c0 10.4-2.7 20.1-7.3 28.5c-13.5 10.3-22.4 26.2-22.8 43.9c-1.3 36.5 36.3 63.8 71.9 52.8c5.6-1.7 11.1-3.6 16.2-6c8.4-4 17.8 0 20.7 8.7C175.5 340 187 352 203.4 352H372.6c16.4 0 27.9-12 42.6-42c2.9-8.8 12.4-12.7 20.7-8.7c5.2 2.4 10.6 4.3 16.2 6c35.6 11 73.2-16.3 71.9-52.8c-.5-17.7-9.4-33.6-22.8-43.9c-4.6-8.5-7.3-18.1-7.3-28.5c0-14.5 5.2-28.2 11.3-37.8c13.7-10.2 22.7-26.3 23.6-44.4c2-39.2-34.6-69.9-73-62.4c-19.2 3.7-33.6 17.5-40.4 34.2c-6 14.7-18.6 25.5-34.4 25.5H194.9c-15.8 0-28.4-10.8-34.4-25.5c-6.8-16.7-21.2-30.5-40.4-34.2z'/%3E%3C/svg%3E">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600;1,9..144,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -27,14 +24,21 @@ body {
   font-family:var(--fu); font-size:15px; line-height:1.6;
   -webkit-font-smoothing:antialiased; min-height:100vh;
 }
-body::after {
+
+/*
+  GRAIN TEXTURE — z-index NEGATIVO para nunca bloquear cliques.
+  Fica visualmente atras do conteudo mas o background do body
+  e transparente entao o grain aparece por baixo.
+*/
+body::before {
   content:''; position:fixed; inset:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
-  pointer-events:none; z-index:900;
+  pointer-events:none;
+  z-index:-1;
 }
 
 /* ═══════════════════════════════════════════
-   HEADER (com osso no logo)
+   HEADER
 ═══════════════════════════════════════════ */
 header {
   position:sticky; top:0; z-index:80;
@@ -42,30 +46,43 @@ header {
   backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
   border-bottom:1px solid var(--rule);
 }
-.hdr { max-width:1380px; margin:0 auto; padding:0 2rem; height:54px; display:flex; align-items:center; gap:1.5rem; }
-.logo-wrap { display:flex; align-items:center; gap:.55rem; flex-shrink:0; }
-.logo-bone {
-  width:22px; height:22px; flex-shrink:0;
-  transform:rotate(-45deg);
-  color:var(--red);
+.hdr {
+  max-width:1380px; margin:0 auto; padding:0 2rem; height:54px;
+  display:flex; align-items:center; gap:1.25rem;
 }
-.logo { font-family:var(--fd); font-size:1rem; font-weight:600; letter-spacing:-.01em; color:var(--ink); white-space:nowrap; line-height:1.2; }
+.logo-wrap { display:flex; align-items:center; gap:.55rem; flex-shrink:0; }
+.logo-bone { width:22px; height:22px; flex-shrink:0; transform:rotate(-45deg); color:var(--red); }
+.logo {
+  font-family:var(--fd); font-size:1rem; font-weight:600;
+  letter-spacing:-.01em; color:var(--ink); white-space:nowrap; line-height:1.2;
+}
 .logo em { font-style:italic; font-weight:300; color:var(--red); }
-.logo small { display:block; font-family:var(--fu); font-size:.58rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:.06rem; }
+.logo small {
+  display:block; font-family:var(--fu); font-size:.58rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:.06rem;
+}
 .hdiv { width:1px; height:14px; background:var(--rule); flex-shrink:0; }
 .sw { flex:1; max-width:340px; position:relative; }
 .sw input {
   width:100%; background:transparent; border:none; border-bottom:1px solid var(--rule);
-  padding:.35rem .2rem .35rem 1.7rem;
+  padding:.4rem .2rem .4rem 1.7rem;
   font-family:var(--fu); font-size:.82rem; color:var(--ink); outline:none;
-  transition:border-color .18s;
+  transition:border-color .2s;
 }
 .sw input::placeholder { color:var(--muted); }
 .sw input:focus { border-color:var(--ink2); }
-.si { position:absolute; left:0; top:50%; transform:translateY(-50%); width:12px; height:12px; color:var(--muted); pointer-events:none; }
-.hstamp { margin-left:auto; font-family:var(--fd); font-size:.78rem; font-style:italic; color:var(--muted); white-space:nowrap; }
+.si {
+  position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:12px; height:12px; color:var(--muted); pointer-events:none;
+}
+.hstamp {
+  margin-left:auto; font-family:var(--fd); font-size:.78rem;
+  font-style:italic; color:var(--muted); white-space:nowrap;
+}
 
-/* HERO */
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
 .hero { border-bottom:1px solid var(--rule); position:relative; overflow:hidden; }
 .hghost {
   position:absolute; bottom:-.1em; right:-.02em;
@@ -81,19 +98,33 @@ header {
   color:var(--red); margin-bottom:1.5rem;
 }
 .kicker::before { content:''; display:inline-block; width:26px; height:1px; background:var(--red); }
-h1 { font-family:var(--fd); font-size:clamp(2.8rem,7.5vw,6.5rem); font-weight:800; line-height:.93; letter-spacing:-.03em; max-width:660px; }
+h1 {
+  font-family:var(--fd); font-size:clamp(2.8rem,7.5vw,6.5rem);
+  font-weight:800; line-height:.93; letter-spacing:-.03em; max-width:660px;
+}
 h1 em { font-style:italic; font-weight:300; color:var(--red); }
-.hero-row { display:flex; align-items:flex-end; justify-content:space-between; margin-top:2.5rem; gap:2rem; }
+.hero-row {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-top:2.5rem; gap:2rem;
+}
 .hdesc { font-size:.88rem; color:var(--muted); max-width:340px; line-height:1.8; }
 .hnums { display:flex; gap:3rem; flex-shrink:0; }
 .hnum { text-align:right; }
 .hnum-n { font-family:var(--fd); font-size:3rem; font-weight:800; line-height:1; display:block; }
-.hnum-l { font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); display:block; margin-top:.15rem; }
+.hnum-l {
+  font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); display:block; margin-top:.15rem;
+}
 
-/* SPECIALTY TILES */
+/* ═══════════════════════════════════════════
+   SPECIALTY TILES
+═══════════════════════════════════════════ */
 .specs-section { border-bottom:1px solid var(--rule); background:var(--p1); }
 .specs-wrap { max-width:1380px; margin:0 auto; padding:2rem; }
-.specs-label { font-family:var(--fd); font-size:.72rem; font-style:italic; color:var(--muted); margin-bottom:1rem; letter-spacing:.04em; }
+.specs-label {
+  font-family:var(--fd); font-size:.72rem; font-style:italic;
+  color:var(--muted); margin-bottom:1rem; letter-spacing:.04em;
+}
 .specs-grid {
   display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:1px; background:var(--rule); border:1px solid var(--rule);
@@ -105,70 +136,105 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
   position:relative; min-height:108px;
   font-family:var(--fu); color:var(--ink);
   transition:background .18s; overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
 }
-.stile::before { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; background:var(--c,var(--muted)); transition:width .18s; }
+.stile::before {
+  content:''; position:absolute; top:0; left:0; bottom:0;
+  width:3px; background:var(--c,var(--muted)); transition:width .18s;
+}
 .stile:hover { background:var(--p1); }
 .stile:hover::before { width:5px; }
-.stile.on { background:var(--ink); color:var(--white); box-shadow:inset 0 0 0 1px var(--ink); }
+.stile.on { background:var(--ink); color:var(--white); }
 .stile.on::before { width:5px; }
-.stile-nm { font-family:var(--fd); font-size:1.02rem; font-weight:600; line-height:1.2; padding-left:.5rem; }
-.stile-ct { font-family:var(--fd); font-style:italic; font-size:1.4rem; color:var(--muted); margin-top:auto; line-height:1; padding-left:.5rem; }
+.stile-nm {
+  font-family:var(--fd); font-size:1.02rem; font-weight:600;
+  line-height:1.2; padding-left:.5rem;
+}
+.stile-ct {
+  font-family:var(--fd); font-style:italic; font-size:1.4rem;
+  color:var(--muted); margin-top:auto; line-height:1; padding-left:.5rem;
+}
 .stile.on .stile-ct { color:rgba(250,247,241,.55); }
-.stile-ct small { font-family:var(--fu); font-style:normal; font-size:.6rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; display:block; margin-top:.2rem; }
+.stile-ct small {
+  font-family:var(--fu); font-style:normal; font-size:.6rem;
+  font-weight:500; letter-spacing:.1em; text-transform:uppercase;
+  display:block; margin-top:.2rem;
+}
 
-/* MAIN */
+/* ═══════════════════════════════════════════
+   MAIN
+═══════════════════════════════════════════ */
 .main { max-width:1380px; margin:0 auto; padding:2.5rem 2rem 6rem; }
-.ch { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--rule); }
+.ch {
+  display:flex; align-items:baseline; justify-content:space-between;
+  margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--rule);
+}
 .ch h2 { font-family:var(--fd); font-size:1.4rem; font-weight:800; }
-.ch h2 em { font-style:italic; font-weight:300; color:var(--muted); font-size:1rem; margin-left:.4rem; }
 .ri { font-size:.75rem; color:var(--muted); }
 
-/* CARDS */
+/* ═══════════════════════════════════════════
+   CARDS
+═══════════════════════════════════════════ */
 .grid {
   display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
   gap:1px; background:var(--rule); border:1px solid var(--rule);
 }
 .card {
   background:var(--white); padding:1.6rem;
-  position:relative; cursor:pointer;
-  transition:background .14s, transform .18s;
+  position:relative;
+  transition:background .14s;
   animation:up .28s ease both;
   display:flex; flex-direction:column; min-height:220px;
+  -webkit-tap-highlight-color:transparent;
 }
 .card:hover { background:var(--p1); }
 .cbar { position:absolute; top:0; left:0; right:0; height:3px; }
 .cspec { display:flex; align-items:center; gap:.4rem; margin-top:.25rem; margin-bottom:.85rem; }
 .cdot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 .cspnm { font-size:.63rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
-.ct { font-family:var(--fd); font-size:1.2rem; font-weight:800; line-height:1.25; color:var(--ink); margin-bottom:.5rem; }
+.ct {
+  font-family:var(--fd); font-size:1.2rem; font-weight:800;
+  line-height:1.25; color:var(--ink); margin-bottom:.5rem;
+}
 .cd { font-size:.82rem; color:var(--muted); line-height:1.65; margin-bottom:.9rem; flex:1; }
 .fonte-row { display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:1.1rem; }
 .fonte-tag {
   display:inline-flex; align-items:center; gap:.28rem;
   font-size:.65rem; font-weight:500; letter-spacing:.04em;
   padding:.22rem .55rem; border-radius:2px;
-  background:var(--p2); border:1px solid var(--rule);
-  color:var(--ink2); line-height:1.3;
+  background:var(--p2); border:1px solid var(--rule); color:var(--ink2); line-height:1.3;
 }
 .fonte-tag svg { flex-shrink:0; opacity:.55; }
-.cf { display:flex; align-items:center; justify-content:space-between; padding-top:.85rem; border-top:1px solid var(--rule); gap:.5rem; flex-wrap:wrap; margin-top:auto; }
+.cf {
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:.85rem; border-top:1px solid var(--rule);
+  gap:.5rem; flex-wrap:wrap; margin-top:auto;
+}
 .cdate { font-family:var(--fd); font-style:italic; font-size:.73rem; color:var(--muted); }
 .cbtns { display:flex; gap:.45rem; align-items:center; }
+
+/*
+  BOTOES DOS CARDS — todos sao <a> agora.
+  Tamanho minimo de 44px de altura para toque mobile (WCAG).
+*/
 .cbtn {
   display:inline-flex; align-items:center; gap:.3rem;
-  font-size:.68rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
-  padding:.34rem .7rem; border-radius:3px; border:1px solid; cursor:pointer;
-  transition:background .14s,color .14s,border-color .14s;
+  font-size:.7rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  padding:.45rem .75rem; border-radius:4px; border:1px solid;
   white-space:nowrap; font-family:var(--fu); text-decoration:none;
+  transition:background .14s,color .14s,border-color .14s;
+  min-height:36px;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
 }
 .cbtn-pdf { color:var(--red); border-color:var(--red); background:transparent; }
-.cbtn-pdf:hover { background:var(--red); color:var(--white); }
+.cbtn-pdf:hover, .cbtn-pdf:active { background:var(--red); color:var(--white); }
 .cbtn-ext { color:var(--muted); border-color:var(--rule); background:transparent; }
-.cbtn-ext:hover { color:var(--ink2); border-color:var(--ink2); background:var(--p1); }
+.cbtn-ext:hover, .cbtn-ext:active { color:var(--ink2); border-color:var(--ink2); background:var(--p1); }
 .cnofile { font-size:.68rem; color:var(--muted); }
 
 /* ═══════════════════════════════════════════
-   MODAL FLUTUANTE (redesign — painel centralizado)
+   MODAL FLUTUANTE
 ═══════════════════════════════════════════ */
 .pov {
   position:fixed; inset:0; z-index:200;
@@ -178,109 +244,66 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
   pointer-events:none;
   transition:background .24s ease;
 }
-.pov.open {
-  background:rgba(23,19,14,.58);
-  pointer-events:all;
-}
+.pov.open { background:rgba(23,19,14,.58); pointer-events:all; }
 
 .pov-panel {
   position:relative;
-  width:min(1100px, 100%);
-  height:min(88vh, 840px);
-  background:var(--white);
-  border:1px solid var(--rule);
-  border-radius:10px;
-  overflow:hidden;
+  width:min(1100px,100%); height:min(88vh,840px);
+  background:var(--white); border:1px solid var(--rule);
+  border-radius:10px; overflow:hidden;
   display:flex; flex-direction:column;
-  box-shadow:
-    0 40px 100px -24px rgba(0,0,0,.6),
-    0 16px 40px -14px rgba(0,0,0,.35);
-  transform:scale(.94) translateY(16px);
-  opacity:0;
-  transition:transform .3s cubic-bezier(.22,.68,0,1.1), opacity .22s ease;
-  pointer-events:auto;
+  box-shadow:0 40px 100px -24px rgba(0,0,0,.6),0 16px 40px -14px rgba(0,0,0,.35);
+  transform:scale(.94) translateY(16px); opacity:0;
+  transition:transform .3s cubic-bezier(.22,.68,0,1.1),opacity .22s ease;
 }
 .pov.open .pov-panel { transform:scale(1) translateY(0); opacity:1; }
 
-/* Tela cheia — sobrescreve tamanho */
 .pov-panel:fullscreen,
 .pov-panel:-webkit-full-screen {
-  width:100vw !important;
-  height:100vh !important;
-  max-width:none !important;
-  max-height:none !important;
-  border-radius:0;
-  border:none;
+  width:100vw!important; height:100vh!important;
+  max-width:none!important; max-height:none!important;
+  border-radius:0; border:none;
 }
 
-/* Toolbar */
 .pbar {
-  flex-shrink:0; height:52px;
-  background:#1c1710;
-  display:flex; align-items:center; gap:.9rem;
+  flex-shrink:0; height:52px; background:#1c1710;
+  display:flex; align-items:center; gap:.75rem;
   padding:0 .65rem 0 1.1rem;
   border-bottom:1px solid rgba(0,0,0,.2);
 }
-.pbar-mark {
-  display:flex; align-items:center; gap:.5rem;
-  flex-shrink:0;
-}
-.pbar-bone {
-  width:16px; height:16px;
-  color:rgba(228,217,196,.7);
-  transform:rotate(-45deg);
-}
+.pbar-bone { width:16px; height:16px; flex-shrink:0; color:rgba(228,217,196,.6); transform:rotate(-45deg); }
 .ptitle {
-  font-family:var(--fd); font-size:.95rem;
-  font-style:italic; font-weight:600;
+  font-family:var(--fd); font-size:.95rem; font-style:italic; font-weight:600;
   color:#e4d9c4; flex:1; min-width:0;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-.pbar-btns { display:flex; gap:.35rem; align-items:center; flex-shrink:0; }
-.pbar-sep { width:1px; height:18px; background:rgba(255,255,255,.12); margin:0 .2rem; flex-shrink:0; }
+.pbar-btns { display:flex; gap:.3rem; align-items:center; flex-shrink:0; }
+.pbar-sep { width:1px; height:18px; background:rgba(255,255,255,.12); margin:0 .15rem; flex-shrink:0; }
 
 .pbtn {
-  display:inline-flex; align-items:center; gap:.35rem;
+  display:inline-flex; align-items:center; justify-content:center; gap:.35rem;
   font-family:var(--fu); font-size:.7rem; font-weight:600;
   letter-spacing:.06em; text-transform:uppercase;
-  padding:.42rem .75rem; border-radius:4px;
-  border:1px solid transparent;
-  background:transparent; color:rgba(228,217,196,.75);
+  padding:.4rem .7rem; border-radius:4px;
+  border:none; background:transparent;
+  color:rgba(228,217,196,.75);
   cursor:pointer; transition:all .14s; text-decoration:none;
+  min-height:34px;
+  -webkit-tap-highlight-color:transparent;
 }
-.pbtn:hover {
-  background:rgba(255,255,255,.09);
-  color:#fff;
-}
-.pbtn-icon {
-  width:32px; height:32px; padding:0;
-  display:flex; align-items:center; justify-content:center;
-  gap:0;
-}
+.pbtn:hover, .pbtn:active { background:rgba(255,255,255,.1); color:#fff; }
+.pbtn-icon { width:34px; height:34px; padding:0; }
 .pbtn-icon span { display:none; }
-.pbclose {
-  background:transparent; color:rgba(228,217,196,.6);
-}
-.pbclose:hover { background:rgba(180,40,16,.85); color:#fff; }
+.pbclose { color:rgba(228,217,196,.6); }
+.pbclose:hover, .pbclose:active { background:rgba(180,40,16,.85); color:#fff; }
 
-/* PDF frame area */
-.pframe {
-  flex:1; min-height:0;
-  background:#525659;
-  position:relative;
-  overflow:hidden;
-}
-.pframe iframe {
-  width:100%; height:100%;
-  border:none; display:block;
-  background:#525659;
-}
+.pframe { flex:1; min-height:0; background:#525659; position:relative; overflow:hidden; }
+.pframe iframe { width:100%; height:100%; border:none; display:block; background:#525659; }
 
 .ploading {
   position:absolute; inset:0; display:none;
   align-items:center; justify-content:center;
-  flex-direction:column; gap:1rem;
-  background:#1c1710; z-index:2;
+  flex-direction:column; gap:1rem; background:#1c1710; z-index:2;
 }
 .ploading.show { display:flex; }
 .ploading-spinner {
@@ -289,14 +312,11 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
   animation:spin .8s linear infinite;
 }
 .ploading-text { font-family:var(--fd); font-style:italic; font-size:.85rem; color:rgba(228,217,196,.5); }
-@keyframes spin { to { transform:rotate(360deg); } }
 
-/* Error state */
 .perror {
   position:absolute; inset:0; display:none;
   flex-direction:column; align-items:center; justify-content:center;
-  padding:2rem; text-align:center;
-  background:#1c1710; z-index:3; overflow-y:auto;
+  padding:2rem; text-align:center; background:#1c1710; z-index:3; overflow-y:auto;
 }
 .perror.show { display:flex; }
 .perror-icon {
@@ -309,7 +329,7 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
 .perror-title { font-family:var(--fd); font-size:1.3rem; font-weight:600; color:#e4d9c4; margin-bottom:.5rem; }
 .perror-sub { font-size:.85rem; color:rgba(255,255,255,.55); margin-bottom:.4rem; line-height:1.65; max-width:480px; }
 .perror-path {
-  font-family:'Courier New',monospace; font-size:.8rem;
+  font-family:'Courier New',monospace; font-size:.78rem;
   background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
   padding:.6rem .9rem; border-radius:3px; color:#e4d9c4;
   margin:.75rem 0 1.25rem; max-width:90%; word-break:break-all;
@@ -317,14 +337,16 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
 .perror-help {
   text-align:left; max-width:460px; width:100%;
   background:rgba(255,255,255,.04); border-left:3px solid rgba(228,217,196,.3);
-  padding:1rem 1.25rem; border-radius:0 3px 3px 0;
-  color:rgba(255,255,255,.7);
+  padding:1rem 1.25rem; border-radius:0 3px 3px 0; color:rgba(255,255,255,.7);
 }
 .perror-help strong { color:#e4d9c4; display:block; margin-bottom:.5rem; font-size:.82rem; }
 .perror-help ul { list-style:none; padding:0; }
 .perror-help li { font-size:.8rem; line-height:1.7; padding-left:1.2rem; position:relative; }
 .perror-help li::before { content:'—'; position:absolute; left:0; color:rgba(228,217,196,.5); }
-.perror-help code { font-family:'Courier New',monospace; background:rgba(255,255,255,.08); padding:.1rem .35rem; border-radius:2px; font-size:.78rem; color:#ffd7a8; }
+.perror-help code {
+  font-family:'Courier New',monospace; background:rgba(255,255,255,.08);
+  padding:.1rem .35rem; border-radius:2px; font-size:.78rem; color:#ffd7a8;
+}
 
 /* EMPTY / ERROR */
 .empty { grid-column:1/-1; background:var(--white); padding:5rem 2rem; text-align:center; }
@@ -334,7 +356,10 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
 
 /* FOOTER */
 footer { border-top:1px solid var(--rule); background:var(--p1); }
-.fin { max-width:1380px; margin:0 auto; padding:1.75rem 2rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.fin {
+  max-width:1380px; margin:0 auto; padding:1.75rem 2rem;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+}
 .fmark { font-family:var(--fd); font-size:.88rem; color:var(--muted); }
 .fmark strong { font-style:italic; font-weight:600; color:var(--ink2); }
 .fright { display:flex; flex-direction:column; align-items:flex-end; gap:.15rem; }
@@ -342,8 +367,11 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
 .fdate { font-family:var(--fd); font-size:.75rem; font-style:italic; color:var(--muted); }
 
 @keyframes up { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes spin { to { transform:rotate(360deg); } }
 
-/* RESPONSIVE */
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
 @media (max-width:860px) {
   .hghost { display:none; }
   .hero-row { flex-direction:column; align-items:flex-start; }
@@ -352,23 +380,28 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
   .specs-grid { grid-template-columns:repeat(3,1fr); }
 }
 @media (max-width:600px) {
-  .hdr { gap:1rem; padding:0 1.25rem; }
+  .hdr { gap:.75rem; padding:0 1rem; }
+  .logo-bone { width:18px; height:18px; }
+  .logo { font-size:.9rem; }
+  .logo small { display:none; }
   .hstamp { display:none; }
-  .hero-in, .main, .specs-wrap { padding-left:1.25rem; padding-right:1.25rem; }
+  .hero-in { padding:3rem 1.25rem 2.5rem; }
+  .main, .specs-wrap { padding-left:1.25rem; padding-right:1.25rem; }
   .fin { padding:1.5rem 1.25rem; }
   .fright { display:none; }
   .specs-grid { grid-template-columns:repeat(2,1fr); }
-  .stile { min-height:96px; padding:1rem .9rem .85rem; }
-  .stile-nm { font-size:.92rem; }
-  .stile-ct { font-size:1.2rem; }
-  /* Modal ocupa mais espaco no celular */
-  .pov { padding:.5rem; }
-  .pov-panel { height:96vh; width:100%; border-radius:6px; }
-  .pbar { padding:0 .3rem 0 .75rem; }
-  .ptitle { font-size:.85rem; }
-  /* No celular deixa apenas icones */
+  .stile { min-height:88px; padding:1rem .9rem .85rem; }
+  .stile-nm { font-size:.9rem; }
+  .stile-ct { font-size:1.15rem; }
+  .grid { grid-template-columns:1fr; }
+  .card { min-height:auto; padding:1.25rem; }
+  /* Modal mais amplo no celular */
+  .pov { padding:.35rem; }
+  .pov-panel { height:97vh; width:100%; border-radius:8px 8px 0 0; }
+  .pbar { padding:0 .35rem 0 .75rem; gap:.5rem; }
+  .ptitle { font-size:.82rem; }
   .pbtn:not(.pbtn-icon) span { display:none; }
-  .pbtn:not(.pbtn-icon) { padding:.45rem .6rem; gap:0; }
+  .pbtn:not(.pbtn-icon) { padding:.4rem .55rem; min-width:34px; justify-content:center; }
 }
 </style>
 </head>
@@ -377,7 +410,6 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
 <header>
   <div class="hdr">
     <div class="logo-wrap">
-      <!-- Icone de osso antes do titulo -->
       <svg class="logo-bone" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true">
         <path d="M120.1 37.4c-38.5-7.4-75 23.2-73 62.4c.9 18.1 9.9 34.2 23.6 44.4C76.8 153.8 82 167.5 82 182c0 10.4-2.7 20.1-7.3 28.5c-13.5 10.3-22.4 26.2-22.8 43.9c-1.3 36.5 36.3 63.8 71.9 52.8c5.6-1.7 11.1-3.6 16.2-6c8.4-4 17.8 0 20.7 8.7C175.5 340 187 352 203.4 352H372.6c16.4 0 27.9-12 42.6-42c2.9-8.8 12.4-12.7 20.7-8.7c5.2 2.4 10.6 4.3 16.2 6c35.6 11 73.2-16.3 71.9-52.8c-.5-17.7-9.4-33.6-22.8-43.9c-4.6-8.5-7.3-18.1-7.3-28.5c0-14.5 5.2-28.2 11.3-37.8c13.7-10.2 22.7-26.3 23.6-44.4c2-39.2-34.6-69.9-73-62.4c-19.2 3.7-33.6 17.5-40.4 34.2c-6 14.7-18.6 25.5-34.4 25.5H194.9c-15.8 0-28.4-10.8-34.4-25.5c-6.8-16.7-21.2-30.5-40.4-34.2z"/>
       </svg>
@@ -437,40 +469,29 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
   </div>
 </footer>
 
-<!-- MODAL FLUTUANTE -->
-<div class="pov" id="pov" role="dialog" aria-modal="true" aria-label="Leitor de PDF">
+<!-- MODAL -->
+<div class="pov" id="pov" role="dialog" aria-modal="true">
   <div class="pov-panel" id="pov-panel">
     <div class="pbar">
-      <div class="pbar-mark">
-        <svg class="pbar-bone" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true">
-          <path d="M120.1 37.4c-38.5-7.4-75 23.2-73 62.4c.9 18.1 9.9 34.2 23.6 44.4C76.8 153.8 82 167.5 82 182c0 10.4-2.7 20.1-7.3 28.5c-13.5 10.3-22.4 26.2-22.8 43.9c-1.3 36.5 36.3 63.8 71.9 52.8c5.6-1.7 11.1-3.6 16.2-6c8.4-4 17.8 0 20.7 8.7C175.5 340 187 352 203.4 352H372.6c16.4 0 27.9-12 42.6-42c2.9-8.8 12.4-12.7 20.7-8.7c5.2 2.4 10.6 4.3 16.2 6c35.6 11 73.2-16.3 71.9-52.8c-.5-17.7-9.4-33.6-22.8-43.9c-4.6-8.5-7.3-18.1-7.3-28.5c0-14.5 5.2-28.2 11.3-37.8c13.7-10.2 22.7-26.3 23.6-44.4c2-39.2-34.6-69.9-73-62.4c-19.2 3.7-33.6 17.5-40.4 34.2c-6 14.7-18.6 25.5-34.4 25.5H194.9c-15.8 0-28.4-10.8-34.4-25.5c-6.8-16.7-21.2-30.5-40.4-34.2z"/>
-        </svg>
-      </div>
+      <svg class="pbar-bone" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true">
+        <path d="M120.1 37.4c-38.5-7.4-75 23.2-73 62.4c.9 18.1 9.9 34.2 23.6 44.4C76.8 153.8 82 167.5 82 182c0 10.4-2.7 20.1-7.3 28.5c-13.5 10.3-22.4 26.2-22.8 43.9c-1.3 36.5 36.3 63.8 71.9 52.8c5.6-1.7 11.1-3.6 16.2-6c8.4-4 17.8 0 20.7 8.7C175.5 340 187 352 203.4 352H372.6c16.4 0 27.9-12 42.6-42c2.9-8.8 12.4-12.7 20.7-8.7c5.2 2.4 10.6 4.3 16.2 6c35.6 11 73.2-16.3 71.9-52.8c-.5-17.7-9.4-33.6-22.8-43.9c-4.6-8.5-7.3-18.1-7.3-28.5c0-14.5 5.2-28.2 11.3-37.8c13.7-10.2 22.7-26.3 23.6-44.4c2-39.2-34.6-69.9-73-62.4c-19.2 3.7-33.6 17.5-40.4 34.2c-6 14.7-18.6 25.5-34.4 25.5H194.9c-15.8 0-28.4-10.8-34.4-25.5c-6.8-16.7-21.2-30.5-40.4-34.2z"/>
+      </svg>
       <span class="ptitle" id="ptitle">—</span>
       <div class="pbar-btns">
         <a class="pbtn" id="pdl" href="#" download title="Baixar PDF">
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 2v9M4 7l4 4 4-4M2 14h12"/>
-          </svg>
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 2v9M4 7l4 4 4-4M2 14h12"/></svg>
           <span>Baixar</span>
         </a>
         <a class="pbtn" id="pext" href="#" target="_blank" rel="noopener" title="Abrir em nova aba">
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/>
-          </svg>
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/></svg>
           <span>Nova aba</span>
         </a>
         <div class="pbar-sep"></div>
-        <button type="button" class="pbtn pbtn-icon" id="pfull" title="Tela cheia" aria-label="Tela cheia">
-          <svg id="pfull-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <!-- icone expandir -->
-            <path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/>
-          </svg>
+        <button type="button" class="pbtn pbtn-icon" id="pfull" title="Tela cheia">
+          <svg id="pfull-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/></svg>
         </button>
-        <button type="button" class="pbtn pbtn-icon pbclose" id="pclose" title="Fechar" aria-label="Fechar">
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 3l10 10M13 3L3 13"/>
-          </svg>
+        <button type="button" class="pbtn pbtn-icon pbclose" id="pclose" title="Fechar">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg>
         </button>
       </div>
     </div>
@@ -486,12 +507,11 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
         <div class="perror-sub">O site tentou carregar o arquivo, mas ele nao existe no caminho informado:</div>
         <div class="perror-path" id="perror-path">—</div>
         <div class="perror-help">
-          <strong>Verifique no seu reposito&#769;rio do GitHub:</strong>
+          <strong>Verifique no GitHub:</strong>
           <ul>
-            <li>O arquivo esta realmente dentro da pasta <code>pdfs/</code>?</li>
-            <li>O nome do arquivo esta <strong>exatamente igual</strong> — letras maiusculas/minusculas importam!</li>
-            <li>O nome no JSON nao tem espacos ou acentos diferentes?</li>
-            <li>Se acabou de subir, aguarde 1-2 minutos e tente de novo.</li>
+            <li>O arquivo esta dentro da pasta <code>pdfs/</code>?</li>
+            <li>O nome esta <strong>exatamente igual</strong> (maiusculas importam)?</li>
+            <li>Se acabou de subir, aguarde 1-2 minutos.</li>
           </ul>
         </div>
       </div>
@@ -500,23 +520,23 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
 </div>
 
 <script>
-/* ═══════════════════════════════════════════
-   CONFIG
-═══════════════════════════════════════════ */
 const DATA_URL = './resumos.json';
-
 const COLORS = {
   mao:'#1d3f7a', ombro:'#5a2070', cotovelo:'#7a3e10',
   joelho:'#155c3a', quadril:'#7a1515', coluna:'#0f4a5c',
   pe:'#3a5c10', trauma:'#3a105c'
 };
 
-let db  = { especialidades:[], resumos:[] };
+let db = { especialidades:[], resumos:[] };
 let cat = 'all', q = '';
 
-/* ═══════════════════════════════════════════
-   BOOT
-═══════════════════════════════════════════ */
+/* Detecta mobile/tablet */
+function isMobile() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent)
+    || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024);
+}
+
+/* ── BOOT ───────────────────────────────── */
 (async () => {
   try {
     const r = await fetch(DATA_URL, { cache:'no-cache' });
@@ -541,29 +561,25 @@ function init() {
     db.resumos.length + ' resumo' + (db.resumos.length !== 1 ? 's' : '');
 }
 
-/* ═══════════════════════════════════════════
-   SPECIALTY TILES
-═══════════════════════════════════════════ */
+/* ── SPECIALTY TILES ────────────────────── */
 function buildSpecs() {
   const el = document.getElementById('specs-grid');
   el.innerHTML = '';
 
   const all = document.createElement('button');
-  all.className = 'stile on';
-  all.dataset.cat = 'all';
+  all.className = 'stile on'; all.dataset.cat = 'all';
   all.innerHTML = `<span class="stile-nm">Todos</span>
-    <span class="stile-ct">${db.resumos.length}<small>${db.resumos.length === 1 ? 'resumo' : 'resumos'}</small></span>`;
-  all.addEventListener('click', () => setcat('all', 'Todos os resumos'));
+    <span class="stile-ct">${db.resumos.length}<small>${db.resumos.length===1?'resumo':'resumos'}</small></span>`;
+  all.addEventListener('click', () => setcat('all','Todos os resumos'));
   el.appendChild(all);
 
   db.especialidades.forEach(e => {
     const n = db.resumos.filter(r => r.especialidade === e.id).length;
     const t = document.createElement('button');
-    t.className = 'stile';
-    t.dataset.cat = e.id;
-    t.style.setProperty('--c', COLORS[e.id] || '#888');
+    t.className = 'stile'; t.dataset.cat = e.id;
+    t.style.setProperty('--c', COLORS[e.id]||'#888');
     t.innerHTML = `<span class="stile-nm">${e.nome}</span>
-      <span class="stile-ct">${n}<small>${n === 1 ? 'resumo' : 'resumos'}</small></span>`;
+      <span class="stile-ct">${n}<small>${n===1?'resumo':'resumos'}</small></span>`;
     t.addEventListener('click', () => setcat(e.id, e.nome));
     el.appendChild(t);
   });
@@ -572,13 +588,11 @@ function buildSpecs() {
   document.getElementById('n-ar').textContent  = db.especialidades.length;
 }
 
-/* ═══════════════════════════════════════════
-   FILTER
-═══════════════════════════════════════════ */
+/* ── FILTER ─────────────────────────────── */
 function filtered() {
   const sq = q.toLowerCase().trim();
   return db.resumos.filter(r => {
-    const cok = cat === 'all' || r.especialidade === cat;
+    const cok = cat==='all' || r.especialidade===cat;
     const sok = !sq
       || r.titulo.toLowerCase().includes(sq)
       || (r.descricao||'').toLowerCase().includes(sq)
@@ -588,10 +602,7 @@ function filtered() {
   });
 }
 
-function espNome(id) {
-  const e = db.especialidades.find(x => x.id === id);
-  return e ? e.nome : id;
-}
+function espNome(id) { const e = db.especialidades.find(x => x.id===id); return e ? e.nome : id; }
 
 function fmtDate(s) {
   if (!s) return '';
@@ -601,21 +612,17 @@ function fmtDate(s) {
 }
 
 function esc(s) {
-  return String(s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-/* ═══════════════════════════════════════════
-   RENDER
-═══════════════════════════════════════════ */
+/* ── RENDER ─────────────────────────────── */
 function render() {
   const list = filtered();
   const grid = document.getElementById('grid');
 
   document.getElementById('ri').textContent = q
-    ? `${list.length} resultado${list.length!==1?'s':''} para "${q}"`
-    : '';
+    ? `${list.length} resultado${list.length!==1?'s':''} para "${q}"` : '';
 
   if (!list.length) {
     grid.innerHTML = `<div class="empty"><h3>Nenhum resultado</h3>
@@ -628,17 +635,24 @@ function render() {
     <path d="M5 6h6M5 9h6M5 12h4"/></svg>`;
 
   grid.innerHTML = list.map(r => {
-    const color   = COLORS[r.especialidade] || '#555';
-    const nome    = espNome(r.especialidade);
-    const hf      = !!r.arquivo;
-    const titulo  = esc(r.titulo);
-    const arquivo = esc(r.arquivo || '');
+    const color = COLORS[r.especialidade]||'#555';
+    const nome = espNome(r.especialidade);
+    const hf = !!r.arquivo;
+    const titulo = esc(r.titulo);
+    const arquivo = esc(r.arquivo||'');
 
     const fontesHTML = (r.fontes && r.fontes.length)
-      ? `<div class="fonte-row">${r.fontes.map(f => `<span class="fonte-tag">${bookSVG}${esc(f)}</span>`).join('')}</div>`
-      : '';
+      ? `<div class="fonte-row">${r.fontes.map(f=>`<span class="fonte-tag">${bookSVG}${esc(f)}</span>`).join('')}</div>` : '';
 
-    return `<article class="card" data-file="${arquivo}" data-title="${titulo}">
+    /*
+      BOTOES: todos sao <a> tags agora.
+      "Ler aqui" -> abre o modal no desktop OU abre em nova aba no mobile
+      "Nova aba" -> sempre abre em nova aba
+      Ambos sao links reais que funcionam independente de JS.
+    */
+    const absFile = arquivo; // caminho relativo, funciona como href
+
+    return `<article class="card">
       <div class="cbar" style="background:${color}"></div>
       <div class="cspec">
         <span class="cdot" style="background:${color}"></span>
@@ -651,12 +665,12 @@ function render() {
         <span class="cdate">${fmtDate(r.data||'')}</span>
         ${hf
           ? `<div class="cbtns">
-              <button type="button" class="cbtn cbtn-pdf" data-act="read">
+              <a class="cbtn cbtn-pdf" href="${absFile}" data-act="read" data-title="${titulo}">
                 <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="2" y="1" width="9" height="13" rx="1"/><path d="M7 1v4h4M5 8h5M5 11h3"/></svg>
                 Ler aqui
-              </button>
-              <a class="cbtn cbtn-ext" href="${arquivo}" target="_blank" rel="noopener" data-act="ext">
+              </a>
+              <a class="cbtn cbtn-ext" href="${absFile}" target="_blank" rel="noopener">
                 <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/></svg>
                 Nova aba
@@ -668,52 +682,48 @@ function render() {
   }).join('');
 }
 
-/* ═══════════════════════════════════════════
-   CATEGORY
-═══════════════════════════════════════════ */
+/* ── CATEGORY ───────────────────────────── */
 function setcat(id, nome) {
   cat = id;
-  document.getElementById('ch2').textContent = id === 'all' ? 'Todos os resumos' : nome;
-  document.querySelectorAll('.stile').forEach(b => b.classList.toggle('on', b.dataset.cat === id));
+  document.getElementById('ch2').textContent = id==='all' ? 'Todos os resumos' : nome;
+  document.querySelectorAll('.stile').forEach(b => b.classList.toggle('on', b.dataset.cat===id));
   render();
   document.querySelector('.main').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-/* ═══════════════════════════════════════════
-   SEARCH
-═══════════════════════════════════════════ */
+/* ── SEARCH ─────────────────────────────── */
 document.getElementById('search').addEventListener('input', e => { q = e.target.value; render(); });
 
-/* ═══════════════════════════════════════════
-   CARD CLICK
-═══════════════════════════════════════════ */
+/* ── CLICK HANDLER ──────────────────────── */
 document.getElementById('grid').addEventListener('click', e => {
-  const card = e.target.closest('.card');
-  if (!card) return;
-  const file  = card.dataset.file;
-  const title = card.dataset.title;
-  if (!file) return;
-  if (e.target.closest('[data-act="ext"]')) return;
+  const readBtn = e.target.closest('[data-act="read"]');
+  if (!readBtn) return; // se nao clicou em "Ler aqui", deixa o link funcionar normalmente
+
+  // No mobile: deixa o link abrir normalmente (nova aba)
+  if (isMobile()) {
+    readBtn.target = '_blank';
+    return; // nao previne — o <a> abre sozinho
+  }
+
+  // No desktop: previne e abre o modal
   e.preventDefault();
+  const file  = readBtn.getAttribute('href');
+  const title = readBtn.dataset.title || '';
   openPDF(file, title);
 });
 
-/* ═══════════════════════════════════════════
-   PDF MODAL
-═══════════════════════════════════════════ */
+/* ── PDF MODAL ──────────────────────────── */
 async function openPDF(file, title) {
   const pov     = document.getElementById('pov');
   const iframe  = document.getElementById('piframe');
   const loading = document.getElementById('ploading');
   const error   = document.getElementById('perror');
-  const pext    = document.getElementById('pext');
-  const pdl     = document.getElementById('pdl');
 
   const absoluteUrl = new URL(file, window.location.href).href;
 
   document.getElementById('ptitle').textContent = title;
-  pext.href = absoluteUrl;
-  pdl.href  = absoluteUrl;
+  document.getElementById('pext').href = absoluteUrl;
+  document.getElementById('pdl').href  = absoluteUrl;
 
   iframe.src = 'about:blank';
   iframe.style.visibility = 'hidden';
@@ -723,13 +733,12 @@ async function openPDF(file, title) {
   pov.classList.add('open');
   document.body.style.overflow = 'hidden';
 
+  // Verifica se o PDF existe
   let exists = true;
   try {
     const head = await fetch(absoluteUrl, { method:'HEAD', cache:'no-cache' });
     if (!head.ok) exists = false;
-  } catch(e) {
-    console.warn('HEAD falhou:', e);
-  }
+  } catch(e) { /* ignora erro de rede, tenta carregar mesmo assim */ }
 
   if (!exists) {
     loading.classList.remove('show');
@@ -738,12 +747,13 @@ async function openPDF(file, title) {
     return;
   }
 
+  // Em sites publicos HTTPS: usa Google Docs Viewer (mais confiavel)
   const host = window.location.hostname;
-  const isPublicHttps = window.location.protocol === 'https:'
-                        && host && host !== 'localhost' && host !== '127.0.0.1';
+  const isPublic = window.location.protocol === 'https:'
+    && host && host !== 'localhost' && host !== '127.0.0.1';
 
-  const viewerSrc = isPublicHttps
-    ? `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`
+  const viewerSrc = isPublic
+    ? 'https://docs.google.com/viewer?url=' + encodeURIComponent(absoluteUrl) + '&embedded=true'
     : absoluteUrl;
 
   iframe.onload = () => {
@@ -752,19 +762,19 @@ async function openPDF(file, title) {
   };
   iframe.src = viewerSrc;
 
+  // Timeout: se nao carregar em 12s, mostra mesmo assim
   setTimeout(() => {
     loading.classList.remove('show');
     iframe.style.visibility = 'visible';
-  }, 10000);
+  }, 12000);
 }
 
 function closePDF() {
-  const pov = document.getElementById('pov');
-  // se estiver em tela cheia, sai primeiro
+  // Sai do fullscreen primeiro se necessario
   if (document.fullscreenElement || document.webkitFullscreenElement) {
     (document.exitFullscreen || document.webkitExitFullscreen).call(document);
   }
-  pov.classList.remove('open');
+  document.getElementById('pov').classList.remove('open');
   document.body.style.overflow = '';
   setTimeout(() => {
     document.getElementById('piframe').src = 'about:blank';
@@ -773,43 +783,34 @@ function closePDF() {
   }, 340);
 }
 
-/* ═══════════════════════════════════════════
-   FULLSCREEN TOGGLE
-═══════════════════════════════════════════ */
+/* ── FULLSCREEN ─────────────────────────── */
 const panel = document.getElementById('pov-panel');
-const pfullBtn = document.getElementById('pfull');
 const pfullIcon = document.getElementById('pfull-icon');
-
 const ICON_EXPAND = '<path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/>';
 const ICON_SHRINK = '<path d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4"/>';
 
-pfullBtn.addEventListener('click', () => {
-  const fs = document.fullscreenElement || document.webkitFullscreenElement;
-  if (!fs) {
-    const req = panel.requestFullscreen || panel.webkitRequestFullscreen;
-    if (req) req.call(panel).catch(err => console.warn('Fullscreen falhou:', err));
+document.getElementById('pfull').addEventListener('click', () => {
+  if (!(document.fullscreenElement || document.webkitFullscreenElement)) {
+    (panel.requestFullscreen || panel.webkitRequestFullscreen).call(panel).catch(()=>{});
   } else {
-    const exit = document.exitFullscreen || document.webkitExitFullscreen;
-    if (exit) exit.call(document);
+    (document.exitFullscreen || document.webkitExitFullscreen).call(document);
   }
 });
 
 function onFSChange() {
   const fs = document.fullscreenElement || document.webkitFullscreenElement;
   pfullIcon.innerHTML = fs ? ICON_SHRINK : ICON_EXPAND;
-  pfullBtn.title = fs ? 'Sair da tela cheia' : 'Tela cheia';
 }
 document.addEventListener('fullscreenchange', onFSChange);
 document.addEventListener('webkitfullscreenchange', onFSChange);
 
-/* Close actions */
+/* ── CLOSE ACTIONS ──────────────────────── */
 document.getElementById('pclose').addEventListener('click', closePDF);
 document.getElementById('pov').addEventListener('click', e => {
   if (e.target === document.getElementById('pov')) closePDF();
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && document.getElementById('pov').classList.contains('open')) {
-    // se em tela cheia, Esc ja sai do fullscreen — nao fecha modal
     if (document.fullscreenElement || document.webkitFullscreenElement) return;
     closePDF();
   }
