@@ -24,15 +24,6 @@
   --rule:  #d0c8b5;
   --red:   #8c2910;
 
-  --c-mao:      #1d3f7a;
-  --c-ombro:    #5a2070;
-  --c-cotovelo: #7a3e10;
-  --c-joelho:   #155c3a;
-  --c-quadril:  #7a1515;
-  --c-coluna:   #0f4a5c;
-  --c-pe:       #3a5c10;
-  --c-trauma:   #3a105c;
-
   --fd: 'Fraunces', Georgia, serif;
   --fu: 'Instrument Sans', sans-serif;
 }
@@ -49,7 +40,6 @@ body {
   min-height: 100vh;
 }
 
-/* paper grain */
 body::after {
   content: '';
   position: fixed; inset: 0;
@@ -65,6 +55,7 @@ header {
   position: sticky; top: 0; z-index: 80;
   background: rgba(247,242,234,.94);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--rule);
 }
 .hdr {
@@ -117,7 +108,6 @@ header {
    HERO
 ═══════════════════════════════════════════ */
 .hero { border-bottom: 1px solid var(--rule); position: relative; overflow: hidden; }
-
 .hghost {
   position: absolute; bottom: -.1em; right: -.02em;
   font-family: var(--fd);
@@ -130,9 +120,8 @@ header {
 }
 .hero-in {
   max-width: 1380px; margin: 0 auto;
-  padding: 4.5rem 2rem 4rem; position: relative;
+  padding: 4rem 2rem 3.5rem; position: relative;
 }
-
 .kicker {
   display: inline-flex; align-items: center; gap: .6rem;
   font-size: .68rem; font-weight: 600;
@@ -143,7 +132,6 @@ header {
   content: ''; display: inline-block;
   width: 26px; height: 1px; background: var(--red);
 }
-
 h1 {
   font-family: var(--fd);
   font-size: clamp(2.8rem, 7.5vw, 6.5rem);
@@ -151,22 +139,15 @@ h1 {
   letter-spacing: -.03em; max-width: 660px;
 }
 h1 em { font-style: italic; font-weight: 300; color: var(--red); }
-
 .hero-row {
   display: flex; align-items: flex-end;
   justify-content: space-between;
   margin-top: 2.5rem; gap: 2rem;
 }
-.hdesc {
-  font-size: .88rem; color: var(--muted);
-  max-width: 340px; line-height: 1.8;
-}
+.hdesc { font-size: .88rem; color: var(--muted); max-width: 340px; line-height: 1.8; }
 .hnums { display: flex; gap: 3rem; flex-shrink: 0; }
 .hnum { text-align: right; }
-.hnum-n {
-  font-family: var(--fd); font-size: 3rem;
-  font-weight: 800; line-height: 1; display: block;
-}
+.hnum-n { font-family: var(--fd); font-size: 3rem; font-weight: 800; line-height: 1; display: block; }
 .hnum-l {
   font-size: .65rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--muted);
@@ -174,46 +155,93 @@ h1 em { font-style: italic; font-weight: 300; color: var(--red); }
 }
 
 /* ═══════════════════════════════════════════
-   SPECIALTY STRIP
+   SPECIALTY TILES (grade visual)
 ═══════════════════════════════════════════ */
-.sw-wrap {
+.specs-section {
   border-bottom: 1px solid var(--rule);
-  background: var(--white);
-  overflow-x: auto; scrollbar-width: none;
+  background: var(--p1);
 }
-.sw-wrap::-webkit-scrollbar { display: none; }
-.strip {
+.specs-wrap {
   max-width: 1380px; margin: 0 auto;
-  padding: 0 2rem; display: flex;
+  padding: 2rem;
 }
-.sb {
-  padding: 1.1rem 1.35rem .9rem;
-  border: none; border-right: 1px solid var(--rule);
-  border-bottom: 3px solid transparent;
-  background: none; cursor: pointer;
-  font-family: var(--fu); color: var(--muted);
-  white-space: nowrap; transition: all .14s;
-  display: flex; flex-direction: column; gap: .15rem;
-  flex-shrink: 0;
+.specs-label {
+  font-family: var(--fd); font-size: .72rem;
+  font-style: italic; color: var(--muted);
+  margin-bottom: 1rem; letter-spacing: .04em;
 }
-.sb:first-child { border-left: 1px solid var(--rule); }
-.sb:hover { color: var(--ink); background: var(--p1); }
-.sb.on { color: var(--ink); border-bottom-color: var(--ink); background: var(--p1); }
-.sb-nm { font-size: .78rem; font-weight: 500; }
-.sb-ct { font-family: var(--fd); font-size: 1.3rem; font-weight: 800; line-height: 1; }
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.stile {
+  background: var(--white);
+  padding: 1.25rem 1.15rem 1rem;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  position: relative;
+  min-height: 108px;
+  font-family: var(--fu);
+  color: var(--ink);
+  transition: background .18s, transform .18s;
+  overflow: hidden;
+}
+.stile::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--c, var(--muted));
+  transition: width .18s;
+}
+.stile:hover {
+  background: var(--p1);
+}
+.stile:hover::before { width: 5px; }
+.stile.on {
+  background: var(--ink);
+  color: var(--white);
+}
+.stile.on::before { width: 5px; }
+.stile-nm {
+  font-family: var(--fd); font-size: 1.02rem;
+  font-weight: 600; line-height: 1.2;
+  padding-left: .5rem;
+}
+.stile-ct {
+  font-family: var(--fd);
+  font-style: italic; font-size: 1.4rem;
+  color: var(--muted);
+  margin-top: auto; line-height: 1;
+  padding-left: .5rem;
+}
+.stile.on .stile-ct { color: rgba(250,247,241,.55); }
+.stile-ct small {
+  font-family: var(--fu); font-style: normal;
+  font-size: .6rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  display: block; margin-top: .2rem;
+}
 
 /* ═══════════════════════════════════════════
    MAIN
 ═══════════════════════════════════════════ */
 .main {
   max-width: 1380px; margin: 0 auto;
-  padding: 2.75rem 2rem 6rem;
+  padding: 2.5rem 2rem 6rem;
 }
 .ch {
   display: flex; align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 1.75rem;
-  padding-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--rule);
 }
 .ch h2 { font-family: var(--fd); font-size: 1.4rem; font-weight: 800; }
@@ -224,36 +252,27 @@ h1 em { font-style: italic; font-weight: 300; color: var(--red); }
 .ri { font-size: .75rem; color: var(--muted); }
 
 /* ═══════════════════════════════════════════
-   GRID & CARDS
+   GRID & CARDS (uniformes, não são mais <button>)
 ═══════════════════════════════════════════ */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
-  gap: 1px; background: var(--rule);
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1px;
+  background: var(--rule);
   border: 1px solid var(--rule);
 }
-
 .card {
   background: var(--white);
   padding: 1.6rem;
-  position: relative; cursor: pointer;
-  transition: background .13s;
+  position: relative;
+  cursor: pointer;
+  transition: background .14s;
   animation: up .28s ease both;
-  border: none; text-align: left;
-  font-family: var(--fu); color: var(--ink);
-  width: 100%; display: flex; flex-direction: column;
+  display: flex; flex-direction: column;
+  min-height: 220px;
 }
 .card:hover { background: var(--p1); }
-.card.feat { grid-column: span 2; }
-.card.feat .ct { font-size: 1.5rem; }
-
-/* colored top bar */
-.cbar {
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-}
-
-/* specialty label */
+.cbar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
 .cspec {
   display: flex; align-items: center; gap: .4rem;
   margin-top: .25rem; margin-bottom: .85rem;
@@ -263,20 +282,16 @@ h1 em { font-style: italic; font-weight: 300; color: var(--red); }
   font-size: .63rem; font-weight: 600;
   letter-spacing: .12em; text-transform: uppercase;
 }
-
-/* title & desc */
 .ct {
-  font-family: var(--fd); font-size: 1.15rem;
-  font-weight: 800; line-height: 1.2; color: var(--ink);
+  font-family: var(--fd); font-size: 1.2rem;
+  font-weight: 800; line-height: 1.25; color: var(--ink);
   margin-bottom: .5rem;
 }
 .cd {
-  font-size: .8rem; color: var(--muted);
+  font-size: .82rem; color: var(--muted);
   line-height: 1.65; margin-bottom: .9rem;
   flex: 1;
 }
-
-/* ── FONTE TAGS ── */
 .fonte-row {
   display: flex; flex-wrap: wrap; gap: .35rem;
   margin-bottom: 1.1rem;
@@ -293,8 +308,6 @@ h1 em { font-style: italic; font-weight: 300; color: var(--red); }
   line-height: 1.3;
 }
 .fonte-tag svg { flex-shrink: 0; opacity: .55; }
-
-/* card footer */
 .cf {
   display: flex; align-items: center;
   justify-content: space-between;
@@ -307,20 +320,21 @@ h1 em { font-style: italic; font-weight: 300; color: var(--red); }
   font-size: .73rem; color: var(--muted);
 }
 .cbtns { display: flex; gap: .45rem; align-items: center; }
-
 .cbtn {
-  display: inline-flex; align-items: center; gap: .28rem;
-  font-size: .67rem; font-weight: 600;
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .68rem; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase;
-  padding: .28rem .6rem; border-radius: 3px;
+  padding: .34rem .7rem; border-radius: 3px;
   border: 1px solid; cursor: pointer;
   transition: background .14s, color .14s, border-color .14s;
   white-space: nowrap; font-family: var(--fu); text-decoration: none;
 }
 .cbtn-pdf { color: var(--red); border-color: var(--red); background: transparent; }
 .cbtn-pdf:hover { background: var(--red); color: var(--white); }
-.cbtn-ext { color: var(--muted); border-color: var(--rule); background: transparent; }
-.cbtn-ext:hover { color: var(--ink2); border-color: var(--ink2); }
+.cbtn-ext {
+  color: var(--muted); border-color: var(--rule); background: transparent;
+}
+.cbtn-ext:hover { color: var(--ink2); border-color: var(--ink2); background: var(--p1); }
 .cnofile { font-size: .68rem; color: var(--muted); }
 
 /* ═══════════════════════════════════════════
@@ -328,94 +342,126 @@ h1 em { font-style: italic; font-weight: 300; color: var(--red); }
 ═══════════════════════════════════════════ */
 .pov {
   position: fixed; inset: 0; z-index: 200;
-  display: flex; flex-direction: column;
-  /* two-step transition: backdrop then panel */
   background: rgba(23,19,14,0);
   transition: background .22s;
   pointer-events: none;
 }
-.pov.open {
-  background: rgba(23,19,14,.72);
-  pointer-events: all;
-}
+.pov.open { background: rgba(23,19,14,.78); pointer-events: all; }
 
 .pov-panel {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   display: flex; flex-direction: column;
   transform: translateY(100%);
-  transition: transform .3s cubic-bezier(.22,.68,0,1.1);
+  transition: transform .32s cubic-bezier(.22,.68,0,1.1);
 }
 .pov.open .pov-panel { transform: translateY(0); }
 
-/* top bar of the viewer */
 .pbar {
-  flex-shrink: 0; height: 50px;
+  flex-shrink: 0; height: 54px;
   background: #1c1710;
   display: flex; align-items: center;
-  padding: 0 1rem; gap: .85rem;
+  padding: 0 1rem; gap: .6rem;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 .ptitle {
-  font-family: var(--fd); font-size: .92rem;
+  font-family: var(--fd); font-size: .95rem;
   font-style: italic; font-weight: 600;
   color: #e4d9c4; flex: 1; min-width: 0;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.pbar-btns { display: flex; gap: .5rem; align-items: center; flex-shrink: 0; }
-
+.pbar-btns { display: flex; gap: .45rem; align-items: center; flex-shrink: 0; }
 .pbtn {
-  display: inline-flex; align-items: center; gap: .28rem;
+  display: inline-flex; align-items: center; gap: .3rem;
   font-family: var(--fu); font-size: .69rem; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase;
-  padding: .3rem .7rem; border-radius: 3px;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.07);
-  color: rgba(255,255,255,.68);
+  padding: .38rem .75rem; border-radius: 3px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.78);
   cursor: pointer; transition: all .14s; text-decoration: none;
 }
-.pbtn:hover { background: rgba(255,255,255,.16); color: #fff; border-color: rgba(255,255,255,.38); }
-
+.pbtn:hover { background: rgba(255,255,255,.18); color: #fff; border-color: rgba(255,255,255,.4); }
 .pbclose {
-  width: 32px; height: 32px; flex-shrink: 0;
+  width: 34px; height: 34px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 3px; font-size: .95rem;
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.14);
-  color: rgba(255,255,255,.65);
+  border-radius: 3px; font-size: 1rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.7);
   cursor: pointer; transition: all .14s;
 }
-.pbclose:hover { background: rgba(180,40,16,.7); color: #fff; border-color: transparent; }
+.pbclose:hover { background: rgba(180,40,16,.75); color: #fff; border-color: transparent; }
 
-/* iframe area */
 .pframe {
   flex: 1; min-height: 0;
   background: #141008;
   position: relative;
+  overflow: auto;
 }
 .pframe iframe {
   width: 100%; height: 100%;
   border: none; display: block;
+  background: #fff;
 }
 
-/* mobile fallback shown inside viewer */
-.pfallback {
+/* Mobile: clean fallback view */
+.pmobile {
   display: none;
-  flex-direction: column; align-items: center;
-  justify-content: center; height: 100%;
-  gap: 1rem; text-align: center; padding: 2.5rem;
-  color: rgba(255,255,255,.45);
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 100%; padding: 2rem;
+  text-align: center;
+  color: rgba(255,255,255,.8);
+  background: #1c1710;
 }
-.pfallback p { font-size: .88rem; line-height: 1.65; }
-.pfallback a {
-  display: inline-flex; align-items: center; gap: .4rem;
-  margin-top: .5rem;
-  color: #e4d9c4; font-size: .85rem;
-  border-bottom: 1px solid rgba(228,217,196,.35);
-  text-decoration: none; padding-bottom: .1rem;
-  transition: border-color .15s;
+.pmobile-icon {
+  width: 64px; height: 78px;
+  border: 2px solid rgba(228,217,196,.25);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: rgba(228,217,196,.5);
+  letter-spacing: .04em;
 }
-.pfallback a:hover { border-color: #e4d9c4; }
+.pmobile-title {
+  font-family: var(--fd);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e4d9c4;
+  margin-bottom: .5rem;
+  line-height: 1.3;
+  max-width: 400px;
+}
+.pmobile-sub {
+  font-size: .85rem;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+  max-width: 320px;
+}
+.pmobile-actions { display: flex; flex-direction: column; gap: .6rem; width: 100%; max-width: 280px; }
+.pmobile-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .45rem;
+  font-family: var(--fu); font-size: .82rem;
+  font-weight: 600; letter-spacing: .04em;
+  padding: .85rem 1rem; border-radius: 4px;
+  text-decoration: none;
+  transition: all .14s;
+  cursor: pointer; border: 1px solid;
+}
+.pmobile-btn-primary {
+  background: #b33a18; color: #fff; border-color: #b33a18;
+}
+.pmobile-btn-primary:hover { background: #8c2910; border-color: #8c2910; }
+.pmobile-btn-ghost {
+  background: transparent; color: rgba(228,217,196,.8);
+  border-color: rgba(255,255,255,.18);
+}
+.pmobile-btn-ghost:hover { background: rgba(255,255,255,.08); color: #e4d9c4; }
 
 /* ═══════════════════════════════════════════
    EMPTY / ERROR
@@ -454,9 +500,6 @@ footer { border-top: 1px solid var(--rule); background: var(--p1); }
 .ftag { font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .fdate { font-family: var(--fd); font-size: .75rem; font-style: italic; color: var(--muted); }
 
-/* ═══════════════════════════════════════════
-   ANIMATION
-═══════════════════════════════════════════ */
 @keyframes up {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -470,19 +513,21 @@ footer { border-top: 1px solid var(--rule); background: var(--p1); }
   .hero-row { flex-direction: column; align-items: flex-start; }
   .hnums { gap: 2rem; }
   .hnum { text-align: left; }
-  .card.feat { grid-column: span 1; }
-  .card.feat .ct { font-size: 1.15rem; }
+  .specs-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 600px) {
-  .hdr { gap: 1rem; }
+  .hdr { gap: 1rem; padding: 0 1.25rem; }
   .hstamp { display: none; }
-  .hdr { padding: 0 1.25rem; }
-  .hero-in, .main { padding-left: 1.25rem; padding-right: 1.25rem; }
-  .strip { padding: 0 1.25rem; }
+  .hero-in, .main, .specs-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
   .fin { padding: 1.5rem 1.25rem; }
   .fright { display: none; }
-  /* on mobile, pdf viewer is full screen */
-  .pov-panel { inset: 0; }
+  .specs-grid { grid-template-columns: repeat(2, 1fr); }
+  .stile { min-height: 96px; padding: 1rem .9rem .85rem; }
+  .stile-nm { font-size: .92rem; }
+  .stile-ct { font-size: 1.2rem; }
+  /* mobile PDF viewer */
+  .pframe iframe { display: none; }
+  .pmobile { display: flex; }
   .pbar-btns .pbtn:not(.pbclose) { display: none; }
 }
 </style>
@@ -529,10 +574,13 @@ footer { border-top: 1px solid var(--rule); background: var(--p1); }
   </div>
 </section>
 
-<!-- SPECIALTY STRIP -->
-<nav class="sw-wrap" aria-label="Especialidades">
-  <div class="strip" id="strip"></div>
-</nav>
+<!-- SPECIALTY TILES GRID -->
+<section class="specs-section">
+  <div class="specs-wrap">
+    <div class="specs-label">Escolha uma especialidade para filtrar</div>
+    <div class="specs-grid" id="specs-grid"></div>
+  </div>
+</section>
 
 <!-- MAIN -->
 <main class="main">
@@ -564,15 +612,36 @@ footer { border-top: 1px solid var(--rule); background: var(--p1); }
       <span class="ptitle" id="ptitle">—</span>
       <div class="pbar-btns">
         <a class="pbtn" id="pext" href="#" target="_blank" rel="noopener">
-          <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/>
           </svg>
           Nova aba
         </a>
+        <a class="pbtn" id="pdl" href="#" download>
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 2v9M4 7l4 4 4-4M2 14h12"/>
+          </svg>
+          Baixar
+        </a>
         <button class="pbclose" id="pclose" aria-label="Fechar">&#x2715;</button>
       </div>
     </div>
-    <div class="pframe" id="pframe"></div>
+    <div class="pframe" id="pframe">
+      <iframe id="piframe" title="Visualizador de PDF"></iframe>
+      <div class="pmobile" id="pmobile">
+        <div class="pmobile-icon">PDF</div>
+        <div class="pmobile-title" id="pmobile-title">—</div>
+        <div class="pmobile-sub">No celular, o PDF abre melhor em uma nova aba.</div>
+        <div class="pmobile-actions">
+          <a class="pmobile-btn pmobile-btn-primary" id="pmobile-open" href="#" target="_blank" rel="noopener">
+            Abrir PDF em nova aba
+          </a>
+          <a class="pmobile-btn pmobile-btn-ghost" id="pmobile-dl" href="#" download>
+            Baixar arquivo
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -605,39 +674,50 @@ let cat = 'all', q = '';
 })();
 
 function init() {
-  buildStrip();
+  buildSpecs();
   render();
-
-  // footer latest date
   if (db.resumos.length) {
     const lat = db.resumos.reduce((a,b) =>
       (b.data||'') > (a.data||'') ? b : a, db.resumos[0]);
     document.getElementById('fdate').textContent = fmtDate(lat.data||'');
   }
-
   document.getElementById('hstamp').textContent =
     db.resumos.length + ' resumo' + (db.resumos.length !== 1 ? 's' : '');
 }
 
-/* ── STRIP ────────────────────────────────── */
-function buildStrip() {
-  const el = document.getElementById('strip');
-  el.appendChild(mkSb('all', 'Todos', db.resumos.length, true));
+/* ── SPECIALTY TILES ───────────────────────── */
+function buildSpecs() {
+  const el = document.getElementById('specs-grid');
+  el.innerHTML = '';
+
+  // Tile "Todos"
+  const all = document.createElement('button');
+  all.className = 'stile on';
+  all.dataset.cat = 'all';
+  all.innerHTML = `
+    <span class="stile-nm">Todos</span>
+    <span class="stile-ct">${db.resumos.length}<small>${db.resumos.length === 1 ? 'resumo' : 'resumos'}</small></span>
+  `;
+  all.addEventListener('click', () => setcat('all', 'Todos os resumos'));
+  el.appendChild(all);
+
+  // Tiles de cada especialidade
   db.especialidades.forEach(e => {
     const n = db.resumos.filter(r => r.especialidade === e.id).length;
-    el.appendChild(mkSb(e.id, e.nome, n, false));
+    const t = document.createElement('button');
+    t.className = 'stile';
+    t.dataset.cat = e.id;
+    t.style.setProperty('--c', COLORS[e.id] || '#888');
+    t.innerHTML = `
+      <span class="stile-nm">${e.nome}</span>
+      <span class="stile-ct">${n}<small>${n === 1 ? 'resumo' : 'resumos'}</small></span>
+    `;
+    t.addEventListener('click', () => setcat(e.id, e.nome));
+    el.appendChild(t);
   });
+
   document.getElementById('n-res').textContent = db.resumos.length;
   document.getElementById('n-ar').textContent  = db.especialidades.length;
-}
-
-function mkSb(id, nome, count, active) {
-  const b = document.createElement('button');
-  b.className = 'sb' + (active ? ' on' : '');
-  b.dataset.cat = id;
-  b.innerHTML = `<span class="sb-nm">${nome}</span><span class="sb-ct">${count}</span>`;
-  b.addEventListener('click', () => setcat(id, nome));
-  return b;
 }
 
 /* ── FILTER ───────────────────────────────── */
@@ -666,6 +746,16 @@ function fmtDate(s) {
   return `${+d} ${M[+m-1]}. ${y}`;
 }
 
+/* Escape HTML to prevent injection in title/description */
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 /* ── RENDER ───────────────────────────────── */
 function render() {
   const list = filtered();
@@ -678,62 +768,50 @@ function render() {
   if (!list.length) {
     grid.innerHTML = `<div class="empty">
       <h3>Nenhum resultado</h3>
-      <p>Tente outro termo de busca ou especialidade.</p>
+      <p>Tente outro termo de busca ou outra especialidade.</p>
     </div>`;
     return;
   }
 
-  /* book icon SVG inline */
   const bookSVG = `<svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
     <path d="M2 3.5A1.5 1.5 0 013.5 2h9A1.5 1.5 0 0114 3.5v10a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V3.5z"/>
     <path d="M5 6h6M5 9h6M5 12h4"/>
   </svg>`;
 
-  grid.innerHTML = list.map((r, i) => {
+  grid.innerHTML = list.map(r => {
     const color  = COLORS[r.especialidade] || '#555';
     const nome   = espNome(r.especialidade);
     const hf     = !!r.arquivo;
-    const delay  = Math.min(i * .04, .48);
-    const feat   = i === 0 && cat === 'all' && !q ? 'feat' : '';
+    const titulo = esc(r.titulo);
+    const arquivo = esc(r.arquivo || '');
 
-    /* fonte tags HTML */
     const fontesHTML = (r.fontes && r.fontes.length)
       ? `<div class="fonte-row">${r.fontes.map(f =>
-          `<span class="fonte-tag">${bookSVG}${f}</span>`
+          `<span class="fonte-tag">${bookSVG}${esc(f)}</span>`
         ).join('')}</div>`
       : '';
 
-    /* safe title for data attribute */
-    const safeTitle = r.titulo.replace(/"/g, '&quot;');
-    const safeFile  = (r.arquivo||'').replace(/"/g, '&quot;');
-
-    return `<button
-      class="card ${feat}"
-      data-file="${safeFile}"
-      data-title="${safeTitle}"
-      style="animation-delay:${delay}s"
-      onclick="cardClick(event,this)">
+    return `<article class="card" data-file="${arquivo}" data-title="${titulo}">
       <div class="cbar" style="background:${color}"></div>
       <div class="cspec">
         <span class="cdot" style="background:${color}"></span>
-        <span class="cspnm" style="color:${color}">${nome}</span>
+        <span class="cspnm" style="color:${color}">${esc(nome)}</span>
       </div>
-      <div class="ct">${r.titulo}</div>
-      ${r.descricao ? `<div class="cd">${r.descricao}</div>` : '<div class="cd"></div>'}
+      <div class="ct">${esc(r.titulo)}</div>
+      ${r.descricao ? `<div class="cd">${esc(r.descricao)}</div>` : '<div class="cd"></div>'}
       ${fontesHTML}
       <div class="cf">
         <span class="cdate">${fmtDate(r.data||'')}</span>
         ${hf
           ? `<div class="cbtns">
-              <button class="cbtn cbtn-pdf" onclick="openPDF(event,'${safeFile}','${safeTitle}')">
+              <button type="button" class="cbtn cbtn-pdf" data-act="read">
                 <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="2" y="1" width="9" height="13" rx="1"/>
                   <path d="M7 1v4h4M5 8h5M5 11h3"/>
                 </svg>
                 Ler aqui
               </button>
-              <a class="cbtn cbtn-ext" href="${safeFile}" target="_blank" rel="noopener"
-                 onclick="event.stopPropagation()">
+              <a class="cbtn cbtn-ext" href="${arquivo}" target="_blank" rel="noopener" data-act="ext">
                 <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/>
                 </svg>
@@ -743,7 +821,7 @@ function render() {
           : `<span class="cnofile">sem arquivo</span>`
         }
       </div>
-    </button>`;
+    </article>`;
   }).join('');
 }
 
@@ -752,9 +830,11 @@ function setcat(id, nome) {
   cat = id;
   document.getElementById('ch2').textContent =
     id === 'all' ? 'Todos os resumos' : nome;
-  document.querySelectorAll('.sb').forEach(b =>
+  document.querySelectorAll('.stile').forEach(b =>
     b.classList.toggle('on', b.dataset.cat === id));
   render();
+  // scroll to main section smoothly
+  document.querySelector('.main').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 /* ── SEARCH ───────────────────────────────── */
@@ -762,38 +842,42 @@ document.getElementById('search').addEventListener('input', e => {
   q = e.target.value; render();
 });
 
-/* ── CARD CLICK ───────────────────────────── */
-function cardClick(event, el) {
-  if (event.target !== el && event.target.closest('button,a')) return;
-  const file = el.dataset.file;
-  if (file) openPDF(event, file, el.dataset.title);
-}
+/* ── CARD CLICK (event delegation) ────────── */
+document.getElementById('grid').addEventListener('click', e => {
+  const card = e.target.closest('.card');
+  if (!card) return;
+  const file  = card.dataset.file;
+  const title = card.dataset.title;
+  if (!file) return;
+
+  // Clique no "Nova aba" → deixa o navegador abrir sozinho
+  if (e.target.closest('[data-act="ext"]')) return;
+
+  // Qualquer outro clique (inclusive "Ler aqui" ou clique no card) → abre modal
+  e.preventDefault();
+  openPDF(file, title);
+});
 
 /* ── PDF MODAL ────────────────────────────── */
-function openPDF(event, file, title) {
-  if (event) event.stopPropagation();
-  const pov   = document.getElementById('pov');
-  const frame = document.getElementById('pframe');
-  document.getElementById('ptitle').textContent = title;
-  document.getElementById('pext').href = file;
+function openPDF(file, title) {
+  const pov     = document.getElementById('pov');
+  const iframe  = document.getElementById('piframe');
+  const pext    = document.getElementById('pext');
+  const pdl     = document.getElementById('pdl');
+  const pmOpen  = document.getElementById('pmobile-open');
+  const pmDl    = document.getElementById('pmobile-dl');
 
-  /* Use object tag — better cross-browser support than iframe for PDFs */
-  frame.innerHTML = `
-    <object
-      data="${file}#toolbar=1&navpanes=0"
-      type="application/pdf"
-      style="width:100%;height:100%;display:block;"
-      aria-label="${title}">
-      <div class="pfallback" style="display:flex">
-        <p>Seu navegador nao conseguiu exibir o PDF aqui.</p>
-        <a href="${file}" target="_blank" rel="noopener">
-          Abrir PDF em nova aba
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/>
-          </svg>
-        </a>
-      </div>
-    </object>`;
+  document.getElementById('ptitle').textContent = title;
+  document.getElementById('pmobile-title').textContent = title;
+
+  // Links sempre atualizados
+  pext.href = file;
+  pdl.href  = file;
+  pmOpen.href = file;
+  pmDl.href   = file;
+
+  // Carrega o PDF no iframe (desktop). No mobile o CSS esconde e mostra a view alternativa.
+  iframe.src = file;
 
   pov.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -803,19 +887,18 @@ function closePDF() {
   const pov = document.getElementById('pov');
   pov.classList.remove('open');
   document.body.style.overflow = '';
-  /* clear after transition ends so iframe doesn't keep playing */
+  // Limpa o src do iframe depois da animação para parar o carregamento
   setTimeout(() => {
-    document.getElementById('pframe').innerHTML = '';
-  }, 320);
+    document.getElementById('piframe').src = 'about:blank';
+  }, 340);
 }
 
 document.getElementById('pclose').addEventListener('click', closePDF);
 document.getElementById('pov').addEventListener('click', e => {
-  /* close only when clicking the dark backdrop, not the panel */
   if (e.target === document.getElementById('pov')) closePDF();
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closePDF();
+  if (e.key === 'Escape' && document.getElementById('pov').classList.contains('open')) closePDF();
 });
 </script>
 </body>
