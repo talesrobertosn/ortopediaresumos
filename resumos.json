@@ -36,6 +36,15 @@
       "fontes": ["Rockwood & Green"],
       "arquivo": "pdfs/fraturasestresse.pdf",
       "data": "2026-04-17"
+    },
+    {
+      "id": 10,
+      "titulo": "Osteoporose and Metabolic Bone Disease",
+      "especialidade": "trauma",
+      "descricao": "Traducao em portugues do capitulo 4 do Rockwood",
+      "fontes": ["Rockwood & Green"],
+      "arquivo": "pdfs/osteoporose.pdf",
+      "data": "2026-04-17"
     }
   ]
 }
