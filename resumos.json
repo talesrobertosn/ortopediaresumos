@@ -14,7 +14,7 @@
       "id": 7,
       "titulo": "Fraturas do metacarpo",
       "especialidade": "mao",
-      "descricao": "Resumo",
+      "descricao": "Conceitos do Rockwood",
       "fontes": ["Rockwood & Green"],
       "arquivo": "pdfs/Fraturas-do-metacarpo.pdf",
       "data": "2025-04-17"
@@ -32,7 +32,7 @@
       "id": 9,
       "titulo": "Fraturas por estresse",
       "especialidade": "trauma",
-      "descricao": "Tradução do capitulo do Rockwood",
+      "descricao": "Traducao em portugues do capitulo 3 do Rockwood",
       "fontes": ["Rockwood & Green"],
       "arquivo": "pdfs/fraturasestresse.pdf",
       "data": "2026-04-17"
