@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Biblioteca pessoal de resumos ortopedicos do Dr. Tales.">
+<title>Resumos do Tales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600;1,9..144,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --p0:    #f7f2ea;
+  --p1:    #ede6d5;
+  --p2:    #e2d9c5;
+  --white: #faf7f1;
+  --ink:   #17130e;
+  --ink2:  #3b3228;
+  --muted: #8b7e6a;
+  --rule:  #d0c8b5;
+  --red:   #8c2910;
+
+  --c-mao:      #1d3f7a;
+  --c-ombro:    #5a2070;
+  --c-cotovelo: #7a3e10;
+  --c-joelho:   #155c3a;
+  --c-quadril:  #7a1515;
+  --c-coluna:   #0f4a5c;
+  --c-pe:       #3a5c10;
+  --c-trauma:   #3a105c;
+
+  --fd: 'Fraunces', Georgia, serif;
+  --fu: 'Instrument Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--p0);
+  color: var(--ink);
+  font-family: var(--fu);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* paper grain */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 900;
+}
+
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
+header {
+  position: sticky; top: 0; z-index: 80;
+  background: rgba(247,242,234,.94);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--rule);
+}
+.hdr {
+  max-width: 1380px; margin: 0 auto;
+  padding: 0 2rem; height: 54px;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+
+.logo {
+  font-family: var(--fd);
+  font-size: 1rem; font-weight: 600;
+  letter-spacing: -.01em; color: var(--ink);
+  white-space: nowrap; flex-shrink: 0; line-height: 1.2;
+}
+.logo em { font-style: italic; font-weight: 300; color: var(--red); }
+.logo small {
+  display: block;
+  font-family: var(--fu); font-size: .58rem;
+  font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: .06rem;
+}
+
+.hdiv { width: 1px; height: 14px; background: var(--rule); flex-shrink: 0; }
+
+.sw { flex: 1; max-width: 340px; position: relative; }
+.sw input {
+  width: 100%; background: transparent;
+  border: none; border-bottom: 1px solid var(--rule);
+  padding: .35rem .2rem .35rem 1.7rem;
+  font-family: var(--fu); font-size: .82rem;
+  color: var(--ink); outline: none;
+  transition: border-color .18s;
+}
+.sw input::placeholder { color: var(--muted); }
+.sw input:focus { border-color: var(--ink2); }
+.si {
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 12px; height: 12px; color: var(--muted); pointer-events: none;
+}
+
+.hstamp {
+  margin-left: auto;
+  font-family: var(--fd); font-size: .78rem;
+  font-style: italic; color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero { border-bottom: 1px solid var(--rule); position: relative; overflow: hidden; }
+
+.hghost {
+  position: absolute; bottom: -.1em; right: -.02em;
+  font-family: var(--fd);
+  font-size: clamp(8rem, 20vw, 18rem);
+  font-weight: 800; font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--rule);
+  line-height: 1; pointer-events: none;
+  user-select: none; letter-spacing: -.04em;
+}
+.hero-in {
+  max-width: 1380px; margin: 0 auto;
+  padding: 4.5rem 2rem 4rem; position: relative;
+}
+
+.kicker {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 1.5rem;
+}
+.kicker::before {
+  content: ''; display: inline-block;
+  width: 26px; height: 1px; background: var(--red);
+}
+
+h1 {
+  font-family: var(--fd);
+  font-size: clamp(2.8rem, 7.5vw, 6.5rem);
+  font-weight: 800; line-height: .93;
+  letter-spacing: -.03em; max-width: 660px;
+}
+h1 em { font-style: italic; font-weight: 300; color: var(--red); }
+
+.hero-row {
+  display: flex; align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 2.5rem; gap: 2rem;
+}
+.hdesc {
+  font-size: .88rem; color: var(--muted);
+  max-width: 340px; line-height: 1.8;
+}
+.hnums { display: flex; gap: 3rem; flex-shrink: 0; }
+.hnum { text-align: right; }
+.hnum-n {
+  font-family: var(--fd); font-size: 3rem;
+  font-weight: 800; line-height: 1; display: block;
+}
+.hnum-l {
+  font-size: .65rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  display: block; margin-top: .15rem;
+}
+
+/* ═══════════════════════════════════════════
+   SPECIALTY STRIP
+═══════════════════════════════════════════ */
+.sw-wrap {
+  border-bottom: 1px solid var(--rule);
+  background: var(--white);
+  overflow-x: auto; scrollbar-width: none;
+}
+.sw-wrap::-webkit-scrollbar { display: none; }
+.strip {
+  max-width: 1380px; margin: 0 auto;
+  padding: 0 2rem; display: flex;
+}
+.sb {
+  padding: 1.1rem 1.35rem .9rem;
+  border: none; border-right: 1px solid var(--rule);
+  border-bottom: 3px solid transparent;
+  background: none; cursor: pointer;
+  font-family: var(--fu); color: var(--muted);
+  white-space: nowrap; transition: all .14s;
+  display: flex; flex-direction: column; gap: .15rem;
+  flex-shrink: 0;
+}
+.sb:first-child { border-left: 1px solid var(--rule); }
+.sb:hover { color: var(--ink); background: var(--p1); }
+.sb.on { color: var(--ink); border-bottom-color: var(--ink); background: var(--p1); }
+.sb-nm { font-size: .78rem; font-weight: 500; }
+.sb-ct { font-family: var(--fd); font-size: 1.3rem; font-weight: 800; line-height: 1; }
+
+/* ═══════════════════════════════════════════
+   MAIN
+═══════════════════════════════════════════ */
+.main {
+  max-width: 1380px; margin: 0 auto;
+  padding: 2.75rem 2rem 6rem;
+}
+.ch {
+  display: flex; align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.ch h2 { font-family: var(--fd); font-size: 1.4rem; font-weight: 800; }
+.ch h2 em {
+  font-style: italic; font-weight: 300;
+  color: var(--muted); font-size: 1rem; margin-left: .4rem;
+}
+.ri { font-size: .75rem; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   GRID & CARDS
+═══════════════════════════════════════════ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.card {
+  background: var(--white);
+  padding: 1.6rem;
+  position: relative; cursor: pointer;
+  transition: background .13s;
+  animation: up .28s ease both;
+  border: none; text-align: left;
+  font-family: var(--fu); color: var(--ink);
+  width: 100%; display: flex; flex-direction: column;
+}
+.card:hover { background: var(--p1); }
+.card.feat { grid-column: span 2; }
+.card.feat .ct { font-size: 1.5rem; }
+
+/* colored top bar */
+.cbar {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+/* specialty label */
+.cspec {
+  display: flex; align-items: center; gap: .4rem;
+  margin-top: .25rem; margin-bottom: .85rem;
+}
+.cdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.cspnm {
+  font-size: .63rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+}
+
+/* title & desc */
+.ct {
+  font-family: var(--fd); font-size: 1.15rem;
+  font-weight: 800; line-height: 1.2; color: var(--ink);
+  margin-bottom: .5rem;
+}
+.cd {
+  font-size: .8rem; color: var(--muted);
+  line-height: 1.65; margin-bottom: .9rem;
+  flex: 1;
+}
+
+/* ── FONTE TAGS ── */
+.fonte-row {
+  display: flex; flex-wrap: wrap; gap: .35rem;
+  margin-bottom: 1.1rem;
+}
+.fonte-tag {
+  display: inline-flex; align-items: center; gap: .28rem;
+  font-size: .65rem; font-weight: 500;
+  letter-spacing: .04em;
+  padding: .22rem .55rem;
+  border-radius: 2px;
+  background: var(--p2);
+  border: 1px solid var(--rule);
+  color: var(--ink2);
+  line-height: 1.3;
+}
+.fonte-tag svg { flex-shrink: 0; opacity: .55; }
+
+/* card footer */
+.cf {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-top: .85rem; border-top: 1px solid var(--rule);
+  gap: .5rem; flex-wrap: wrap;
+  margin-top: auto;
+}
+.cdate {
+  font-family: var(--fd); font-style: italic;
+  font-size: .73rem; color: var(--muted);
+}
+.cbtns { display: flex; gap: .45rem; align-items: center; }
+
+.cbtn {
+  display: inline-flex; align-items: center; gap: .28rem;
+  font-size: .67rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: .28rem .6rem; border-radius: 3px;
+  border: 1px solid; cursor: pointer;
+  transition: background .14s, color .14s, border-color .14s;
+  white-space: nowrap; font-family: var(--fu); text-decoration: none;
+}
+.cbtn-pdf { color: var(--red); border-color: var(--red); background: transparent; }
+.cbtn-pdf:hover { background: var(--red); color: var(--white); }
+.cbtn-ext { color: var(--muted); border-color: var(--rule); background: transparent; }
+.cbtn-ext:hover { color: var(--ink2); border-color: var(--ink2); }
+.cnofile { font-size: .68rem; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   PDF VIEWER MODAL
+═══════════════════════════════════════════ */
+.pov {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; flex-direction: column;
+  /* two-step transition: backdrop then panel */
+  background: rgba(23,19,14,0);
+  transition: background .22s;
+  pointer-events: none;
+}
+.pov.open {
+  background: rgba(23,19,14,.72);
+  pointer-events: all;
+}
+
+.pov-panel {
+  position: absolute;
+  inset: 0;
+  display: flex; flex-direction: column;
+  transform: translateY(100%);
+  transition: transform .3s cubic-bezier(.22,.68,0,1.1);
+}
+.pov.open .pov-panel { transform: translateY(0); }
+
+/* top bar of the viewer */
+.pbar {
+  flex-shrink: 0; height: 50px;
+  background: #1c1710;
+  display: flex; align-items: center;
+  padding: 0 1rem; gap: .85rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.ptitle {
+  font-family: var(--fd); font-size: .92rem;
+  font-style: italic; font-weight: 600;
+  color: #e4d9c4; flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.pbar-btns { display: flex; gap: .5rem; align-items: center; flex-shrink: 0; }
+
+.pbtn {
+  display: inline-flex; align-items: center; gap: .28rem;
+  font-family: var(--fu); font-size: .69rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: .3rem .7rem; border-radius: 3px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.68);
+  cursor: pointer; transition: all .14s; text-decoration: none;
+}
+.pbtn:hover { background: rgba(255,255,255,.16); color: #fff; border-color: rgba(255,255,255,.38); }
+
+.pbclose {
+  width: 32px; height: 32px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 3px; font-size: .95rem;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.65);
+  cursor: pointer; transition: all .14s;
+}
+.pbclose:hover { background: rgba(180,40,16,.7); color: #fff; border-color: transparent; }
+
+/* iframe area */
+.pframe {
+  flex: 1; min-height: 0;
+  background: #141008;
+  position: relative;
+}
+.pframe iframe {
+  width: 100%; height: 100%;
+  border: none; display: block;
+}
+
+/* mobile fallback shown inside viewer */
+.pfallback {
+  display: none;
+  flex-direction: column; align-items: center;
+  justify-content: center; height: 100%;
+  gap: 1rem; text-align: center; padding: 2.5rem;
+  color: rgba(255,255,255,.45);
+}
+.pfallback p { font-size: .88rem; line-height: 1.65; }
+.pfallback a {
+  display: inline-flex; align-items: center; gap: .4rem;
+  margin-top: .5rem;
+  color: #e4d9c4; font-size: .85rem;
+  border-bottom: 1px solid rgba(228,217,196,.35);
+  text-decoration: none; padding-bottom: .1rem;
+  transition: border-color .15s;
+}
+.pfallback a:hover { border-color: #e4d9c4; }
+
+/* ═══════════════════════════════════════════
+   EMPTY / ERROR
+═══════════════════════════════════════════ */
+.empty {
+  grid-column: 1/-1; background: var(--white);
+  padding: 5rem 2rem; text-align: center;
+}
+.empty h3 {
+  font-family: var(--fd); font-size: 1.55rem;
+  font-style: italic; color: var(--ink2); margin-bottom: .5rem;
+}
+.empty p { font-size: .83rem; color: var(--muted); }
+
+.err {
+  background: #fef2f2;
+  border-left: 3px solid var(--red);
+  padding: .85rem 1.25rem; margin-bottom: 1.5rem;
+  font-size: .83rem; color: #7f1d1d;
+  display: none; border-radius: 0 4px 4px 0;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { border-top: 1px solid var(--rule); background: var(--p1); }
+.fin {
+  max-width: 1380px; margin: 0 auto;
+  padding: 1.75rem 2rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.fmark { font-family: var(--fd); font-size: .88rem; color: var(--muted); }
+.fmark strong { font-style: italic; font-weight: 600; color: var(--ink2); }
+.fright { display: flex; flex-direction: column; align-items: flex-end; gap: .15rem; }
+.ftag { font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.fdate { font-family: var(--fd); font-size: .75rem; font-style: italic; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   ANIMATION
+═══════════════════════════════════════════ */
+@keyframes up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .hghost { display: none; }
+  .hero-row { flex-direction: column; align-items: flex-start; }
+  .hnums { gap: 2rem; }
+  .hnum { text-align: left; }
+  .card.feat { grid-column: span 1; }
+  .card.feat .ct { font-size: 1.15rem; }
+}
+@media (max-width: 600px) {
+  .hdr { gap: 1rem; }
+  .hstamp { display: none; }
+  .hdr { padding: 0 1.25rem; }
+  .hero-in, .main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .strip { padding: 0 1.25rem; }
+  .fin { padding: 1.5rem 1.25rem; }
+  .fright { display: none; }
+  /* on mobile, pdf viewer is full screen */
+  .pov-panel { inset: 0; }
+  .pbar-btns .pbtn:not(.pbclose) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <div class="logo">
+      Resumos do <em>Tales</em>
+      <small>Ortopedia &amp; Traumatologia</small>
+    </div>
+    <div class="hdiv"></div>
+    <div class="sw">
+      <svg class="si" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="8.5" cy="8.5" r="5.5"/><path d="M15 15l-3.5-3.5"/>
+      </svg>
+      <input type="text" id="search" placeholder="Buscar tema, fratura, livro...">
+    </div>
+    <span class="hstamp" id="hstamp"></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hghost">Orto</div>
+  <div class="hero-in">
+    <div class="kicker">Minha biblioteca pessoal</div>
+    <h1>Resumos de<br><em>Ortopedia</em></h1>
+    <div class="hero-row">
+      <p class="hdesc">Resumos que escrevi, organizados como quero, do jeito que faz sentido pra mim. Busque por tema, livro ou especialidade.</p>
+      <div class="hnums">
+        <div class="hnum">
+          <span class="hnum-n" id="n-res">—</span>
+          <span class="hnum-l">Resumos</span>
+        </div>
+        <div class="hnum">
+          <span class="hnum-n" id="n-ar">—</span>
+          <span class="hnum-l">Areas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALTY STRIP -->
+<nav class="sw-wrap" aria-label="Especialidades">
+  <div class="strip" id="strip"></div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+  <div id="err" class="err"></div>
+  <div class="ch">
+    <h2 id="ch2">Todos os resumos</h2>
+    <span class="ri" id="ri"></span>
+  </div>
+  <div class="grid" id="grid">
+    <div class="empty"><p>Carregando...</p></div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fin">
+    <div class="fmark"><strong>Tales</strong></div>
+    <div class="fright">
+      <span class="ftag">Ultima atualizacao</span>
+      <span class="fdate" id="fdate"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- PDF MODAL -->
+<div class="pov" id="pov" role="dialog" aria-modal="true" aria-label="Leitor de PDF">
+  <div class="pov-panel">
+    <div class="pbar">
+      <span class="ptitle" id="ptitle">—</span>
+      <div class="pbar-btns">
+        <a class="pbtn" id="pext" href="#" target="_blank" rel="noopener">
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/>
+          </svg>
+          Nova aba
+        </a>
+        <button class="pbclose" id="pclose" aria-label="Fechar">&#x2715;</button>
+      </div>
+    </div>
+    <div class="pframe" id="pframe"></div>
+  </div>
+</div>
+
+<script>
+/* ── CONFIG ───────────────────────────────── */
+const DATA_URL = './resumos.json';
+
+const COLORS = {
+  mao:'#1d3f7a', ombro:'#5a2070', cotovelo:'#7a3e10',
+  joelho:'#155c3a', quadril:'#7a1515', coluna:'#0f4a5c',
+  pe:'#3a5c10', trauma:'#3a105c'
+};
+
+/* ── STATE ────────────────────────────────── */
+let db  = { especialidades:[], resumos:[] };
+let cat = 'all', q = '';
+
+/* ── BOOT ─────────────────────────────────── */
+(async () => {
+  try {
+    const r = await fetch(DATA_URL, { cache:'no-cache' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    db = await r.json();
+  } catch(e) {
+    const el = document.getElementById('err');
+    el.textContent = 'Nao foi possivel carregar resumos.json (' + e.message + ')';
+    el.style.display = 'block';
+  }
+  init();
+})();
+
+function init() {
+  buildStrip();
+  render();
+
+  // footer latest date
+  if (db.resumos.length) {
+    const lat = db.resumos.reduce((a,b) =>
+      (b.data||'') > (a.data||'') ? b : a, db.resumos[0]);
+    document.getElementById('fdate').textContent = fmtDate(lat.data||'');
+  }
+
+  document.getElementById('hstamp').textContent =
+    db.resumos.length + ' resumo' + (db.resumos.length !== 1 ? 's' : '');
+}
+
+/* ── STRIP ────────────────────────────────── */
+function buildStrip() {
+  const el = document.getElementById('strip');
+  el.appendChild(mkSb('all', 'Todos', db.resumos.length, true));
+  db.especialidades.forEach(e => {
+    const n = db.resumos.filter(r => r.especialidade === e.id).length;
+    el.appendChild(mkSb(e.id, e.nome, n, false));
+  });
+  document.getElementById('n-res').textContent = db.resumos.length;
+  document.getElementById('n-ar').textContent  = db.especialidades.length;
+}
+
+function mkSb(id, nome, count, active) {
+  const b = document.createElement('button');
+  b.className = 'sb' + (active ? ' on' : '');
+  b.dataset.cat = id;
+  b.innerHTML = `<span class="sb-nm">${nome}</span><span class="sb-ct">${count}</span>`;
+  b.addEventListener('click', () => setcat(id, nome));
+  return b;
+}
+
+/* ── FILTER ───────────────────────────────── */
+function filtered() {
+  const sq = q.toLowerCase().trim();
+  return db.resumos.filter(r => {
+    const cok = cat === 'all' || r.especialidade === cat;
+    const sok = !sq
+      || r.titulo.toLowerCase().includes(sq)
+      || (r.descricao||'').toLowerCase().includes(sq)
+      || r.especialidade.toLowerCase().includes(sq)
+      || (r.fontes||[]).some(f => f.toLowerCase().includes(sq));
+    return cok && sok;
+  });
+}
+
+function espNome(id) {
+  const e = db.especialidades.find(x => x.id === id);
+  return e ? e.nome : id;
+}
+
+function fmtDate(s) {
+  if (!s) return '';
+  const [y,m,d] = s.split('-');
+  const M = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  return `${+d} ${M[+m-1]}. ${y}`;
+}
+
+/* ── RENDER ───────────────────────────────── */
+function render() {
+  const list = filtered();
+  const grid = document.getElementById('grid');
+
+  document.getElementById('ri').textContent = q
+    ? `${list.length} resultado${list.length!==1?'s':''} para "${q}"`
+    : '';
+
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty">
+      <h3>Nenhum resultado</h3>
+      <p>Tente outro termo de busca ou especialidade.</p>
+    </div>`;
+    return;
+  }
+
+  /* book icon SVG inline */
+  const bookSVG = `<svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M2 3.5A1.5 1.5 0 013.5 2h9A1.5 1.5 0 0114 3.5v10a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V3.5z"/>
+    <path d="M5 6h6M5 9h6M5 12h4"/>
+  </svg>`;
+
+  grid.innerHTML = list.map((r, i) => {
+    const color  = COLORS[r.especialidade] || '#555';
+    const nome   = espNome(r.especialidade);
+    const hf     = !!r.arquivo;
+    const delay  = Math.min(i * .04, .48);
+    const feat   = i === 0 && cat === 'all' && !q ? 'feat' : '';
+
+    /* fonte tags HTML */
+    const fontesHTML = (r.fontes && r.fontes.length)
+      ? `<div class="fonte-row">${r.fontes.map(f =>
+          `<span class="fonte-tag">${bookSVG}${f}</span>`
+        ).join('')}</div>`
+      : '';
+
+    /* safe title for data attribute */
+    const safeTitle = r.titulo.replace(/"/g, '&quot;');
+    const safeFile  = (r.arquivo||'').replace(/"/g, '&quot;');
+
+    return `<button
+      class="card ${feat}"
+      data-file="${safeFile}"
+      data-title="${safeTitle}"
+      style="animation-delay:${delay}s"
+      onclick="cardClick(event,this)">
+      <div class="cbar" style="background:${color}"></div>
+      <div class="cspec">
+        <span class="cdot" style="background:${color}"></span>
+        <span class="cspnm" style="color:${color}">${nome}</span>
+      </div>
+      <div class="ct">${r.titulo}</div>
+      ${r.descricao ? `<div class="cd">${r.descricao}</div>` : '<div class="cd"></div>'}
+      ${fontesHTML}
+      <div class="cf">
+        <span class="cdate">${fmtDate(r.data||'')}</span>
+        ${hf
+          ? `<div class="cbtns">
+              <button class="cbtn cbtn-pdf" onclick="openPDF(event,'${safeFile}','${safeTitle}')">
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="1" width="9" height="13" rx="1"/>
+                  <path d="M7 1v4h4M5 8h5M5 11h3"/>
+                </svg>
+                Ler aqui
+              </button>
+              <a class="cbtn cbtn-ext" href="${safeFile}" target="_blank" rel="noopener"
+                 onclick="event.stopPropagation()">
+                <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/>
+                </svg>
+                Nova aba
+              </a>
+            </div>`
+          : `<span class="cnofile">sem arquivo</span>`
+        }
+      </div>
+    </button>`;
+  }).join('');
+}
+
+/* ── CATEGORY ─────────────────────────────── */
+function setcat(id, nome) {
+  cat = id;
+  document.getElementById('ch2').textContent =
+    id === 'all' ? 'Todos os resumos' : nome;
+  document.querySelectorAll('.sb').forEach(b =>
+    b.classList.toggle('on', b.dataset.cat === id));
+  render();
+}
+
+/* ── SEARCH ───────────────────────────────── */
+document.getElementById('search').addEventListener('input', e => {
+  q = e.target.value; render();
+});
+
+/* ── CARD CLICK ───────────────────────────── */
+function cardClick(event, el) {
+  if (event.target !== el && event.target.closest('button,a')) return;
+  const file = el.dataset.file;
+  if (file) openPDF(event, file, el.dataset.title);
+}
+
+/* ── PDF MODAL ────────────────────────────── */
+function openPDF(event, file, title) {
+  if (event) event.stopPropagation();
+  const pov   = document.getElementById('pov');
+  const frame = document.getElementById('pframe');
+  document.getElementById('ptitle').textContent = title;
+  document.getElementById('pext').href = file;
+
+  /* Use object tag — better cross-browser support than iframe for PDFs */
+  frame.innerHTML = `
+    <object
+      data="${file}#toolbar=1&navpanes=0"
+      type="application/pdf"
+      style="width:100%;height:100%;display:block;"
+      aria-label="${title}">
+      <div class="pfallback" style="display:flex">
+        <p>Seu navegador nao conseguiu exibir o PDF aqui.</p>
+        <a href="${file}" target="_blank" rel="noopener">
+          Abrir PDF em nova aba
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </object>`;
+
+  pov.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePDF() {
+  const pov = document.getElementById('pov');
+  pov.classList.remove('open');
+  document.body.style.overflow = '';
+  /* clear after transition ends so iframe doesn't keep playing */
+  setTimeout(() => {
+    document.getElementById('pframe').innerHTML = '';
+  }, 320);
+}
+
+document.getElementById('pclose').addEventListener('click', closePDF);
+document.getElementById('pov').addEventListener('click', e => {
+  /* close only when clicking the dark backdrop, not the panel */
+  if (e.target === document.getElementById('pov')) closePDF();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closePDF();
+});
+</script>
+</body>
+</html>
