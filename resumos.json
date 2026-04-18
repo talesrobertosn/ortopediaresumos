@@ -1,13 +1,13 @@
 {
   "especialidades": [
-    { "id": "mao",      "nome": "Mao e Punho"    },
-    { "id": "ombro",    "nome": "Ombro"           },
-    { "id": "cotovelo", "nome": "Cotovelo"        },
-    { "id": "joelho",   "nome": "Joelho"          },
-    { "id": "quadril",  "nome": "Quadril"         },
-    { "id": "coluna",   "nome": "Coluna"          },
-    { "id": "pe",       "nome": "Pe e Tornozelo"  },
-    { "id": "trauma",   "nome": "Trauma Geral"    }
+    { "id": "mao", "nome": "Mao e Punho" },
+    { "id": "ombro", "nome": "Ombro" },
+    { "id": "cotovelo", "nome": "Cotovelo" },
+    { "id": "joelho", "nome": "Joelho" },
+    { "id": "quadril", "nome": "Quadril" },
+    { "id": "coluna", "nome": "Coluna" },
+    { "id": "pe", "nome": "Pe e Tornozelo" },
+    { "id": "trauma", "nome": "Trauma Geral" }
   ],
   "resumos": [
     {
@@ -27,8 +27,7 @@
       "fontes": ["tudo"],
       "arquivo": "pdfs/lista.pdf",
       "data": "2026-04-17"
-    }
-        },
+    },
     {
       "id": 9,
       "titulo": "Fraturas por estresse",
