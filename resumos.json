@@ -11,67 +11,13 @@
   ],
   "resumos": [
     {
-      "id": 1,
-      "titulo": "Fraturas do Metacarpo",
+      "id": 7,
+      "titulo": "Fraturas do metacarpo",
       "especialidade": "mao",
-      "descricao": "Classificacao AO, tratamento conservador e cirurgico, fixacao percutanea e cuidados pos-operatorios.",
-      "fontes": ["Rockwood & Green", "Campbell's Operative Orthopaedics"],
-      "arquivo": "pdfs/fraturas-metacarpo.pdf",
-      "data": "2025-03-10"
-    },
-    {
-      "id": 2,
-      "titulo": "Lesao do Manguito Rotador",
-      "especialidade": "ombro",
-      "descricao": "Anatomia funcional, graus de lesao, criterios para reparo artroscopico e reabilitacao.",
+      "descricao": "Resumo",
       "fontes": ["Rockwood & Green"],
-      "arquivo": "pdfs/manguito-rotador.pdf",
-      "data": "2025-03-22"
-    },
-    {
-      "id": 3,
-      "titulo": "Fratura do Platô Tibial",
-      "especialidade": "joelho",
-      "descricao": "Classificacao de Schatzker, indicacoes de RAFI, complicacoes e protocolo de reabilitacao.",
-      "fontes": ["Campbell's Operative Orthopaedics", "AO Surgery Reference"],
-      "arquivo": "pdfs/platô-tibial.pdf",
-      "data": "2025-04-01"
-    },
-    {
-      "id": 4,
-      "titulo": "Hernia de Disco Lombar",
-      "especialidade": "coluna",
-      "descricao": "Niveis L4-L5 e L5-S1, manejo conservador, indicacoes cirurgicas e tecnicas de abordagem.",
-      "fontes": ["Rothman-Simeone"],
-      "arquivo": "pdfs/hernia-disco-lombar.pdf",
-      "data": "2025-04-05"
-    },
-    {
-      "id": 5,
-      "titulo": "Fratura do Colo do Femur",
-      "especialidade": "quadril",
-      "descricao": "Classificacao de Garden, osteossintese versus artroplastia, deambulacao precoce e complicacoes.",
-      "fontes": ["Rockwood & Green", "Campbell's Operative Orthopaedics"],
-      "arquivo": "pdfs/fratura-colo-femur.pdf",
-      "data": "2025-04-08"
-    },
-    {
-      "id": 6,
-      "titulo": "Hallux Valgus",
-      "especialidade": "pe",
-      "descricao": "Avaliacao radiologica, angulos de referencia, tecnicas de osteotomia e protocolo pos-operatorio.",
-      "fontes": ["Mann's Surgery of the Foot & Ankle"],
-      "arquivo": "pdfs/hallux-valgus.pdf",
-      "data": "2025-04-10"
-    },
-    {
-  "id": 7,
-  "titulo": "Fraturas do metacarpo",
-  "especialidade": "mao",
-  "descricao": "Resumo",
-  "fontes": ["Rockwood & Green"],
-  "arquivo": "pdfs/fraturas do metacarpo.pdf",
-  "data": "2025-04-17"
-}
+      "arquivo": "pdfs/fraturas-do-metacarpo.pdf",
+      "data": "2025-04-17"
+    }
   ]
 }
