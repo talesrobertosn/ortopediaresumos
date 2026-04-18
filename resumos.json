@@ -63,6 +63,15 @@
       "fontes": ["Mann's Surgery of the Foot & Ankle"],
       "arquivo": "pdfs/hallux-valgus.pdf",
       "data": "2025-04-10"
-    }
+    },
+    {
+  "id": 7,
+  "titulo": "Fraturas do metacarpo",
+  "especialidade": "mao",
+  "descricao": "Resumo",
+  "fontes": ["Rockwood & Green"],
+  "arquivo": "pdfs/fraturas do metacarpo.pdf",
+  "data": "2025-04-17"
+}
   ]
 }
