@@ -1,3 +1,4 @@
+```json
 {
   "especialidades": [
     { "id": "mao",      "nome": "Mao e Punho"    },
@@ -16,8 +17,18 @@
       "especialidade": "mao",
       "descricao": "Resumo",
       "fontes": ["Rockwood & Green"],
-      "arquivo": "pdfs/fraturas-do-metacarpo.pdf",
+      "arquivo": "pdfs/Fraturas-do-metacarpo.pdf",
       "data": "2025-04-17"
+    },
+    {
+      "id": 8,
+      "titulo": "Lista de coisas que eu não sei",
+      "especialidade": "trauma",
+      "descricao": "Lista de coisas que eu deveria saber",
+      "fontes": ["tudo"],
+      "arquivo": "pdfs/lista.pdf",
+      "data": "2026-04-17"
     }
   ]
 }
+```
