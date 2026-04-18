@@ -28,5 +28,15 @@
       "arquivo": "pdfs/lista.pdf",
       "data": "2026-04-17"
     }
+        },
+    {
+      "id": 9,
+      "titulo": "Fraturas por estresse",
+      "especialidade": "trauma",
+      "descricao": "Tradução do capitulo do Rockwood",
+      "fontes": ["Rockwood & Green"],
+      "arquivo": "pdfs/fraturasestresse.pdf",
+      "data": "2026-04-17"
+    }
   ]
 }
