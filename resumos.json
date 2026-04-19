@@ -55,5 +55,15 @@
       "arquivo": "pdfs/efquadril.pdf",
       "data": "2026-04-18"
     }
+        },
+    {
+      "id": 12,
+      "titulo": "Resumo - Luxação da Articulação Carpometacárpica (CMC) do Polegar",
+      "especialidade": "mao",
+      "descricao": "Campbell's Operative Orthopaedics — Part XVIII: The Hand",
+      "fontes": ["Campbell's Operative Orthopaedics"],
+      "arquivo": "pdfs/luxacaopolegar_compressed.pdf",
+      "data": "2026-04-18"
+    }
   ]
 }
