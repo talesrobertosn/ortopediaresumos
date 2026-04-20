@@ -63,6 +63,15 @@
       "fontes": ["Campbell's Operative Orthopaedics"],
       "arquivo": "pdfs/luxacaopolegar_compressed.pdf",
       "data": "2026-04-19"
+          },
+    {
+      "id": 13,
+      "titulo": "Resumo - Luxações das articulações interfalângicas proximais, interfalângicas distais e carpometacais dos dedos",
+      "especialidade": "mao",
+      "descricao": "Luxações das articulações interfalângicas proximais e distais, e das articulações carpometacarpais dos dedos",
+      "fontes": ["Rockwood & Green's Fractures in Adults – 10ª ed."],
+      "arquivo": "pdfs/Luxacaodedo.pdf",
+      "data": "2026-04-19"
     }
   ]
 }
