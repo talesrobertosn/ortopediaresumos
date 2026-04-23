@@ -45,7 +45,7 @@
       "fontes": ["Rockwood & Green"],
       "arquivo": "pdfs/osteoporose.pdf",
       "data": "2026-04-17"
-      },
+    },
     {
       "id": 11,
       "titulo": "Resumo - Exame físico do quadril",
@@ -54,7 +54,7 @@
       "fontes": ["Exame físico em ortopedia, 3ra edição - Tarcísio E.P. de Barros"],
       "arquivo": "pdfs/efquadril.pdf",
       "data": "2026-04-18"
-      },
+    },
     {
       "id": 12,
       "titulo": "Resumo - Luxação da Articulação Carpometacárpica (CMC) do Polegar",
@@ -63,7 +63,7 @@
       "fontes": ["Campbell's Operative Orthopaedics"],
       "arquivo": "pdfs/luxacaopolegar_compressed.pdf",
       "data": "2026-04-19"
-          },
+    },
     {
       "id": 13,
       "titulo": "Resumo - Luxações das articulações IFP + IFD + CMC dos dedos",
@@ -72,7 +72,7 @@
       "fontes": ["Rockwood & Green's Fractures in Adults – 10ª ed."],
       "arquivo": "pdfs/Luxacaodedo.pdf",
       "data": "2026-04-19"
-           },
+    },
     {
       "id": 14,
       "titulo": "Resumo - Artroplastia total do quadril",
@@ -81,6 +81,19 @@
       "fontes": ["Campbell’s Operative Orthopaedics — 14ª edição · Chapter 3: Arthroplasty of the Hip"],
       "arquivo": "pdfs/ArtroplastiaDoQuadrilCompressed.pdf",
       "data": "2026-04-19"
+    },
+    {
+      "id": 15,
+      "titulo": "Fixador Externo de Pelve — Crista Ilíaca vs Supra-Acetabular",
+      "especialidade": "quadril",
+      "descricao": "Zonas de Segurança — Pelve",
+      "fontes": [
+        "Rockwood and Green's Fractures in Adults · 10ª ed.",
+        "Vias de Acesso em Cirurgia Ortopédica · Hoppenfeld, deBoer & Buckley",
+        "Aula: Zonas de Segurança — Pelve"
+      ],
+      "arquivo": "pdfs/fixadorexternopelve.pdf",
+      "data": "2026-04-23"
     }
   ]
 }
