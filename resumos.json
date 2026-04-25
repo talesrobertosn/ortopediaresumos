@@ -78,6 +78,21 @@
       "data": "2026-04-18"
     },
     {
+      "id": 14,
+      "titulo": "Fraturas do Anel Pélvico — Classificações e Aplicação Prática",
+      "especialidade": "quadril",
+      "descricao": "Classificações Tile, Young & Burgess, AOSpine sacro e OTA/AO aplicadas às fraturas do anel pélvico",
+      "fontes": [
+        "Rockwood and Green's Fractures in Adults · Cap. Pelvic Ring Injuries",
+        "Tile",
+        "Young & Burgess",
+        "AOSpine sacro",
+        "OTA/AO"
+      ],
+      "arquivo": "pdfs/fraturasanelpelvico.pdf",
+      "data": "2026-04-25"
+    },
+    {
       "id": 12,
       "titulo": "Resumo - Luxação da Articulação Carpometacárpica (CMC) do Polegar",
       "especialidade": "mao",
