@@ -33,6 +33,15 @@
       "data": "2026-04-15"
     },
     {
+      "id": 15,
+      "titulo": "Resumo - Vias de Acesso ao Quadril",
+      "especialidade": "quadril",
+      "descricao": "Acessos cirúrgicos do quadril",
+      "fontes": ["Campbell's Operative Orthopaedics · 14ª ed. · Acessos Cirúrgicos do Quadril"],
+      "arquivo": "pdf/acessoquadril.pdf",
+      "data": "2026-04-26"
+    },
+    {
       "id": 7,
       "titulo": "Fraturas do metacarpo",
       "especialidade": "mao",
@@ -112,3 +121,4 @@
     }
   ]
 }
+```
