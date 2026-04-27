@@ -15,7 +15,9 @@
       "titulo": "Resumo - Artroplastia total do quadril",
       "especialidade": "quadril",
       "descricao": "Síntese e explicação do conteúdo das 156 páginas do capítulo de ATQ",
-      "fontes": ["Campbell's Operative Orthopaedics — 14ª edição · Chapter 3: Arthroplasty of the Hip"],
+      "fontes": [
+        "Campbell's Operative Orthopaedics — 14ª edição · Chapter 3: Arthroplasty of the Hip"
+      ],
       "arquivo": "pdfs/ArtroplastiaDoQuadrilCompressed.pdf",
       "data": "2026-04-16"
     },
@@ -37,16 +39,33 @@
       "titulo": "Resumo - Vias de Acesso ao Quadril",
       "especialidade": "quadril",
       "descricao": "Acessos cirúrgicos do quadril",
-      "fontes": ["Campbell's Operative Orthopaedics · 14ª ed. · Acessos Cirúrgicos do Quadril"],
+      "fontes": [
+        "Campbell's Operative Orthopaedics · 14ª ed. · Acessos Cirúrgicos do Quadril"
+      ],
       "arquivo": "pdfs/acessoquadril.pdf",
       "data": "2026-04-26"
+    },
+    {
+      "id": 16,
+      "titulo": "Classificação AO/OTA — Fraturas do Fêmur",
+      "especialidade": "trauma",
+      "descricao": "Classificação AO/OTA aplicada às fraturas do fêmur, incluindo localização anatômica, padrões morfológicos e codificação das fraturas dos ossos longos",
+      "fontes": [
+        "AO Foundation",
+        "Müller AO Classification of Long Bone Fractures",
+        "OTA — Orthopaedic Trauma Association"
+      ],
+      "arquivo": "pdfs/classfemur.pdf",
+      "data": "2026-04-27"
     },
     {
       "id": 7,
       "titulo": "Fraturas do metacarpo",
       "especialidade": "mao",
       "descricao": "Classificação, manejo conservador e indicações cirúrgicas das fraturas metacarpianas",
-      "fontes": ["Rockwood & Green"],
+      "fontes": [
+        "Rockwood & Green"
+      ],
       "arquivo": "pdfs/Fraturas-do-metacarpo.pdf",
       "data": "2025-04-17"
     },
@@ -55,7 +74,9 @@
       "titulo": "Lista de coisas que eu não sei",
       "especialidade": "trauma",
       "descricao": "Lista pessoal de tópicos a estudar e revisar",
-      "fontes": ["Praticamente tudo"],
+      "fontes": [
+        "Praticamente tudo"
+      ],
       "arquivo": "pdfs/lista.pdf",
       "data": "2026-04-17"
     },
@@ -64,7 +85,9 @@
       "titulo": "Fraturas por estresse",
       "especialidade": "trauma",
       "descricao": "Fisiopatologia, diagnóstico por imagem e tratamento das fraturas por estresse",
-      "fontes": ["Rockwood & Green"],
+      "fontes": [
+        "Rockwood & Green"
+      ],
       "arquivo": "pdfs/fraturasestresse.pdf",
       "data": "2026-04-17"
     },
@@ -73,7 +96,9 @@
       "titulo": "Osteoporose and Metabolic Bone Disease",
       "especialidade": "trauma",
       "descricao": "Fisiopatologia, avaliação e tratamento da osteoporose e das doenças ósseas metabólicas",
-      "fontes": ["Rockwood & Green"],
+      "fontes": [
+        "Rockwood & Green"
+      ],
       "arquivo": "pdfs/osteoporose.pdf",
       "data": "2026-04-17"
     },
@@ -82,7 +107,9 @@
       "titulo": "Resumo - Exame físico do quadril",
       "especialidade": "quadril",
       "descricao": "Inspeção, palpação, amplitude de movimento e testes especiais do quadril",
-      "fontes": ["Exame físico em ortopedia, 3ra edição - Tarcísio E.P. de Barros"],
+      "fontes": [
+        "Exame físico em ortopedia, 3ra edição - Tarcísio E.P. de Barros"
+      ],
       "arquivo": "pdfs/efquadril.pdf",
       "data": "2026-04-18"
     },
@@ -106,7 +133,9 @@
       "titulo": "Resumo - Luxação da Articulação Carpometacárpica (CMC) do Polegar",
       "especialidade": "mao",
       "descricao": "Anatomia, mecanismo de lesão, avaliação e tratamento das luxações da CMC do polegar",
-      "fontes": ["Campbell's Operative Orthopaedics"],
+      "fontes": [
+        "Campbell's Operative Orthopaedics"
+      ],
       "arquivo": "pdfs/luxacaopolegar_compressed.pdf",
       "data": "2026-04-19"
     },
@@ -115,7 +144,9 @@
       "titulo": "Resumo - Luxações das articulações IFP + IFD + CMC dos dedos",
       "especialidade": "mao",
       "descricao": "Avaliação e tratamento das luxações das articulações IFP, IFD e CMC dos dedos",
-      "fontes": ["Rockwood & Green's Fractures in Adults – 10ª ed."],
+      "fontes": [
+        "Rockwood & Green's Fractures in Adults – 10ª ed."
+      ],
       "arquivo": "pdfs/Luxacaodedo.pdf",
       "data": "2026-04-19"
     }
