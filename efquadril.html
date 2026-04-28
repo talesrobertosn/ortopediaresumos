@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EF Quadril</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper:   #f5f3ee;
+  --white:   #fdfcfa;
+  --ink:     #1a1c22;
+  --mid:     #5a5f70;
+  --faint:   #c8c5bd;
+  --line:    #e5e2da;
+  --blue:    #2455c8;
+  --blue-bg: #eef2fc;
+  --green:   #1a7a42;
+  --green-bg:#e8f5ee;
+  --red:     #c0392b;
+  --red-bg:  #fceae8;
+  --serif:   'DM Serif Display', serif;
+  --sans:    'DM Sans', sans-serif;
+  --mono:    'DM Mono', monospace;
+  --r:       8px;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding: 28px 20px 60px;
+}
+
+.header {
+  max-width: 860px;
+  margin: 0 auto 32px;
+}
+.header h1 {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.header p {
+  font-size: 11px;
+  color: var(--mid);
+  margin-top: 3px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+.wrap { max-width: 860px; margin: 0 auto; }
+
+.slabel {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mid);
+  margin: 28px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.slabel::after { content:''; flex:1; height:1px; background:var(--line); }
+.slabel-note { font-weight:300; color:var(--faint); text-transform:none; letter-spacing:0; font-family:var(--sans); font-size:11px; }
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 18px 20px;
+  margin-bottom: 10px;
+}
+
+/* LADO */
+.lado-row { display:flex; align-items:center; gap:6px; }
+.lado-btn {
+  padding: 7px 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--line);
+  background: var(--white);
+  color: var(--mid);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.14s;
+}
+.lado-btn:hover { border-color:var(--blue); color:var(--blue); }
+.lado-btn.sel-d { background:var(--blue); border-color:var(--blue); color:#fff; }
+.lado-btn.sel-e { background:#7c3aed; border-color:#7c3aed; color:#fff; }
+.lado-btn.sel-b { background:var(--ink); border-color:var(--ink); color:#fff; }
+
+/* FIELD ROWS */
+.field-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.field-grid .field-row:nth-child(odd)  { border-right:1px solid var(--line); padding-right:18px; }
+.field-grid .field-row:nth-child(even) { padding-left:18px; }
+
+.field-row {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; padding:9px 0; border-bottom:1px solid var(--line);
+}
+.field-row:last-child { border-bottom:none; }
+.field-grid .field-row:nth-last-child(-n+2) { border-bottom:none; }
+
+.field-label { font-size:13px; color:var(--ink); }
+
+select, input[type="number"] {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  padding: 4px 8px;
+  outline: none;
+  transition: border-color 0.14s;
+  cursor: pointer;
+}
+select:focus, input:focus { border-color:var(--blue); background:#fff; }
+input[type="number"] { width:62px; text-align:center; }
+select { min-width:150px; }
+select option { background:#fff; }
+
+/* AMPLITUDE */
+.amp-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+.amp-cell {
+  padding:11px 16px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+}
+.amp-cell:nth-child(3n) { border-right:none; }
+.amp-cell:nth-last-child(-n+3) { border-bottom:none; }
+.amp-label { font-size:13px; color:var(--ink); }
+.amp-normal { font-size:10px; color:var(--mid); font-family:var(--mono); margin-top:1px; }
+.amp-input-wrap { display:flex; align-items:center; gap:4px; }
+.deg { font-size:11px; color:var(--mid); font-family:var(--mono); }
+
+/* TESTES */
+.test-list { display:flex; flex-direction:column; }
+.test-item { border-bottom:1px solid var(--line); }
+.test-item:last-child { border-bottom:none; }
+
+.test-main {
+  display:flex; align-items:center; gap:10px; padding:10px 0;
+}
+
+.test-info-btn {
+  width:20px; height:20px; border-radius:50%;
+  border:1.5px solid var(--faint); background:transparent;
+  color:var(--mid); font-family:var(--mono); font-size:11px; font-weight:500;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:all 0.14s; user-select:none;
+}
+.test-info-btn:hover, .test-info-btn.open {
+  border-color:var(--blue); color:var(--blue); background:var(--blue-bg);
+}
+
+.test-name { flex:1; font-size:13px; font-weight:500; color:var(--ink); }
+.test-tag {
+  font-size:10px; font-family:var(--mono); color:var(--mid);
+  background:var(--paper); border:1px solid var(--line);
+  border-radius:3px; padding:2px 7px; white-space:nowrap;
+}
+.toggle-wrap { display:flex; gap:4px; }
+.tgl {
+  padding:4px 12px; border-radius:5px; border:1.5px solid var(--line);
+  background:transparent; color:var(--mid);
+  font-family:var(--mono); font-size:11px; font-weight:500;
+  cursor:pointer; transition:all 0.12s; white-space:nowrap;
+}
+.tgl:hover { border-color:var(--ink); color:var(--ink); }
+.tgl.is-neg { background:var(--green-bg); border-color:var(--green); color:var(--green); }
+.tgl.is-pos { background:var(--red-bg);   border-color:var(--red);   color:var(--red); }
+
+/* PANEL */
+.test-panel {
+  display:none; margin:0 0 12px 30px;
+  padding:12px 14px;
+  background:var(--blue-bg);
+  border-left:2px solid var(--blue);
+  border-radius:0 6px 6px 0;
+  font-size:12.5px; color:var(--ink); line-height:1.65;
+}
+.test-panel.open { display:block; }
+.panel-row { margin-bottom:8px; }
+.panel-row:last-child { margin-bottom:0; }
+.panel-lbl {
+  font-family:var(--mono); font-size:10px; font-weight:500;
+  text-transform:uppercase; letter-spacing:0.1em; color:var(--blue);
+  display:block; margin-bottom:3px;
+}
+.pos-text { color:var(--red); font-weight:500; }
+
+/* NEURO / VASC */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+/* OBS */
+textarea {
+  width:100%; background:var(--paper); border:1px solid var(--line);
+  border-radius:6px; color:var(--ink); font-family:var(--mono);
+  font-size:12.5px; padding:10px 12px; resize:vertical; min-height:70px;
+  outline:none; transition:border-color 0.14s; line-height:1.6;
+}
+textarea:focus { border-color:var(--blue); background:#fff; }
+
+/* BUTTONS */
+.btn-bar { display:flex; gap:8px; align-items:center; margin-top:24px; flex-wrap:wrap; }
+.btn {
+  padding:9px 24px; border-radius:6px; border:none;
+  font-family:var(--sans); font-size:13px; font-weight:500;
+  cursor:pointer; transition:all 0.14s;
+}
+.btn-primary { background:var(--blue); color:#fff; }
+.btn-primary:hover { background:#1b42a8; }
+.btn-sec { background:var(--white); border:1.5px solid var(--line); color:var(--mid); }
+.btn-sec:hover { border-color:var(--blue); color:var(--blue); }
+.btn-ghost { background:transparent; border:1.5px solid var(--line); color:var(--faint); }
+.btn-ghost:hover { border-color:var(--red); color:var(--red); }
+
+.copy-msg { font-family:var(--mono); font-size:11px; color:var(--green); opacity:0; transition:opacity 0.25s; }
+.copy-msg.show { opacity:1; }
+
+/* OUTPUT */
+.output-wrap { margin-top:20px; display:none; }
+.output-lbl { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:0.12em; color:var(--mid); margin-bottom:8px; }
+#output-text {
+  background:var(--white); border:1px solid var(--blue); border-radius:8px;
+  padding:16px 18px; font-family:var(--mono); font-size:13px;
+  line-height:1.9; color:var(--ink); white-space:pre-wrap; word-break:break-word;
+}
+
+/* RESPONSIVE */
+@media (max-width:620px) {
+  .field-grid, .two-col { grid-template-columns:1fr; }
+  .field-grid .field-row:nth-child(odd) { border-right:none; padding-right:0; }
+  .field-grid .field-row:nth-child(even) { padding-left:0; }
+  .field-grid .field-row:nth-last-child(-n+2) { border-bottom:1px solid var(--line); }
+  .field-grid .field-row:last-child { border-bottom:none; }
+  .amp-grid { grid-template-columns:1fr 1fr; }
+  .amp-cell:nth-child(3n) { border-right:1px solid var(--line); }
+  .amp-cell:nth-child(2n) { border-right:none; }
+  .amp-cell:nth-last-child(-n+3) { border-bottom:1px solid var(--line); }
+  .amp-cell:nth-last-child(-n+2) { border-bottom:none; }
+  .test-tag { display:none; }
+  select { min-width:120px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>Exame Físico do Quadril</h1>
+  <p>Cabral, Ferracini, Miranda — Cap. 10 · Resumo do Tales</p>
+</div>
+
+<!-- LADO -->
+<div class="slabel">Lado avaliado</div>
+<div class="card">
+  <div class="lado-row">
+    <button class="lado-btn" id="btn-d" onclick="setLado('D')">Direito</button>
+    <button class="lado-btn" id="btn-e" onclick="setLado('E')">Esquerdo</button>
+    <button class="lado-btn" id="btn-b" onclick="setLado('B')">Bilateral</button>
+  </div>
+</div>
+
+<!-- INSPEÇÃO & MARCHA -->
+<div class="slabel">Inspeção &amp; Marcha</div>
+<div class="card">
+  <div class="field-grid">
+    <div class="field-row">
+      <span class="field-label">Atitude do membro</span>
+      <select id="atitude">
+        <option value="">—</option>
+        <option>neutra</option>
+        <option>rotação interna</option>
+        <option>rotação externa</option>
+        <option>antálgica em flexão</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Marcha</span>
+      <select id="marcha">
+        <option value="">—</option>
+        <option>normal</option>
+        <option>antálgica</option>
+        <option>de Trendelenburg</option>
+        <option>por dismetria</option>
+        <option>com rotação interna excessiva</option>
+        <option>com rotação externa excessiva</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Discrepância MI</span>
+      <select id="discrepancia">
+        <option value="">—</option>
+        <option>ausente</option>
+        <option>presente</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Dispositivo auxiliar</span>
+      <select id="dispositivo">
+        <option value="">—</option>
+        <option>sem dispositivo auxiliar</option>
+        <option>bengala ipsilateral</option>
+        <option>bengala contralateral</option>
+        <option>muletas</option>
+        <option>andador</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Hipotrofia muscular</span>
+      <select id="hipotrofia">
+        <option value="">—</option>
+        <option>ausente</option>
+        <option>presente</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Sinal do "C"</span>
+      <select id="sinalc">
+        <option value="">—</option>
+        <option>ausente</option>
+        <option>presente</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- AMPLITUDE -->
+<div class="slabel">Amplitude de Movimento</div>
+<div class="card" style="padding:0; overflow:hidden;">
+  <div class="amp-grid">
+    <div class="amp-cell">
+      <div><div class="amp-label">Flexão</div><div class="amp-normal">0–120°</div></div>
+      <div class="amp-input-wrap"><input type="number" id="flexao" min="0" max="180" placeholder="—"><span class="deg">°</span></div>
+    </div>
+    <div class="amp-cell">
+      <div><div class="amp-label">Extensão</div><div class="amp-normal">0–30°</div></div>
+      <div class="amp-input-wrap"><input type="number" id="extensao" min="0" max="60" placeholder="—"><span class="deg">°</span></div>
+    </div>
+    <div class="amp-cell">
+      <div><div class="amp-label">Rot. Interna</div><div class="amp-normal">0–30°</div></div>
+      <div class="amp-input-wrap"><input type="number" id="ri" min="0" max="90" placeholder="—"><span class="deg">°</span></div>
+    </div>
+    <div class="amp-cell">
+      <div><div class="amp-label">Rot. Externa</div><div class="amp-normal">0–40°</div></div>
+      <div class="amp-input-wrap"><input type="number" id="re" min="0" max="90" placeholder="—"><span class="deg">°</span></div>
+    </div>
+    <div class="amp-cell">
+      <div><div class="amp-label">Abdução</div><div class="amp-normal">0–50°</div></div>
+      <div class="amp-input-wrap"><input type="number" id="abducao" min="0" max="90" placeholder="—"><span class="deg">°</span></div>
+    </div>
+    <div class="amp-cell">
+      <div><div class="amp-label">Adução</div><div class="amp-normal">0–30°</div></div>
+      <div class="amp-input-wrap"><input type="number" id="aducao" min="0" max="60" placeholder="—"><span class="deg">°</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTES ESPECIAIS -->
+<div class="slabel">Testes Especiais <span class="slabel-note">— ? para ver técnica e interpretação</span></div>
+<div class="card" style="padding:0 20px;">
+  <div class="test-list" id="test-list"></div>
+</div>
+
+<!-- NEUROLÓGICO & VASCULAR -->
+<div class="slabel">Neurológico &amp; Vascular</div>
+<div class="two-col">
+  <div class="card">
+    <div class="field-row">
+      <span class="field-label">Força flexão</span>
+      <select id="fm-flexao">
+        <option value="">—</option>
+        <option>5/5</option><option>4/5</option><option>3/5</option><option>2/5</option><option>1/5</option><option>0/5</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Força abdução</span>
+      <select id="fm-abducao">
+        <option value="">—</option>
+        <option>5/5</option><option>4/5</option><option>3/5</option><option>2/5</option><option>1/5</option><option>0/5</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Reflexo patelar L2–L4</span>
+      <select id="r-patelar">
+        <option value="">—</option>
+        <option>presente e simétrico</option><option>diminuído</option><option>ausente</option><option>aumentado</option>
+      </select>
+    </div>
+    <div class="field-row" style="border-bottom:none">
+      <span class="field-label">Reflexo aquileu L5–S1</span>
+      <select id="r-aquileu">
+        <option value="">—</option>
+        <option>presente e simétrico</option><option>diminuído</option><option>ausente</option><option>aumentado</option>
+      </select>
+    </div>
+  </div>
+  <div class="card">
+    <div class="field-row">
+      <span class="field-label">Sensibilidade</span>
+      <select id="sensibilidade">
+        <option value="">—</option>
+        <option>íntegra</option><option>diminuída</option><option>alterada</option>
+      </select>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Pulso dorsal do pé</span>
+      <select id="pulso-dorsal">
+        <option value="">—</option>
+        <option>presente e simétrico</option><option>diminuído</option><option>ausente</option>
+      </select>
+    </div>
+    <div class="field-row" style="border-bottom:none">
+      <span class="field-label">Pulso tibial posterior</span>
+      <select id="pulso-tibial">
+        <option value="">—</option>
+        <option>presente e simétrico</option><option>diminuído</option><option>ausente</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- OBS -->
+<div class="slabel">Observações</div>
+<div class="card">
+  <textarea id="obs" placeholder="Achados adicionais, palpação, ressaltos, etc."></textarea>
+</div>
+
+<!-- BOTÕES -->
+<div class="btn-bar">
+  <button class="btn btn-primary" onclick="gerar()">Gerar texto</button>
+  <button class="btn btn-sec" onclick="copiar()">Copiar</button>
+  <button class="btn btn-ghost" onclick="limpar()">Limpar</button>
+  <span class="copy-msg" id="copy-msg">✓ Copiado!</span>
+</div>
+
+<div class="output-wrap" id="output-wrap">
+  <div class="output-lbl">Texto gerado</div>
+  <div id="output-text"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const TESTS = [
+  { id:'thomas', name:'Thomas', tag:'Contratura em flexão',
+    como:'Dec. dorsal. Paciente mantém o quadril contralateral em flexão máxima (abraçado) para eliminar a lordose lombar — confirmar com mão espalmada sob a lombar (ponto zero). Estender passivamente o quadril avaliado. Realizar bilateralmente.',
+    pos:'Impossibilidade de extensão completa = contratura em flexão. <b>Diferencial:</b> fletir o joelho — se a limitação diminuir, contratura é do reto femoral; se persistir, é do iliopsoas.' },
+
+  { id:'patrick', name:'Patrick (FABERE)', tag:'Quadril / ASI',
+    como:'Flexão + Abdução + Rotação Externa → pé sobre o joelho contralateral (posição "4"). Membro contralateral em extensão. Examinador aplica pressão suave no joelho fletido e estabiliza a crista ilíaca oposta.',
+    pos:'<b>Dor na virilha</b> = doença do quadril examinado. <b>Dor sacroilíaca contralateral</b> = comprometimento da ASI ipsilateral à mão estabilizadora.' },
+
+  { id:'diri', name:'DIRI', tag:'IFA anterior / Labral ant.',
+    como:'Dinâmico de Impacto Rotatório Interno. Dec. dorsal. Segurar o membro contralateral como no Thomas (elimina lordose). Flexionar o quadril avaliado até 90° ou mais + adução + rotação interna progressiva.',
+    pos:'Dor na virilha = impacto femoroacetabular (IFA) anterior e/ou lesão labral anterior.' },
+
+  { id:'dire', name:'DIRE', tag:'IFA superior / Labral sup.',
+    como:'Dinâmico de Impacto Rotatório Externo. Mesmo princípio do DIRI, mas com rotação externa + abdução em vez de rotação interna + adução.',
+    pos:'Dor = IFA predominantemente superior e/ou lesão labral superior.' },
+
+  { id:'mccarthy', name:'McCarthy', tag:'IFA ant. / Labral',
+    como:'Perna contralateral em flexão máxima. Quadril examinado: 1ª fase — fleti a 90° + abduz + RE + estende; 2ª fase — repete com adução + RI + extensão. Sensibilizar aplicando pressão axial no joelho (equivalente ao DIRI com carga).',
+    pos:'Clique audível ou palpável na fase final de extensão = Sinal de McCarthy → IFA anterior ou ruptura labral.' },
+
+  { id:'distracao', name:'Distração da Fóvea', tag:'Intra-articular',
+    como:'Dec. dorsal. Tracionar o MI pelo tornozelo com joelho estendido, reduzindo a pressão intra-articular.',
+    pos:'Alívio da dor durante a tração = confirma origem intra-articular.' },
+
+  { id:'logroll', name:'Log Roll', tag:'Cápsula / Intra-art.',
+    como:'Dec. dorsal, MI em extensão completa. Rolar passivamente o membro em rotação interna e externa máximas sem mobilizar a pelve. Comparar os dois lados.',
+    pos:'Dor ou limitação = frouxidão ligamentar, sinovite, efusão ou doença intra-articular.' },
+
+  { id:'dial', name:'Teste Dial', tag:'Frouxidão capsular',
+    como:'Após rotação interna passiva máxima em extensão, soltar o membro. Observar quanto ele roda espontaneamente para fora.',
+    pos:'Rotação externa espontânea > 45° = frouxidão capsular anterior.' },
+
+  { id:'gaenslen', name:'Gaenslen', tag:'ASI',
+    como:'Paciente na beira do leito abraçando ambos os joelhos → o quadril examinado fica pendente da maca, promovendo extensão progressiva enquanto o contralateral permanece fletido.',
+    pos:'Dor à extensão = comprometimento da articulação sacroilíaca ipsilateral.' },
+
+  { id:'slr', name:'SLR contra resistência', tag:'Intra-art. / Iliopsoas',
+    como:'Dec. dorsal. Elevar passivamente o MI a 45° com joelho estendido. Nessa posição, o examinador aplica resistência para baixo enquanto o paciente mantém o membro levantado.',
+    pos:'Dor além de simples tendinite do iliopsoas → sugere doença intra-articular pela pressão sobre a cápsula anterior e labrum.' },
+
+  { id:'trendelenburg', name:'Trendelenburg', tag:'Glúteos / Abdutores',
+    como:'Apoio monopodálico, examinador atrás do paciente. Sensibilização: realizar em frente à parede com quadril em extensão completa por mínimo 6 segundos (elimina ação do iliopsoas como coadjuvante).',
+    pos:'Queda do quadril contralateral ao membro apoiado = fraqueza dos abdutores ipsilaterais (glúteo médio e mínimo).' },
+
+  { id:'ober', name:'Ober', tag:'Trato iliotibial / TFL',
+    como:'Dec. lateral com o lado a examinar para cima. Quadril e joelho contralaterais em semiflexão. Examinador: flexão + abdução do quadril avaliado → extensão completa sustentada com joelho a 90° → soltar e observar se o membro aduz.',
+    pos:'Incapacidade de adução passiva em extensão = contratura do trato iliotibial (TIT) / tensor da fáscia lata.' },
+
+  { id:'flexoaducao', name:'Flexoadução', tag:'Adutores / Piriforme',
+    como:'Dec. dorsal, quadril e joelhos a 90°. Aduzir o quadril cruzando a linha média em direção à linha axilar ipsilateral.',
+    pos:'+1 = ultrapassa linha média mas não a axilar; +2 = chega à linha axilar; +3 = não ultrapassa linha média. A linha de restrição orienta o tratamento fisioterápico.' },
+
+  { id:'pace', name:'Pace', tag:'Síndrome do piriforme',
+    como:'Dec. dorsal, quadril a 90°. Paciente força abdução + rotação externa contra resistência do examinador. Combinar com teste de estiramento sentado: elevar o MI a 90° e forçar adução.',
+    pos:'Dor local + fraqueza = síndrome do piriforme. Combinação sentado + dec. lateral: sensibilidade 91%, especificidade 80%.' },
+
+  { id:'freiberg', name:'Freiberg', tag:'Piriforme',
+    como:'Paciente sentado, joelho estendido. Examinador realiza rotação interna passiva do quadril enquanto palpa a topografia do músculo piriforme (região glútea profunda).',
+    pos:'Dor local durante a rotação interna = comprometimento do piriforme.' },
+
+  { id:'apreensao', name:'Apreensão', tag:'Displasia / Instabilidade',
+    como:'Dec. dorsal. Manobra passiva de abdução + rotação externa + extensão. Relacionada à displasia do quadril.',
+    pos:'Sensação de insegurança ou apreensão pelo paciente = positivo. Não confundir com dor por contragolpe (contre-coup).' },
+
+  { id:'lasegue', name:'Lasègue', tag:'Raiz nervosa',
+    como:'Dec. dorsal. Elevar passivamente o MI com joelho estendido. Os sintomas devem surgir com > 30° de elevação. Pode-se fletir o quadril até 90° para pesquisar hérnia discal.',
+    pos:'Dor irradiada com extensão do joelho = irritação de raízes L4–S1. <b>Atenção:</b> dor apenas com a flexão do quadril sem extensão do joelho → pensar em síndrome do piriforme.' },
+
+  { id:'impactopost', name:'Impacto Posterior', tag:'Parede post. acetábulo',
+    como:'Paciente na beira do leito com o quadril contralateral abraçado (corrige lordose). Examinador realiza rotação externa + abdução + extensão total do quadril avaliado.',
+    pos:'Dor = incongruência articular posterior (colo femoral vs parede posterior do acetábulo ou contragolpe).' },
+
+  { id:'craig', name:'Craig', tag:'Anteversão femoral',
+    como:'Dec. ventral, joelhos fletidos 90°. Palpar o trocanter maior e posicioná-lo no ponto mais lateral. O ângulo entre o eixo da tíbia e a vertical = ângulo de anteversão femoral.',
+    pos:'Normal: 10–20°. Aumentado = anteversão excessiva. Diminuído = retroversão. Diferencia doença capsular (Craig normal) de alteração torsional.' },
+
+  { id:'ely', name:'Ely', tag:'Reto femoral',
+    como:'Dec. ventral. Flexionar passivamente o joelho em direção ao glúteo máximo. Observar o comportamento da pelve.',
+    pos:'Elevação espontânea da pelve = contratura do reto femoral (puxe a pelve em anteversão).' },
+
+  { id:'phelps', name:'Phelps', tag:'Grácil',
+    como:'Dec. ventral, quadril em abdução. Estender passivamente o joelho mantendo o quadril abduzido.',
+    pos:'Adução involuntária do quadril durante a extensão do joelho = contratura do músculo grácil.' },
+];
+
+const testes = {};
+
+function renderTests() {
+  const list = document.getElementById('test-list');
+  TESTS.forEach(t => {
+    testes[t.id] = null;
+    const div = document.createElement('div');
+    div.className = 'test-item';
+    div.innerHTML =
+      `<div class="test-main">
+        <button class="test-info-btn" id="ib-${t.id}" onclick="togglePanel('${t.id}')">?</button>
+        <span class="test-name">${t.name}</span>
+        <span class="test-tag">${t.tag}</span>
+        <div class="toggle-wrap">
+          <button class="tgl" data-id="${t.id}" data-val="negativo" onclick="setTest(this)">Neg</button>
+          <button class="tgl" data-id="${t.id}" data-val="positivo" onclick="setTest(this)">Pos</button>
+        </div>
+      </div>
+      <div class="test-panel" id="tp-${t.id}">
+        <div class="panel-row"><span class="panel-lbl">Como fazer</span>${t.como}</div>
+        <div class="panel-row"><span class="panel-lbl">Positivo =</span><span class="pos-text">${t.pos}</span></div>
+      </div>`;
+    list.appendChild(div);
+  });
+}
+
+function togglePanel(id) {
+  const p = document.getElementById('tp-' + id);
+  const b = document.getElementById('ib-' + id);
+  const o = p.classList.toggle('open');
+  b.classList.toggle('open', o);
+}
+
+function setTest(btn) {
+  const id = btn.dataset.id, val = btn.dataset.val;
+  if (testes[id] === val) {
+    testes[id] = null;
+    btn.parentElement.querySelectorAll('.tgl').forEach(t => t.className = 'tgl');
+    return;
+  }
+  testes[id] = val;
+  btn.parentElement.querySelectorAll('.tgl').forEach(t => t.className = 'tgl');
+  btn.classList.add(val === 'positivo' ? 'is-pos' : 'is-neg');
+}
+
+let lado = '';
+function setLado(v) {
+  lado = v;
+  document.getElementById('btn-d').className = 'lado-btn' + (v==='D' ? ' sel-d' : '');
+  document.getElementById('btn-e').className = 'lado-btn' + (v==='E' ? ' sel-e' : '');
+  document.getElementById('btn-b').className = 'lado-btn' + (v==='B' ? ' sel-b' : '');
+}
+
+function get(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+function gerar() {
+  const lMap = { D:'Quadril direito', E:'Quadril esquerdo', B:'Quadris bilateralmente' };
+  let parts = [];
+
+  const insp = [];
+  if (get('atitude')) insp.push('atitude em ' + get('atitude'));
+  if (get('discrepancia') === 'presente') insp.push('discrepância de MI presente');
+  if (get('hipotrofia') === 'presente') insp.push('hipotrofia muscular presente');
+  if (get('sinalc') === 'presente') insp.push('sinal do "C" presente');
+  if (insp.length) parts.push('Inspeção: ' + insp.join(', ') + '.');
+
+  const marc = [];
+  if (get('marcha')) marc.push('marcha ' + get('marcha'));
+  if (get('dispositivo')) marc.push(get('dispositivo'));
+  if (marc.length) parts.push('Marcha: ' + marc.join(', ') + '.');
+
+  const movs = [['flexao','flexão'],['extensao','extensão'],['ri','rotação interna'],['re','rotação externa'],['abducao','abdução'],['aducao','adução']];
+  const amp = movs.filter(([id]) => get(id)).map(([id,lb]) => lb + ' ' + get(id) + '°');
+  if (amp.length) parts.push('Amplitude de movimento: ' + amp.join(', ') + '.');
+
+  const pos = [], neg = [];
+  TESTS.forEach(t => {
+    if (testes[t.id] === 'positivo') pos.push(t.name);
+    else if (testes[t.id] === 'negativo') neg.push(t.name);
+  });
+  if (pos.length) parts.push('Testes positivos: ' + pos.join(', ') + '.');
+  if (neg.length) parts.push('Testes negativos: ' + neg.join(', ') + '.');
+
+  const neu = [];
+  if (get('fm-flexao')) neu.push('força de flexão ' + get('fm-flexao'));
+  if (get('fm-abducao')) neu.push('força de abdução ' + get('fm-abducao'));
+  if (get('r-patelar')) neu.push('reflexo patelar ' + get('r-patelar'));
+  if (get('r-aquileu')) neu.push('reflexo aquileu ' + get('r-aquileu'));
+  if (get('sensibilidade')) neu.push('sensibilidade ' + get('sensibilidade'));
+  if (neu.length) parts.push('Neurológico: ' + neu.join(', ') + '.');
+
+  const vas = [];
+  if (get('pulso-dorsal')) vas.push('pulso dorsal do pé ' + get('pulso-dorsal'));
+  if (get('pulso-tibial')) vas.push('pulso tibial posterior ' + get('pulso-tibial'));
+  if (vas.length) parts.push('Vascular distal: ' + vas.join(', ') + '.');
+
+  if (get('obs')) parts.push(get('obs'));
+
+  const label = lMap[lado] || 'Quadril';
+  const txt = label + '.\n' + parts.join('\n');
+  document.getElementById('output-text').textContent = txt;
+  document.getElementById('output-wrap').style.display = 'block';
+  document.getElementById('output-wrap').scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function copiar() {
+  const txt = document.getElementById('output-text').textContent;
+  if (!txt) return;
+  navigator.clipboard.writeText(txt).then(() => {
+    const el = document.getElementById('copy-msg');
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2200);
+  });
+}
+
+function limpar() {
+  if (!confirm('Limpar tudo?')) return;
+  lado = '';
+  ['btn-d','btn-e','btn-b'].forEach(id => document.getElementById(id).className = 'lado-btn');
+  document.querySelectorAll('input,select,textarea').forEach(el => el.value='');
+  Object.keys(testes).forEach(k => testes[k] = null);
+  document.querySelectorAll('.tgl').forEach(t => t.className='tgl');
+  document.querySelectorAll('.test-panel').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('.test-info-btn').forEach(b => b.classList.remove('open'));
+  document.getElementById('output-wrap').style.display = 'none';
+  document.getElementById('output-text').textContent = '';
+}
+
+renderTests();
+</script>
+</body>
+</html>
