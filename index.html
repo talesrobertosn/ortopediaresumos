@@ -25,21 +25,13 @@ body {
   -webkit-font-smoothing:antialiased; min-height:100vh;
 }
 
-/*
-  GRAIN TEXTURE — z-index NEGATIVO para nunca bloquear cliques.
-  Fica visualmente atras do conteudo mas o background do body
-  e transparente entao o grain aparece por baixo.
-*/
 body::before {
   content:''; position:fixed; inset:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
-  pointer-events:none;
-  z-index:-1;
+  pointer-events:none; z-index:-1;
 }
 
-/* ═══════════════════════════════════════════
-   HEADER
-═══════════════════════════════════════════ */
+/* ══ HEADER ══ */
 header {
   position:sticky; top:0; z-index:80;
   background:rgba(247,242,234,.94);
@@ -80,9 +72,7 @@ header {
   font-style:italic; color:var(--muted); white-space:nowrap;
 }
 
-/* ═══════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════ */
+/* ══ HERO ══ */
 .hero { border-bottom:1px solid var(--rule); position:relative; overflow:hidden; }
 .hghost {
   position:absolute; bottom:-.1em; right:-.02em;
@@ -116,9 +106,74 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
   color:var(--muted); display:block; margin-top:.15rem;
 }
 
-/* ═══════════════════════════════════════════
-   SPECIALTY TILES
-═══════════════════════════════════════════ */
+/* ══ EF TOOLS STRIP ══ */
+.ef-strip {
+  border-bottom: 1px solid var(--rule);
+  background: var(--white);
+}
+.ef-inner {
+  max-width: 1380px; margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+}
+.ef-label {
+  font-family: var(--fd); font-size: .7rem; font-style: italic;
+  color: var(--muted); letter-spacing: .04em; white-space: nowrap;
+  flex-shrink: 0;
+}
+.ef-label::after {
+  content: ''; display: inline-block; width: 20px; height: 1px;
+  background: var(--rule); vertical-align: middle; margin-left: .65rem;
+}
+.ef-cards {
+  display: flex; gap: .75rem; flex-wrap: wrap;
+}
+.ef-card {
+  display: flex; align-items: center; gap: .85rem;
+  padding: .85rem 1.25rem;
+  background: var(--p0); border: 1px solid var(--rule); border-radius: 8px;
+  text-decoration: none; color: var(--ink);
+  transition: background .16s, border-color .16s, box-shadow .16s;
+  min-width: 220px;
+  position: relative; overflow: hidden;
+}
+.ef-card::before {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+  width: 3px; background: var(--ef-color, var(--red));
+  transition: width .16s;
+}
+.ef-card:hover {
+  background: var(--white); border-color: var(--ef-color, var(--red));
+  box-shadow: 0 4px 20px -6px rgba(0,0,0,.12);
+}
+.ef-card:hover::before { width: 5px; }
+.ef-card:active { transform: scale(.98); }
+
+.ef-icon {
+  width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
+  background: color-mix(in srgb, var(--ef-color, var(--red)) 12%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ef-color, var(--red));
+}
+.ef-icon svg { width: 18px; height: 18px; }
+
+.ef-text { display: flex; flex-direction: column; gap: .05rem; }
+.ef-title {
+  font-family: var(--fd); font-size: .95rem; font-weight: 600; line-height: 1.2;
+  color: var(--ink);
+}
+.ef-sub {
+  font-size: .65rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+.ef-arrow {
+  margin-left: auto; color: var(--muted); flex-shrink: 0;
+  transition: transform .16s, color .16s;
+}
+.ef-card:hover .ef-arrow { transform: translateX(3px); color: var(--ef-color, var(--red)); }
+
+/* ══ SPECIALTY TILES ══ */
 .specs-section { border-bottom:1px solid var(--rule); background:var(--p1); }
 .specs-wrap { max-width:1380px; margin:0 auto; padding:2rem; }
 .specs-label {
@@ -161,9 +216,7 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
   display:block; margin-top:.2rem;
 }
 
-/* ═══════════════════════════════════════════
-   MAIN
-═══════════════════════════════════════════ */
+/* ══ MAIN ══ */
 .main { max-width:1380px; margin:0 auto; padding:2.5rem 2rem 6rem; }
 .ch {
   display:flex; align-items:baseline; justify-content:space-between;
@@ -172,17 +225,14 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
 .ch h2 { font-family:var(--fd); font-size:1.4rem; font-weight:800; }
 .ri { font-size:.75rem; color:var(--muted); }
 
-/* ═══════════════════════════════════════════
-   CARDS
-═══════════════════════════════════════════ */
+/* ══ CARDS ══ */
 .grid {
   display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
   gap:1px; background:var(--rule); border:1px solid var(--rule);
 }
 .card {
   background:var(--white); padding:1.6rem;
-  position:relative;
-  transition:background .14s;
+  position:relative; transition:background .14s;
   animation:up .28s ease both;
   display:flex; flex-direction:column; min-height:220px;
   -webkit-tap-highlight-color:transparent;
@@ -212,19 +262,13 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
 }
 .cdate { font-family:var(--fd); font-style:italic; font-size:.73rem; color:var(--muted); }
 .cbtns { display:flex; gap:.45rem; align-items:center; }
-
-/*
-  BOTOES DOS CARDS — todos sao <a> agora.
-  Tamanho minimo de 44px de altura para toque mobile (WCAG).
-*/
 .cbtn {
   display:inline-flex; align-items:center; gap:.3rem;
   font-size:.7rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
   padding:.45rem .75rem; border-radius:4px; border:1px solid;
   white-space:nowrap; font-family:var(--fu); text-decoration:none;
   transition:background .14s,color .14s,border-color .14s;
-  min-height:36px;
-  cursor:pointer;
+  min-height:36px; cursor:pointer;
   -webkit-tap-highlight-color:transparent;
 }
 .cbtn-pdf { color:var(--red); border-color:var(--red); background:transparent; }
@@ -233,9 +277,7 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
 .cbtn-ext:hover, .cbtn-ext:active { color:var(--ink2); border-color:var(--ink2); background:var(--p1); }
 .cnofile { font-size:.68rem; color:var(--muted); }
 
-/* ═══════════════════════════════════════════
-   MODAL FLUTUANTE
-═══════════════════════════════════════════ */
+/* ══ MODAL ══ */
 .pov {
   position:fixed; inset:0; z-index:200;
   display:flex; align-items:center; justify-content:center;
@@ -245,7 +287,6 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
   transition:background .24s ease;
 }
 .pov.open { background:rgba(23,19,14,.58); pointer-events:all; }
-
 .pov-panel {
   position:relative;
   width:min(1100px,100%); height:min(88vh,840px);
@@ -257,14 +298,12 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
   transition:transform .3s cubic-bezier(.22,.68,0,1.1),opacity .22s ease;
 }
 .pov.open .pov-panel { transform:scale(1) translateY(0); opacity:1; }
-
 .pov-panel:fullscreen,
 .pov-panel:-webkit-full-screen {
   width:100vw!important; height:100vh!important;
   max-width:none!important; max-height:none!important;
   border-radius:0; border:none;
 }
-
 .pbar {
   flex-shrink:0; height:52px; background:#1c1710;
   display:flex; align-items:center; gap:.75rem;
@@ -279,7 +318,6 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
 }
 .pbar-btns { display:flex; gap:.3rem; align-items:center; flex-shrink:0; }
 .pbar-sep { width:1px; height:18px; background:rgba(255,255,255,.12); margin:0 .15rem; flex-shrink:0; }
-
 .pbtn {
   display:inline-flex; align-items:center; justify-content:center; gap:.35rem;
   font-family:var(--fu); font-size:.7rem; font-weight:600;
@@ -296,10 +334,8 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
 .pbtn-icon span { display:none; }
 .pbclose { color:rgba(228,217,196,.6); }
 .pbclose:hover, .pbclose:active { background:rgba(180,40,16,.85); color:#fff; }
-
 .pframe { flex:1; min-height:0; background:#525659; position:relative; overflow:hidden; }
 .pframe iframe { width:100%; height:100%; border:none; display:block; background:#525659; }
-
 .ploading {
   position:absolute; inset:0; display:none;
   align-items:center; justify-content:center;
@@ -312,7 +348,6 @@ h1 em { font-style:italic; font-weight:300; color:var(--red); }
   animation:spin .8s linear infinite;
 }
 .ploading-text { font-family:var(--fd); font-style:italic; font-size:.85rem; color:rgba(228,217,196,.5); }
-
 .perror {
   position:absolute; inset:0; display:none;
   flex-direction:column; align-items:center; justify-content:center;
@@ -369,15 +404,14 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
 @keyframes up { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 @keyframes spin { to { transform:rotate(360deg); } }
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════ */
+/* ══ RESPONSIVE ══ */
 @media (max-width:860px) {
   .hghost { display:none; }
   .hero-row { flex-direction:column; align-items:flex-start; }
   .hnums { gap:2rem; }
   .hnum { text-align:left; }
   .specs-grid { grid-template-columns:repeat(3,1fr); }
+  .ef-inner { gap:1rem; }
 }
 @media (max-width:600px) {
   .hdr { gap:.75rem; padding:0 1rem; }
@@ -386,7 +420,7 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
   .logo small { display:none; }
   .hstamp { display:none; }
   .hero-in { padding:3rem 1.25rem 2.5rem; }
-  .main, .specs-wrap { padding-left:1.25rem; padding-right:1.25rem; }
+  .main, .specs-wrap, .ef-inner { padding-left:1.25rem; padding-right:1.25rem; }
   .fin { padding:1.5rem 1.25rem; }
   .fright { display:none; }
   .specs-grid { grid-template-columns:repeat(2,1fr); }
@@ -395,13 +429,14 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
   .stile-ct { font-size:1.15rem; }
   .grid { grid-template-columns:1fr; }
   .card { min-height:auto; padding:1.25rem; }
-  /* Modal mais amplo no celular */
   .pov { padding:.35rem; }
   .pov-panel { height:97vh; width:100%; border-radius:8px 8px 0 0; }
   .pbar { padding:0 .35rem 0 .75rem; gap:.5rem; }
   .ptitle { font-size:.82rem; }
   .pbtn:not(.pbtn-icon) span { display:none; }
   .pbtn:not(.pbtn-icon) { padding:.4rem .55rem; min-width:34px; justify-content:center; }
+  .ef-card { min-width:0; flex:1; }
+  .ef-cards { width:100%; }
 }
 </style>
 </head>
@@ -437,6 +472,57 @@ footer { border-top:1px solid var(--rule); background:var(--p1); }
         <div class="hnum"><span class="hnum-n" id="n-res">—</span><span class="hnum-l">Resumos</span></div>
         <div class="hnum"><span class="hnum-n" id="n-ar">—</span><span class="hnum-l">Areas</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EF TOOLS STRIP ══ -->
+<section class="ef-strip">
+  <div class="ef-inner">
+    <span class="ef-label">Ferramentas de exame físico</span>
+    <div class="ef-cards">
+
+      <!-- Quadril -->
+      <a class="ef-card" href="https://talesrobertosn.github.io/ortopediaresumos/efquadri.html"
+         target="_blank" rel="noopener" style="--ef-color:#7a1515">
+        <div class="ef-icon">
+          <!-- ícone de pelve/quadril simplificado -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8c0-2.2 1.8-4 4-4h8c2.2 0 4 1.8 4 4v2c0 3-1.5 5.5-4 7l-1 4H9l-1-4C5.5 15.5 4 13 4 10V8z"/>
+            <circle cx="9" cy="10" r="1.5"/>
+            <circle cx="15" cy="10" r="1.5"/>
+          </svg>
+        </div>
+        <div class="ef-text">
+          <span class="ef-title">EF do Quadril</span>
+          <span class="ef-sub">Exame físico interativo</span>
+        </div>
+        <svg class="ef-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </a>
+
+      <!-- Ombro -->
+      <a class="ef-card" href="https://talesrobertosn.github.io/ortopediaresumos/ombro.html"
+         target="_blank" rel="noopener" style="--ef-color:#1d3f7a">
+        <div class="ef-icon">
+          <!-- ícone de articulação de ombro simplificado -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="10" r="4"/>
+            <path d="M12 10c0 0 2-1 4 1s2 6 2 6"/>
+            <path d="M4 14c0 2 1.5 4 4 4"/>
+            <path d="M8 6V3"/>
+          </svg>
+        </div>
+        <div class="ef-text">
+          <span class="ef-title">EF do Ombro</span>
+          <span class="ef-sub">Exame físico interativo</span>
+        </div>
+        <svg class="ef-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </a>
+
     </div>
   </div>
 </section>
@@ -530,13 +616,11 @@ const COLORS = {
 let db = { especialidades:[], resumos:[] };
 let cat = 'all', q = '';
 
-/* Detecta mobile/tablet */
 function isMobile() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent)
     || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024);
 }
 
-/* ── BOOT ───────────────────────────────── */
 (async () => {
   try {
     const r = await fetch(DATA_URL, { cache:'no-cache' });
@@ -561,18 +645,15 @@ function init() {
     db.resumos.length + ' resumo' + (db.resumos.length !== 1 ? 's' : '');
 }
 
-/* ── SPECIALTY TILES ────────────────────── */
 function buildSpecs() {
   const el = document.getElementById('specs-grid');
   el.innerHTML = '';
-
   const all = document.createElement('button');
   all.className = 'stile on'; all.dataset.cat = 'all';
   all.innerHTML = `<span class="stile-nm">Todos</span>
     <span class="stile-ct">${db.resumos.length}<small>${db.resumos.length===1?'resumo':'resumos'}</small></span>`;
   all.addEventListener('click', () => setcat('all','Todos os resumos'));
   el.appendChild(all);
-
   db.especialidades.forEach(e => {
     const n = db.resumos.filter(r => r.especialidade === e.id).length;
     const t = document.createElement('button');
@@ -583,12 +664,10 @@ function buildSpecs() {
     t.addEventListener('click', () => setcat(e.id, e.nome));
     el.appendChild(t);
   });
-
   document.getElementById('n-res').textContent = db.resumos.length;
   document.getElementById('n-ar').textContent  = db.especialidades.length;
 }
 
-/* ── FILTER ─────────────────────────────── */
 function filtered() {
   const sq = q.toLowerCase().trim();
   return db.resumos.filter(r => {
@@ -616,42 +695,27 @@ function esc(s) {
     .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-/* ── RENDER ─────────────────────────────── */
 function render() {
   const list = filtered();
   const grid = document.getElementById('grid');
-
   document.getElementById('ri').textContent = q
     ? `${list.length} resultado${list.length!==1?'s':''} para "${q}"` : '';
-
   if (!list.length) {
     grid.innerHTML = `<div class="empty"><h3>Nenhum resultado</h3>
       <p>Tente outro termo de busca ou outra especialidade.</p></div>`;
     return;
   }
-
   const bookSVG = `<svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
     <path d="M2 3.5A1.5 1.5 0 013.5 2h9A1.5 1.5 0 0114 3.5v10a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V3.5z"/>
     <path d="M5 6h6M5 9h6M5 12h4"/></svg>`;
-
   grid.innerHTML = list.map(r => {
     const color = COLORS[r.especialidade]||'#555';
     const nome = espNome(r.especialidade);
     const hf = !!r.arquivo;
     const titulo = esc(r.titulo);
     const arquivo = esc(r.arquivo||'');
-
     const fontesHTML = (r.fontes && r.fontes.length)
       ? `<div class="fonte-row">${r.fontes.map(f=>`<span class="fonte-tag">${bookSVG}${esc(f)}</span>`).join('')}</div>` : '';
-
-    /*
-      BOTOES: todos sao <a> tags agora.
-      "Ler aqui" -> abre o modal no desktop OU abre em nova aba no mobile
-      "Nova aba" -> sempre abre em nova aba
-      Ambos sao links reais que funcionam independente de JS.
-    */
-    const absFile = arquivo; // caminho relativo, funciona como href
-
     return `<article class="card">
       <div class="cbar" style="background:${color}"></div>
       <div class="cspec">
@@ -665,12 +729,12 @@ function render() {
         <span class="cdate">${fmtDate(r.data||'')}</span>
         ${hf
           ? `<div class="cbtns">
-              <a class="cbtn cbtn-pdf" href="${absFile}" data-act="read" data-title="${titulo}">
+              <a class="cbtn cbtn-pdf" href="${arquivo}" data-act="read" data-title="${titulo}">
                 <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="2" y="1" width="9" height="13" rx="1"/><path d="M7 1v4h4M5 8h5M5 11h3"/></svg>
                 Ler aqui
               </a>
-              <a class="cbtn cbtn-ext" href="${absFile}" target="_blank" rel="noopener">
+              <a class="cbtn cbtn-ext" href="${arquivo}" target="_blank" rel="noopener">
                 <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M6 2H2v12h12v-4M9 2h5v5M13.5 2.5l-7 7"/></svg>
                 Nova aba
@@ -682,7 +746,6 @@ function render() {
   }).join('');
 }
 
-/* ── CATEGORY ───────────────────────────── */
 function setcat(id, nome) {
   cat = id;
   document.getElementById('ch2').textContent = id==='all' ? 'Todos os resumos' : nome;
@@ -691,86 +754,54 @@ function setcat(id, nome) {
   document.querySelector('.main').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-/* ── SEARCH ─────────────────────────────── */
 document.getElementById('search').addEventListener('input', e => { q = e.target.value; render(); });
 
-/* ── CLICK HANDLER ──────────────────────── */
 document.getElementById('grid').addEventListener('click', e => {
   const readBtn = e.target.closest('[data-act="read"]');
-  if (!readBtn) return; // se nao clicou em "Ler aqui", deixa o link funcionar normalmente
-
-  // No mobile: deixa o link abrir normalmente (nova aba)
-  if (isMobile()) {
-    readBtn.target = '_blank';
-    return; // nao previne — o <a> abre sozinho
-  }
-
-  // No desktop: previne e abre o modal
+  if (!readBtn) return;
+  if (isMobile()) { readBtn.target = '_blank'; return; }
   e.preventDefault();
-  const file  = readBtn.getAttribute('href');
-  const title = readBtn.dataset.title || '';
-  openPDF(file, title);
+  openPDF(readBtn.getAttribute('href'), readBtn.dataset.title || '');
 });
 
-/* ── PDF MODAL ──────────────────────────── */
 async function openPDF(file, title) {
   const pov     = document.getElementById('pov');
   const iframe  = document.getElementById('piframe');
   const loading = document.getElementById('ploading');
   const error   = document.getElementById('perror');
-
   const absoluteUrl = new URL(file, window.location.href).href;
-
   document.getElementById('ptitle').textContent = title;
   document.getElementById('pext').href = absoluteUrl;
   document.getElementById('pdl').href  = absoluteUrl;
-
   iframe.src = 'about:blank';
   iframe.style.visibility = 'hidden';
   error.classList.remove('show');
   loading.classList.add('show');
-
   pov.classList.add('open');
   document.body.style.overflow = 'hidden';
-
-  // Verifica se o PDF existe
   let exists = true;
   try {
     const head = await fetch(absoluteUrl, { method:'HEAD', cache:'no-cache' });
     if (!head.ok) exists = false;
-  } catch(e) { /* ignora erro de rede, tenta carregar mesmo assim */ }
-
+  } catch(e) {}
   if (!exists) {
     loading.classList.remove('show');
     document.getElementById('perror-path').textContent = absoluteUrl;
     error.classList.add('show');
     return;
   }
-
-  // Em sites publicos HTTPS: usa Google Docs Viewer (mais confiavel)
   const host = window.location.hostname;
   const isPublic = window.location.protocol === 'https:'
     && host && host !== 'localhost' && host !== '127.0.0.1';
-
   const viewerSrc = isPublic
     ? 'https://docs.google.com/viewer?url=' + encodeURIComponent(absoluteUrl) + '&embedded=true'
     : absoluteUrl;
-
-  iframe.onload = () => {
-    loading.classList.remove('show');
-    iframe.style.visibility = 'visible';
-  };
+  iframe.onload = () => { loading.classList.remove('show'); iframe.style.visibility = 'visible'; };
   iframe.src = viewerSrc;
-
-  // Timeout: se nao carregar em 12s, mostra mesmo assim
-  setTimeout(() => {
-    loading.classList.remove('show');
-    iframe.style.visibility = 'visible';
-  }, 12000);
+  setTimeout(() => { loading.classList.remove('show'); iframe.style.visibility = 'visible'; }, 12000);
 }
 
 function closePDF() {
-  // Sai do fullscreen primeiro se necessario
   if (document.fullscreenElement || document.webkitFullscreenElement) {
     (document.exitFullscreen || document.webkitExitFullscreen).call(document);
   }
@@ -783,7 +814,6 @@ function closePDF() {
   }, 340);
 }
 
-/* ── FULLSCREEN ─────────────────────────── */
 const panel = document.getElementById('pov-panel');
 const pfullIcon = document.getElementById('pfull-icon');
 const ICON_EXPAND = '<path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/>';
@@ -804,7 +834,6 @@ function onFSChange() {
 document.addEventListener('fullscreenchange', onFSChange);
 document.addEventListener('webkitfullscreenchange', onFSChange);
 
-/* ── CLOSE ACTIONS ──────────────────────── */
 document.getElementById('pclose').addEventListener('click', closePDF);
 document.getElementById('pov').addEventListener('click', e => {
   if (e.target === document.getElementById('pov')) closePDF();
