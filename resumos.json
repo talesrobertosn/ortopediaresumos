@@ -46,6 +46,17 @@
       "data": "2026-04-26"
     },
     {
+      "id": 17,
+      "titulo": "Anatomia da Pelve",
+      "especialidade": "quadril",
+      "descricao": "Anatomia ortopédica aplicada da pelve",
+      "fontes": [
+        "Netter's Concise Orthopaedic Anatomy · Cap. 7"
+      ],
+      "arquivo": "pdfs/anatomiapelve.pdf",
+      "data": "2026-05-03"
+    },
+    {
       "id": 16,
       "titulo": "Classificação AO/OTA — Fraturas do Fêmur",
       "especialidade": "trauma",
