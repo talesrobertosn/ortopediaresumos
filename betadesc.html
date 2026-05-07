@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descricoes Cirurgicas</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface2: #f0f2f5;
+  --surface3: #e8ebf0;
+  --border: #dfe2e8;
+  --border2: #c8cdd6;
+  --text: #1a1d26;
+  --text2: #5a6170;
+  --text3: #8b92a0;
+  --accent: #1a73e8;
+  --accent2: #1557b0;
+  --accent-light: #e8f0fe;
+  --accent-glow: rgba(26,115,232,0.08);
+  --green: #0d9f6e;
+  --green-light: #ecfdf5;
+  --green-dark: #047857;
+  --orange: #e67e22;
+  --red: #dc3545;
+  --purple: #7c3aed;
+  --teal: #0891b2;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'DM Mono', 'Menlo', monospace;
+  --transition: 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER */
+.header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-logo {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 16px;
+  box-shadow: 0 2px 8px rgba(26,115,232,0.3);
+}
+.header h1 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.3px; }
+.header-nav { display: flex; gap: 6px; }
+.header-nav a {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 0.8rem; font-weight: 500;
+  transition: all var(--transition);
+}
+.header-nav a:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+
+/* MAIN GRID */
+.main-view { max-width: 1000px; margin: 0 auto; padding: 28px 32px 80px; }
+.main-view.hidden { display: none; }
+.search-wrap { position: relative; margin-bottom: 28px; }
+.search-wrap svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text3); }
+.search-wrap input {
+  width: 100%; padding: 13px 16px 13px 46px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius); color: var(--text);
+  font-family: var(--font); font-size: 0.95rem;
+  outline: none; transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+.search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.search-wrap input::placeholder { color: var(--text3); }
+
+.category-section { margin-bottom: 32px; }
+.category-label {
+  font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--text3); margin-bottom: 14px; padding-left: 2px;
+}
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow-md);
+  transform: translateY(-2px);
+}
+.card-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.card-dot.quadril { background: var(--accent); }
+.card-dot.joelho { background: var(--green); }
+.card-dot.mao { background: var(--orange); }
+.card-dot.trauma { background: var(--red); }
+.card-dot.ombro { background: var(--teal); }
+.card-dot.livre { background: var(--purple); }
+.card-text h3 { font-size: 0.92rem; font-weight: 600; line-height: 1.3; }
+.card-text p { font-size: 0.75rem; color: var(--text3); margin-top: 2px; }
+.card.hidden { display: none; }
+
+/* EDITOR VIEW */
+.editor-view { display: none; height: calc(100vh - 64px - 37px); flex-direction: column; }
+.editor-view.active { display: flex; }
+.editor-bar {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  padding: 12px 28px; display: flex; align-items: center;
+  justify-content: space-between; gap: 12px; flex-shrink: 0;
+}
+.editor-bar-left { display: flex; align-items: center; gap: 12px; }
+.btn-back {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 14px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text2); font-family: var(--font);
+  font-size: 0.82rem; font-weight: 500; cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-back:hover { background: var(--surface3); color: var(--text); }
+.editor-title { font-size: 1rem; font-weight: 700; }
+.editor-bar-right { display: flex; align-items: center; gap: 8px; }
+.mode-toggle {
+  display: inline-flex; background: var(--surface2);
+  border-radius: var(--radius-sm); padding: 3px;
+  border: 1px solid var(--border);
+}
+.mode-btn {
+  padding: 6px 16px; border-radius: 6px; border: none;
+  background: transparent; color: var(--text2);
+  font-family: var(--font); font-size: 0.8rem; font-weight: 500;
+  cursor: pointer; transition: all var(--transition);
+}
+.mode-btn.active { background: var(--white); color: var(--accent); box-shadow: var(--shadow-sm); font-weight: 600; }
+.btn-copy {
+  padding: 8px 22px; background: var(--accent); border: none;
+  border-radius: var(--radius-sm); color: #fff;
+  font-family: var(--font); font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all var(--transition);
+  display: inline-flex; align-items: center; gap: 7px;
+  box-shadow: 0 2px 8px rgba(26,115,232,0.3);
+}
+.btn-copy:hover { background: var(--accent2); transform: translateY(-1px); }
+.btn-copy:active { transform: scale(0.97); }
+.btn-copy.copied { background: var(--green-dark); box-shadow: 0 2px 8px rgba(4,120,87,0.3); }
+
+/* SPLIT */
+.editor-split { flex: 1; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+.editor-split.hidden-mode { display: none; }
+.editor-fields {
+  padding: 24px 28px; overflow-y: auto;
+  border-right: 1px solid var(--border); background: var(--bg);
+}
+.fields-section-title {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--text3); margin-bottom: 12px;
+}
+.field-group { margin-bottom: 14px; }
+.field-group label {
+  display: block; font-size: 0.76rem; font-weight: 600;
+  color: var(--text2); margin-bottom: 5px;
+}
+.field-group input, .field-group select {
+  width: 100%; padding: 10px 12px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text);
+  font-family: var(--font); font-size: 0.9rem;
+  outline: none; transition: all var(--transition);
+}
+.field-group input:focus, .field-group select:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.field-row .field-group { margin-bottom: 0; }
+.quick-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.pill {
+  padding: 4px 10px; background: var(--accent-light);
+  border: 1px solid transparent; border-radius: 20px;
+  font-size: 0.7rem; font-weight: 500; color: var(--accent);
+  cursor: pointer; transition: all var(--transition);
+  user-select: none;
+}
+.pill:hover { background: var(--accent); color: #fff; }
+.pill.active { background: var(--accent); color: #fff; }
+
+/* PREVIEW */
+.editor-preview { padding: 24px 28px; overflow-y: auto; background: var(--white); }
+.preview-label {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--text3); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.live-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+.preview-text {
+  font-family: var(--mono); font-size: 0.84rem; line-height: 1.85;
+  color: var(--text); white-space: pre-wrap; word-break: break-word;
+}
+.preview-text .hl {
+  background: #fff3cd; border-radius: 3px; padding: 1px 3px;
+  border-bottom: 2px solid var(--orange); transition: background 0.15s;
+}
+
+/* FREE TEXT */
+.free-editor { flex: 1; display: none; padding: 24px 28px; overflow-y: auto; background: var(--white); }
+.free-editor.active { display: flex; flex-direction: column; }
+.free-label {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--text3); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.free-editor textarea {
+  flex: 1; width: 100%; padding: 20px;
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius); color: var(--text);
+  font-family: var(--mono); font-size: 0.88rem; line-height: 1.85;
+  resize: none; outline: none; text-transform: uppercase;
+  transition: border-color var(--transition);
+}
+.free-editor textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.free-editor textarea::placeholder { color: var(--text3); text-transform: none; }
+
+/* BETA BANNER */
+.beta-banner {
+  background: linear-gradient(90deg, var(--accent-light), #fef3c7);
+  border-bottom: 1px solid #e0d4a0;
+  padding: 8px 32px;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.beta-tag {
+  background: var(--orange);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--text); color: var(--white);
+  padding: 12px 28px; border-radius: var(--radius-sm);
+  font-size: 0.85rem; font-weight: 600; z-index: 999;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: none; box-shadow: var(--shadow-lg);
+  display: flex; align-items: center; gap: 8px;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+.footer { text-align: center; padding: 24px; color: var(--text3); font-size: 0.75rem; font-weight: 500; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .editor-split { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .editor-fields { border-right: none; border-bottom: 1px solid var(--border); max-height: 45vh; }
+}
+@media (max-width: 640px) {
+  .header { padding: 0 16px; height: 56px; }
+  .header h1 { font-size: 0.95rem; }
+  .header-nav a { padding: 6px 10px; font-size: 0.72rem; }
+  .header-nav a span { display: none; }
+  .main-view { padding: 20px 16px 60px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .editor-bar { padding: 10px 16px; flex-wrap: wrap; }
+  .editor-fields, .editor-preview, .free-editor { padding: 16px; }
+  .field-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="beta-banner">
+  <span class="beta-tag">BETA</span>
+  Site em construcao — novas descricoes serao adicionadas em breve
+</div>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">DC</div>
+    <h1>Descricoes Cirurgicas</h1>
+  </div>
+  <div class="header-nav">
+    <a href="https://talesrobertosn.github.io/ortopediaresumos/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Resumos</span>
+    </a>
+    <a href="https://talesrobertosn.github.io/ortopocket/#/p/home" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+      <span>Encaminhar</span>
+    </a>
+  </div>
+</div>
+
+<div class="main-view" id="mainView">
+  <div class="search-wrap">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Buscar cirurgia..." oninput="filterCards()">
+  </div>
+  <div id="cardContainer"></div>
+  <div class="footer">feito por Tales</div>
+</div>
+
+<div class="editor-view" id="editorView">
+  <div class="editor-bar">
+    <div class="editor-bar-left">
+      <button class="btn-back" onclick="goBack()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        Voltar
+      </button>
+      <span class="editor-title" id="editorTitle">-</span>
+    </div>
+    <div class="editor-bar-right">
+      <div class="mode-toggle" id="modeToggle">
+        <button class="mode-btn active" data-mode="fields" onclick="setMode('fields')">Campos</button>
+        <button class="mode-btn" data-mode="free" onclick="setMode('free')">Texto Livre</button>
+      </div>
+      <button class="btn-copy" id="btnCopy" onclick="copyText()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span class="copy-label">Copiar</span>
+      </button>
+    </div>
+  </div>
+  <div class="editor-split" id="editorSplit">
+    <div class="editor-fields" id="editorFields"></div>
+    <div class="editor-preview">
+      <div class="preview-label"><span class="live-dot"></span> PREVIEW EM TEMPO REAL</div>
+      <div class="preview-text" id="previewText"></div>
+    </div>
+  </div>
+  <div class="free-editor" id="freeEditor">
+    <div class="free-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> DESCRICAO LIVRE - EDITE O TEXTO COMPLETO</div>
+    <textarea id="freeTextarea" placeholder="DIGITE A DESCRICAO CIRURGICA AQUI..." oninput="this.value=this.value.toUpperCase()"></textarea>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+  Copiado!
+</div>
+
+<script>
+// ================================================================
+//
+//  COMO ADICIONAR UMA NOVA CIRURGIA:
+//
+//  1. Copie o bloco modelo abaixo e cole dentro do array SURGERIES
+//  2. Preencha os campos:
+//     - id: identificador unico (ex: 'minha_cirurgia')
+//     - name: nome que aparece no card
+//     - category: 'Quadril' | 'Joelho' | 'Mao e Punho' | 'Trauma' | 'Ombro' | 'Outros'
+//     - color: 'quadril' | 'joelho' | 'mao' | 'trauma' | 'ombro' | 'livre'
+//     - fields: array de campos editaveis (veja tipos abaixo)
+//     - template: funcao que recebe valores e retorna array de linhas
+//
+//  TIPOS DE CAMPO:
+//    { key:'x', label:'X', type:'select', options:['A','B','C'] }
+//    { key:'x', label:'X', type:'text', default:'valor', pills:['v1','v2','v3'] }
+//
+//  BLOCO MODELO:
+//  {
+//    id: 'nova_cirurgia',
+//    name: 'Nome da Cirurgia',
+//    category: 'Categoria',
+//    color: 'quadril',
+//    fields: [
+//      { key: 'lado', label: 'Lado', type: 'select', options: ['DIREITO','ESQUERDO'] },
+//      { key: 'implante', label: 'Implante', type: 'text', default: '10MM', pills: ['10MM','12MM'] },
+//    ],
+//    template: v => [
+//      `PRIMEIRA LINHA COM ${v.lado}`,
+//      `SEGUNDA LINHA COM ${v.implante}`,
+//    ]
+//  },
+//
+// ================================================================
+
+const ANEST_GERAL = ['RAQUIANESTESIA','ANESTESIA GERAL','RAQUIANESTESIA + SEDACAO','ANESTESIA GERAL + RAQUIANESTESIA','ANESTESIA PLEXULAR','ANESTESIA TRONCULAR','BLOQUEIO INTERESCALENICO','BLOQUEIO INTERESCALENICO + ANESTESIA GERAL'];
+
+const SURGERIES = [
+
+// ══════════════════════════════════════════════
+//  QUADRIL
+// ══════════════════════════════════════════════
+{
+  id: 'atq_nao_cimentada',
+  name: 'ATQ Nao Cimentada',
+  category: 'Quadril',
+  color: 'quadril',
+  fields: [
+    { key: 'decubito', label: 'Decubito', type: 'select', options: ['LATERAL ESQUERDO','LATERAL DIREITO'] },
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'lado', label: 'Lado operado', type: 'select', options: ['DIREITO','ESQUERDO'] },
+    { key: 'fio_piriforme', label: 'Fio reparo piriforme', type: 'text', default: 'VYCRYL 1.0', pills: ['VYCRYL 1.0','VYCRYL 2.0','ETHIBOND 2.0'] },
+    { key: 'uni_piriforme', label: 'Unidades fio', type: 'text', default: '1', pills: ['1','2'] },
+    { key: 'acetabular_num', label: 'Acetabular (mm)', type: 'text', default: '54', pills: ['46','48','50','52','54','56','58','60'] },
+    { key: 'parafuso_acet', label: 'Parafuso acetabular (mm)', type: 'text', default: '30', pills: ['20','25','30','35','40','45'] },
+    { key: 'parafuso_acet_uni', label: 'Qtd parafusos', type: 'text', default: '1', pills: ['0','1','2','3'] },
+    { key: 'liner', label: 'Liner polietileno', type: 'text', default: '32X54MM' },
+    { key: 'colo_teste', label: 'Colo teste', type: 'select', options: ['STD','CURTO','LONGO','+3.5MM','-3.5MM'] },
+    { key: 'cabeca_teste', label: 'Cabeca teste (mm)', type: 'text', default: '32', pills: ['28','32','36'] },
+    { key: 'femoral_num', label: 'Haste femoral (mm)', type: 'text', default: '14', pills: ['9','10','11','12','13','14','15','16','17','18'] },
+    { key: 'femoral_offset', label: 'Offset haste', type: 'select', options: ['HO','STD'] },
+    { key: 'cabeca_def', label: 'Cabeca definitiva (mm)', type: 'text', default: '32', pills: ['28','32','36'] },
+    { key: 'cabeca_colo_def', label: 'Colo cabeca definitiva', type: 'select', options: ['STD','CURTO','LONGO','+3.5MM','-3.5MM'] },
+    { key: 'sutura', label: 'Sutura', type: 'text', default: 'VICRYL 1-0, VICRYL 2-0, NYLON 2-0' },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO ${v.decubito} SOB ${v.anestesia}`,
+    `POSICIONAMENTO DO PACIENTE COM POSICIONADORES EM MESA CIRURGICA`,
+    `ASSEPSIA + ANTISSEPSIA`,
+    `COLOCACAO DE CAMPOS ESTEREIS CONFORME ROTINA ORTOPEDICA`,
+    `ACESSO POSTERO-LATERAL EM QUADRIL ${v.lado} E DISSECCAO POR PLANOS`,
+    `EXPOSICAO DOS ROTADORES EXTERNOS CURTOS`,
+    `REPARO DO TENDAO DO PIRIFORME COM ${v.fio_piriforme} (${v.uni_piriforme}UNI)`,
+    `CAPSULOTOMIA POSTERIOR`,
+    `LUXACAO DA CABECA FEMORAL`,
+    `OSTEOTOMIA DE REGULARIZACAO DO COLO FEMORAL CONFORME PLANEJAMENTO (OSTEOTOMIA DE OSSOS LONGOS)`,
+    `RESSECCAO DA CABECA FEMORAL`,
+    `EXPOSICAO ACETABULAR COM AFASTADORES ANTERIOR, POSTERIOR E INFERIOR`,
+    `FRESAGEM DO ACETABULO PROGRESSIVA`,
+    `TESTE ACETABULAR COM NUMERO ${v.acetabular_num}MM CONFORME PLANEJAMENTO CIRURGICO`,
+    `POSICIONAMENTO DO COMPONENTE ACETABULAR NAO CIMENTADO NUMERO ${v.acetabular_num}MM SOB PRESS FIT`,
+    `PRESS FIT ADEQUADO`,
+    v.parafuso_acet_uni !== '0' ? `PARAFUSO ACETABULAR NUMERO ${v.parafuso_acet}MM (${v.parafuso_acet_uni} UNI)` : null,
+    `POSICIONAMENTO DE LINER DE POLIETILENO ${v.liner}`,
+    `PREPARO DO CANAL MEDULAR FEMORAL`,
+    `RASPAS FEMORAIS PROGRESSIVAS`,
+    `TESTES DE ESTABILIDADE COM COLO ${v.colo_teste}, CABECA ${v.cabeca_teste}MM`,
+    `ESTABILIDADE ADEQUADA EM TODOS OS PLANOS`,
+    `IMPACCAO SOB PRESS FIT DE COMPONENTE FEMORAL NAO CIMENTADO NUMERO ${v.femoral_num}MM ${v.femoral_offset}`,
+    `POSICIONAMENTO DA CABECA INTERCAMBIAVEL NUMERO ${v.cabeca_def}MM, ${v.cabeca_colo_def}`,
+    `REDUCAO COXO-FEMORAL`,
+    `VERIFICADA BOA ESTABILIDADE EM TODOS OS PLANOS`,
+    `LAVAGEM DA FERIDA OPERATORIA COM SF 0.9%`,
+    `REVISAO DE HEMOSTASIA`,
+    `REINSERCAO DOS ROTADORES EXTERNOS CURTOS (TENOPLASTIA)`,
+    `CAPSULORRAFIA POSTERIOR`,
+    `SUTURA POR PLANOS COM FIO ${v.sutura}`,
+    `CURATIVO ESTERIL`,
+    `AOS CUIDADOS DA REPAI.`,
+  ]
+},
+
+{
+  id: 'atq_cimentada',
+  name: 'ATQ Cimentada',
+  category: 'Quadril',
+  color: 'quadril',
+  fields: [
+    { key: 'decubito', label: 'Decubito', type: 'select', options: ['LATERAL ESQUERDO','LATERAL DIREITO'] },
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'lado', label: 'Lado operado', type: 'select', options: ['DIREITO','ESQUERDO'] },
+    { key: 'fio_piriforme', label: 'Fio reparo piriforme', type: 'text', default: 'VYCRYL 1.0', pills: ['VYCRYL 1.0','VYCRYL 2.0','ETHIBOND 2.0'] },
+    { key: 'uni_piriforme', label: 'Unidades fio', type: 'text', default: '0', pills: ['0','1','2'] },
+    { key: 'acet_cimento', label: 'Cimento acetabular', type: 'text', default: 'LEPINE 28MM X 50MM' },
+    { key: 'acet_num', label: 'Acetabular (mm)', type: 'text', default: '46', pills: ['42','44','46','48','50','52','54'] },
+    { key: 'acet_anteversao', label: 'Anteversao acetabular (graus)', type: 'text', default: '10', pills: ['10','15','20'] },
+    { key: 'acet_abducao', label: 'Abducao acetabular (graus)', type: 'text', default: '45', pills: ['40','45','50'] },
+    { key: 'haste', label: 'Haste femoral', type: 'text', default: '0-37,5MM' },
+    { key: 'haste_anteversao', label: 'Anteversao haste (graus)', type: 'text', default: '10', pills: ['10','15'] },
+    { key: 'cabeca', label: 'Cabeca femoral', type: 'text', default: 'COLO CURTO 28 - 4 MM' },
+    { key: 'sutura', label: 'Sutura', type: 'text', default: 'VYCRYL 2-0 E MONONYLON 2-0' },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO ${v.decubito} SOB ${v.anestesia}`,
+    `POSICIONAMENTO DO PACIENTE EM MESA CIRURGICA`,
+    `ASSEPSIA + ANTISSEPSIA`,
+    `COLOCACAO DE CAMPOS ESTEREIS CONFORME ROTINA ORTOPEDICA`,
+    `ACESSO POSTERO-LATERAL EM QUADRIL ${v.lado} E DISSECCAO POR PLANOS`,
+    `EXPOSICAO DOS ROTADORES EXTERNOS CURTOS`,
+    `REPARO DO M. PIRIFORME COM ${v.fio_piriforme} (${v.uni_piriforme})`,
+    `CAPSULOTOMIA POSTERIOR`,
+    `OSTEOTOMIA DO COLO FEMORAL`,
+    `RESSECCAO DA CABECA FEMORAL`,
+    `FRESAGEM DO ACETABULO PROGRESSIVA`,
+    `CIMENTACAO DO ACETABULO COM CIMENTO ORTOPEDICO ${v.acet_cimento}`,
+    `POSICIONAMENTO DO COMPONENTE ACETABULAR NUMERO ${v.acet_num}MM COM ${v.acet_anteversao} GRAUS DE ANTEVERSAO E ${v.acet_abducao} GRAUS DE ABDUCAO`,
+    `FRESAGEM DO CANAL MEDULAR`,
+    `CIMENTACAO RETROGRADA COM CIMENTO ORTOPEDICO LEPINE`,
+    `POSICIONAMENTO DO COMPONENTE FEMORAL (HASTE ${v.haste}) COM ${v.haste_anteversao} GRAUS DE ANTEVERSAO`,
+    `POSICIONAMENTO DE CABECA FEMORAL ${v.cabeca}`,
+    `REDUCAO COXO-FEMORAL`,
+    `VERIFICADA A ESTABILIDADE E COMPRIMENTO DO MEMBRO`,
+    `SUTURA POR PLANOS COM FIO ${v.sutura}`,
+    `LIMPEZA COM SF 0,9%`,
+    `CURATIVO ESTERIL`,
+    `AOS CUIDADOS DA REPAI.`,
+  ]
+},
+
+{
+  id: 'atq_fx_colo',
+  name: 'ATQ Nao Cimentada - Fratura Colo Femoral',
+  category: 'Quadril',
+  color: 'quadril',
+  fields: [
+    { key: 'decubito', label: 'Decubito lateral', type: 'select', options: ['LATERAL ESQUERDO','LATERAL DIREITO'] },
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'lado', label: 'Lado operado', type: 'select', options: ['DIREITO','ESQUERDO'] },
+    { key: 'acet_num', label: 'Acetabular (mm)', type: 'text', default: '52', pills: ['46','48','50','52','54','56','58','60'] },
+    { key: 'parafuso_acet', label: 'Parafuso acetabular (mm)', type: 'text', default: '30', pills: ['20','25','30','35','40','45'] },
+    { key: 'liner', label: 'Liner polietileno (tamanho)', type: 'text', default: '32X52MM', pills: ['28X46MM','28X48MM','32X50MM','32X52MM','32X54MM','32X56MM','36X54MM','36X56MM'] },
+    { key: 'haste_num', label: 'Haste femoral (mm)', type: 'text', default: '14', pills: ['9','10','11','12','13','14','15','16','17','18'] },
+    { key: 'haste_offset', label: 'Offset haste', type: 'select', options: ['STD','HO'] },
+    { key: 'colo', label: 'Colo', type: 'select', options: ['STD','CURTO','LONGO','+3.5MM','-3.5MM'] },
+    { key: 'cabeca', label: 'Cabeca (mm)', type: 'text', default: '32', pills: ['28','32','36'] },
+  ],
+  template: v => [
+    `PCTE EM DECUBITO ${v.decubito} COM POSICIONADORES, SOB ${v.anestesia}`,
+    `ASSEPSIA + ANTISSEPSIA`,
+    `PREPARO DE ROTINA`,
+    `INCISAO SOBRE FACE POSTEROLATERAL DE QUADRIL ${v.lado}`,
+    `DIVULSAO POR PLANOS`,
+    `RETIRADA DE CABECA FEMORAL`,
+    `FRESAGEM PROGRESSIVA DE ACETABULO`,
+    `PRESSFIT DE COMPONENTE ACETABULAR ${v.acet_num}MM + INTRODUCAO DE PARAFUSO ACETABULAR ${v.parafuso_acet}MM. INTRODUCAO DE LINER POLIETILENO ${v.liner}`,
+    `REGULARIZACAO OSTEOTOMIA DO COLO FEMORAL`,
+    `FRESAGEM PROGRESSIVA DE CANAL FEMORAL`,
+    `PRESSFIT DE HASTE ${v.haste_num}MM, ${v.haste_offset} OFFSET, COLO ${v.colo}, CABECA ${v.cabeca}MM`,
+    `TESTADO ESTABILIDADE INTRA OPERATORIA OK`,
+    `REVISAO HEMOSTATICA`,
+    `LAVAGEM DE FO`,
+    `SUTURA POR PLANOS`,
+    `CURATIVO ESTERIL`,
+    `A REPAI`,
+  ]
+},
+
+{
+  id: 'fx_transtrocanterica',
+  name: 'Fratura Transtrocanterica (PFN/Gamma)',
+  category: 'Quadril',
+  color: 'quadril',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'lado', label: 'Lado', type: 'select', options: ['ESQUERDO','DIREITO'] },
+    { key: 'haste', label: 'Haste PFN Gamma', type: 'text', default: '11*170 MM' },
+    { key: 'parafuso_cefalico', label: 'Parafuso cefalico (mm)', type: 'text', default: '95', pills: ['80','85','90','95','100','105','110'] },
+    { key: 'bloqueio_distal', label: 'Bloqueio distal (mm)', type: 'text', default: '35', pills: ['30','35','40','45'] },
+  ],
+  template: v => [
+    `PACIENTE EM DDH SOB ${v.anestesia} + MESA DE TRACAO EM MEMBRO INFERIOR ${v.lado}`,
+    `REDUCAO DE FRATURA POR MEIO DE MANOBRA`,
+    `OBSERVADA REDUCAO COM AUXILIO DE FLUOROSCOPIO`,
+    `ASSEPSIA E ANTISSEPSIA`,
+    `COLOCACAO DE CAMPOS ESTEREIS CONFORME ROTINA DE MIE`,
+    `INCISAO SOBRE TROCANTER MAIOR ${v.lado}`,
+    `DIVULSAO POR PLANOS`,
+    `INSERCAO DE FIO GUIA INTRAMEDULAR`,
+    `OBSERVADO POSICIONAMENTO ADEQUADO AO FLUOROSCOPIO NAS INCIDENCIAS AP E PERFIL`,
+    `FRESAGEM INICIAL COM PROTECAO DE PARTES MOLES`,
+    `PASSAGEM DE HASTE INTRAMEDULAR PFN GAMMA ${v.haste} COM AUXILIO DE GUIA`,
+    `INSERCAO DE FIO GUIA PARA BLOQUEIO CEFALICO`,
+    `OBSERVADO POSICIONAMENTO ADEQUADO AO FLUOROSCOPIO NAS INCIDENCIAS AP E PERFIL`,
+    `FRESAGEM DO TRAJETO E BLOQUEIO COM PARAFUSO CEFALICO ${v.parafuso_cefalico} MM`,
+    `BLOQUEIO DISTAL COM PARAFUSO ${v.bloqueio_distal} MM`,
+    `LAVAGEM COM SOLUCAO FISIOLOGICA`,
+    `RAFIA POR PLANOS`,
+    `CURATIVO`,
+    `RETIRADA MESA`,
+    `AOS CUIDADOS DA REPAI.`,
+  ]
+},
+
+// ══════════════════════════════════════════════
+//  JOELHO
+// ══════════════════════════════════════════════
+{
+  id: 'atj',
+  name: 'Artroplastia Total de Joelho',
+  category: 'Joelho',
+  color: 'joelho',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'lado', label: 'Lado operado', type: 'select', options: ['ESQUERDO','DIREITO'] },
+    { key: 'acesso', label: 'Acesso', type: 'select', options: ['ANTERIOR + PARAPATELAR MEDIAL','ANTERIOR','PARAPATELAR MEDIAL'] },
+    { key: 'garrote_inicio', label: 'Garrote no inicio?', type: 'select', options: ['NAO - INSUFLAR ANTES DA CIMENTACAO','SIM - GARROTE NO INICIO'] },
+    { key: 'corte_fem', label: 'Corte femoral (mm)', type: 'text', default: '9', pills: ['7','8','9','10'] },
+    { key: 'valgo', label: 'Valgo femoral (graus)', type: 'text', default: '5', pills: ['5','6','7'] },
+    { key: 'corte_tib', label: 'Corte tibial (mm do plato lateral)', type: 'text', default: '10', pills: ['8','9','10','11','12'] },
+    { key: 'rot_ext', label: 'Rotacao externa femoral (graus)', type: 'text', default: '3', pills: ['3','5'] },
+    { key: 'cimento', label: 'Cimento', type: 'text', default: '1 CIMENTO SEM ANTIBIOTICO', pills: ['1 CIMENTO SEM ANTIBIOTICO','1 CIMENTO COM ANTIBIOTICO','2 CIMENTOS SEM ANTIBIOTICO'] },
+    { key: 'femoral', label: 'Componente femoral', type: 'text', default: '4', pills: ['2','3','4','5','6'] },
+    { key: 'tibial', label: 'Componente tibial', type: 'text', default: '3', pills: ['2','3','4','5'] },
+    { key: 'liner', label: 'Liner/Inserto', type: 'text', default: '10', pills: ['9','10','11','12','14'] },
+    { key: 'dreno', label: 'Dreno suctor', type: 'select', options: ['SIM 3.2MM','SIM 4.8MM','NAO'] },
+    { key: 'sutura', label: 'Sutura', type: 'text', default: '2 VICRYL 1.0, 2 VICRYL 2.0 E 3 NYLON 3.0' },
+  ],
+  template: v => {
+    const lines = [];
+    lines.push(`PACIENTE EM DECUBITO DORSAL SOB ${v.anestesia}`);
+    lines.push(`ANTISSEPSIA + ASSEPSIA DE MEMBRO INFERIOR ${v.lado} E COLOCACAO DE CAMPOS ESTEREIS`);
+    lines.push(`INSTALADO ELETROCAUTERIO + ASPIRADOR COM FILTRO`);
+    lines.push(`POSICIONADO CAMPO ADESIVO`);
+    if (v.garrote_inicio === 'SIM - GARROTE NO INICIO') {
+      lines.push(`GARROTEAMENTO DE MEMBRO INFERIOR ${v.lado}`);
+    }
+    lines.push(`ACESSO ${v.acesso} EM JOELHO ${v.lado}`);
+    lines.push(`ARTROTOMIA PARAPATELAR MEDIAL`);
+    lines.push(`RETIRADA DE OSTEOFITOS E SINOVECTOMIA`);
+    lines.push(`CONFECCAO DE CORTE FEMORAL DE ${v.corte_fem}MM E ${v.valgo} GRAUS DE VALGO COM AUXILIO DE GUIA INTRAMEDULAR`);
+    lines.push(`CONFECCAO DE CORTE TIBIAL COM GUIA INTRAMEDULAR, ${v.corte_tib}MM DO PLATO LATERAL`);
+    lines.push(`CONFECCAO DE CORTES ANTERIOR, POSTERIOR E CHANFRO FEMORAL COM ${v.rot_ext} GRAUS DE ROTACAO EXTERNA + CONFECCAO DA CAIXA FEMORAL`);
+    lines.push(`TESTE DE COMPONENTES COM FLEXOEXTENSAO ADEQUADA, TRACKING PATELAR OK E VALGO E VARO ESTAVEL`);
+    lines.push(`RETIRADO TESTES E REALIZADO LAVAGEM EXAUSTIVA COM SORO FISIOLOGICO`);
+    if (v.garrote_inicio !== 'SIM - GARROTE NO INICIO') {
+      lines.push(`INSUFLADO GARROTE`);
+    }
+    lines.push(`CIMENTACAO DE COMPONENTES DEFINITIVOS: ${v.cimento}, FEMUR ${v.femoral}, TIBIA ${v.tibial} E LINER ${v.liner}`);
+    lines.push(`VERIFICADA ESTABILIDADE APOS SECAGEM DO CIMENTO`);
+    if (v.dreno !== 'NAO') {
+      const drenoSize = v.dreno.includes('4.8') ? '4.8' : '3.2';
+      lines.push(`COLOCACAO DE DRENO TIPO SUCTOR ${drenoSize}MM EM FERIDA OPERATORIA`);
+    }
+    lines.push(`VERIFICADA HEMOSTASIA`);
+    lines.push(`FECHAMENTO POR PLANOS COM ${v.sutura}`);
+    if (v.garrote_inicio !== 'SIM - GARROTE NO INICIO') {
+      lines.push(`DESINSUFLADO GARROTE`);
+    } else {
+      lines.push(`RETIRADA DO GARROTE COM BOA REPERFUSAO DO MEMBRO CHECADA`);
+    }
+    lines.push(`CURATIVO ESTERIL`);
+    lines.push(`COMPONENTE VASCULAR SEM ALTERACOES`);
+    lines.push(`AOS CUIDADOS DA REPAI.`);
+    return lines;
+  }
+},
+
+// ══════════════════════════════════════════════
+//  OMBRO
+// ══════════════════════════════════════════════
+{
+  id: 'lux_ac',
+  name: 'Luxacao Acromioclavicular',
+  category: 'Ombro',
+  color: 'ombro',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ['BLOQUEIO INTERESCALENICO + ANESTESIA GERAL','ANESTESIA GERAL','BLOQUEIO INTERESCALENICO','RAQUIANESTESIA'] },
+    { key: 'lado', label: 'Lado', type: 'select', options: ['ESQUERDO','DIREITO'] },
+    { key: 'fio_amarilho', label: 'Fio amarilho', type: 'text', default: 'ETHIBOND', pills: ['ETHIBOND','ETHIBOND 2.0','ETHIBOND 5.0','FIBERWIRE'] },
+    { key: 'fio_deltoide', label: 'Fio reinserção deltoide', type: 'text', default: 'VYCRYL 2-0', pills: ['VYCRYL 2-0','VYCRYL 1-0','ETHIBOND 2.0'] },
+    { key: 'fio_subcut', label: 'Fio subcutaneo', type: 'text', default: 'VYCRYL 2-0', pills: ['VYCRYL 2-0','VYCRYL 3-0'] },
+    { key: 'fio_pele', label: 'Fio pele', type: 'text', default: 'MONONYLON 3-0', pills: ['MONONYLON 3-0','MONONYLON 4-0'] },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO DORSAL EM CADEIRA DE PRAIA SOB ${v.anestesia}`,
+    `ASSEPSIA + ANTISSEPSIA`,
+    `COLOCACAO DE CAMPOS ESTEREIS CONFORME ROTINA ORTOPEDICA`,
+    `INCISAO EM GOLPE DE SABRE EM OMBRO ${v.lado}`,
+    `DISSECCAO POR PLANOS`,
+    `DIVULSAO DO MUSCULO DELTOIDE`,
+    `VISUALIZACAO DA ARTICULACAO ACROMIOCLAVICULAR LUXADA E LESOES LIGAMENTARES CORACLAVICULARES`,
+    `REDUCAO POR MANOBRA`,
+    `ESTABILIZACAO COM AMARILHO ENTRE CLAVICULA E CORACOIDE UTILIZANDO ${v.fio_amarilho}`,
+    `REINSERCAO E SUTURA DO DELTOIDE COM FIO ${v.fio_deltoide}`,
+    `SUTURA TECIDO SUBCUTANEO COM ${v.fio_subcut}`,
+    `SUTURA DA PELE COM FIO ${v.fio_pele}`,
+    `CURATIVO ESTERIL`,
+    `TIPOIA CANADENSE`,
+    `AOS CUIDADOS DA REPAI.`,
+  ]
+},
+
+// ══════════════════════════════════════════════
+//  MAO E PUNHO
+// ══════════════════════════════════════════════
+{
+  id: 'dupuytren',
+  name: 'Fasciectomia - Dupuytren',
+  category: 'Mao e Punho',
+  color: 'mao',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ['ANESTESIA PLEXULAR','ANESTESIA GERAL + PLEXULAR','ANESTESIA GERAL','ANESTESIA TRONCULAR','RAQUIANESTESIA'] },
+    { key: 'lado_membro', label: 'Membro', type: 'select', options: ['MSD','MSE'] },
+    { key: 'lado', label: 'Lado', type: 'select', options: ['D','E'] },
+    { key: 'dedo', label: 'Dedo acometido', type: 'text', default: 'POLEGAR', pills: ['POLEGAR','INDICADOR','MEDIO','ANELAR','MINIMO'] },
+    { key: 'articulacoes', label: 'Articulacoes acometidas', type: 'text', default: 'MF E IF', pills: ['MF E IF','MF','IF','IFP','IFD','MF E IFP'] },
+    { key: 'nervo_radial', label: 'Nervo digital radial', type: 'text', default: 'NERVO DIGITAL RADIAL' },
+    { key: 'nervo_ulnar', label: 'Nervo digital ulnar', type: 'text', default: 'NERVO DIGITAL ULNAR' },
+    { key: 'lupa', label: 'Lupa cirurgica', type: 'text', default: '4.3X', pills: ['2.5X','3.5X','4.3X','6.0X'] },
+    { key: 'tempo_garrote', label: 'Tempo garrote (min)', type: 'text', default: '45', pills: ['30','45','60','75','90'] },
+    { key: 'fio_sutura', label: 'Fio sutura', type: 'text', default: 'MONONYLON 4-0', pills: ['MONONYLON 4-0','MONONYLON 5-0','MONONYLON 3-0'] },
+    { key: 'uni_sutura', label: 'Unidades sutura', type: 'text', default: '3', pills: ['2','3','4','5'] },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO DORSAL SOB ${v.anestesia} EM ${v.lado_membro}`,
+    `ASSEPSIA + ANTISSEPSIA + COLOCACAO DE CAMPOS ESTEREIS`,
+    `GARROTE EM RAIZ DO BRACO ${v.lado}`,
+    `OBSERVADA CORDA EM FACE VOLAR DO ${v.dedo} ${v.lado}, CAUSANDO LIMITACAO DA EXTENSAO DA ${v.articulacoes} DO ${v.dedo}`,
+    `ACESSO DE BRUNER EM FACE VOLAR DO ${v.dedo} ${v.lado}, DISSECCAO POR PLANOS COM HEMOSTASIA CRITERIOSA`,
+    `IDENTIFICADO ESPESSAMENTO DA FASCIA PALMAR FORMANDO CORDA FIBROSA; REALIZADA FASCIECTOMIA COM DISSECCAO CUIDADOSA DA MESMA, OBTENDO EXTENSAO COMPLETA DE ${v.articulacoes}`,
+    `IDENTIFICADO ${v.nervo_radial} E ${v.nervo_ulnar} DO ${v.dedo} COM TRAVES FIBROSAS ENVOLVENDO-OS; REALIZADA MICRONEUROLISE DESTES NERVOS SOB MAGNIFICACAO COM LUPA CIRURGICA ${v.lupa}`,
+    `RETIRADO GARROTE APOS ${v.tempo_garrote}MIN COM BOA PERFUSAO DISTAL, SEM SANGRAMENTO EXCESSIVO`,
+    `REVISAO DA HEMOSTASIA + LIMPEZA COM SF0,9%`,
+    `SUTURA DA PELE COM ${v.fio_sutura} (${v.uni_sutura}UN), COM AVANCO DE RETALHOS EM Z PARA ADEQUADA COBERTURA DEVIDO AO GANHO DE EXTENSAO`,
+    `CURATIVO ESTERIL`,
+    `A REPAI`,
+  ]
+},
+
+{
+  id: 'radio_fk',
+  name: 'Fratura Radio Distal - FK Percutaneo',
+  category: 'Mao e Punho',
+  color: 'mao',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ['ANESTESIA GERAL + PLEXULAR','ANESTESIA PLEXULAR','ANESTESIA GERAL','ANESTESIA TRONCULAR','RAQUIANESTESIA'] },
+    { key: 'lado_membro', label: 'Membro', type: 'select', options: ['MSD','MSE'] },
+    { key: 'lado', label: 'Lado', type: 'select', options: ['D','E'] },
+    { key: 'fk_desc', label: 'Fios de Kirschner', type: 'text', default: '2 FK 2.5MM + 1 FK 2.0MM', pills: ['1 FK 1.5MM','2 FK 2.0MM','2 FK 2.5MM','2 FK 2.5MM + 1 FK 2.0MM','3 FK 2.0MM'] },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO DORSAL SOB ${v.anestesia} EM ${v.lado_membro}`,
+    `ASSEPSIA + ANTISSEPSIA + COLOCACAO DE CAMPOS ESTEREIS`,
+    `VISUALIZADA SOB FLUOROSCOPIA FRATURA DA EXTREMIDADE DISTAL DO RADIO ${v.lado} DESVIADA`,
+    `REALIZADO TRATAMENTO CIRURGICO COM ${v.fk_desc}, COM BONS PARAMETROS A FLUOROSCOPIA`,
+    `LIMPEZA COM SF0,9% + REVISAO DA HEMOSTASIA`,
+    `TALA GESSADA`,
+    `A REPAI`,
+  ]
+},
+
+{
+  id: 'tunel_carpo',
+  name: 'Sindrome do Tunel do Carpo',
+  category: 'Mao e Punho',
+  color: 'mao',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ['ANESTESIA PLEXULAR','ANESTESIA GERAL + PLEXULAR','ANESTESIA GERAL','ANESTESIA TRONCULAR','RAQUIANESTESIA'] },
+    { key: 'lado_membro', label: 'Membro', type: 'select', options: ['MSD','MSE'] },
+    { key: 'lado', label: 'Lado', type: 'select', options: ['D','E'] },
+    { key: 'tempo_garrote', label: 'Tempo garrote (min)', type: 'text', default: '40', pills: ['30','40','50','60'] },
+    { key: 'fio_sutura', label: 'Fio sutura', type: 'text', default: 'MONONYLON 4-0', pills: ['MONONYLON 4-0','MONONYLON 5-0','MONONYLON 3-0'] },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO DORSAL SOB ${v.anestesia} EM ${v.lado_membro}`,
+    `ASSEPSIA + ANTISSEPSIA + COLOCACAO DE CAMPOS ESTEREIS`,
+    `GARROTE EM RAIZ DO BRACO ${v.lado}`,
+    `INCISAO ARCIFORME EM FACE VOLAR DO PUNHO ${v.lado}, EM LINHA COM 4 RAIO`,
+    `DISSECCAO POR PLANOS COM HEMOSTASIA CRITERIOSA`,
+    `IDENTIFICADO LIGAMENTO TRANSVERSO DO CARPO, REALIZADA SUA ABERTURA COMPLETA, OBSERVANDO ESPESSAMENTO DO MESMO`,
+    `IDENTIFICADO NERVO MEDIANO COM SINAIS DE SOFRIMENTO (SINAL DA AMPULHETA, OPACIFICACAO), COM MELHORA DO ASPECTO APOS A DESCOMPRESSAO`,
+    `RETIRADO GARROTE APOS ${v.tempo_garrote}MIN, COM BOA PERFUSAO DISTAL, SEM SANGRAMENTO EXCESSIVO`,
+    `LIMPEZA COM SF0,9% + REVISAO DA HEMOSTASIA`,
+    `SUTURA COM ${v.fio_sutura}`,
+    `CURATIVO ESTERIL COM GAZE, ALGODAO`,
+    `A REPAI`,
+  ]
+},
+
+// ══════════════════════════════════════════════
+//  TRAUMA
+// ══════════════════════════════════════════════
+{
+  id: 'fixext_transart_tibia',
+  name: 'Fixador Externo Transarticular - Tibia/Tornozelo',
+  category: 'Trauma',
+  color: 'trauma',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'lado', label: 'Lado', type: 'select', options: ['DIREITO','ESQUERDO'] },
+    { key: 'pinos_tibia', label: 'Pinos tibia (mm)', type: 'text', default: '5.0', pills: ['4.0','5.0','6.0'] },
+    { key: 'pinos_calc', label: 'Pinos calcaneo/metatarso (mm)', type: 'text', default: '5.0', pills: ['4.0','5.0','6.0'] },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO DORSAL HORIZONTAL SOB ${v.anestesia}`,
+    `ASSEPSIA E ANTISSEPSIA`,
+    `COLOCACAO DE CAMPOS ESTEREIS CONFORME ROTINA ORTOPEDICA`,
+    `ACESSO ANTERIOR (2) EM CRISTA DE TIBIA UM PROXIMAL E OUTRO MAIS DISTAL CERCA DE 10CM`,
+    `ACESSO MEDIAL EM CALCANEO E EM BASE DE 1 METATARSIANO`,
+    `REALIZACAO DE CANAL COM PERFURADOR PARA PASSAGEM DE PINOS DE SCHANZ ${v.pinos_tibia}MM INTRAOSSEOS NOS RESPECTIVOS ACESSOS`,
+    `COLOCACAO DE PINOS DE SCHANZ EM RESPECTIVOS ACESSOS`,
+    `MONTAGEM DE FIXADOR EXTERNO TRANSARTICULAR TUBO TUBO`,
+    `REDUCAO DE FRATURA SOB AUXILIO DE RADIOSCOPIA`,
+    `FIXACAO DE FIXADOR EXTERNO COM APERTO DE PARAFUSOS`,
+    `VERIFICADA BOA REDUCAO COM AUXILIO DE RADIOSCOPIA`,
+    `LIMPEZA COM DEGERMANTE E SF 0,9%`,
+    `CURATIVO ESTERIL`,
+    `AOS CUIDADOS DA REPAI.`,
+  ]
+},
+
+{
+  id: 'fixext_tibia',
+  name: 'Fixador Externo Linear - Tibia',
+  category: 'Trauma',
+  color: 'trauma',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'lado', label: 'Lado', type: 'select', options: ['DIREITA','ESQUERDA'] },
+    { key: 'pinos', label: 'Pinos de Schanz (mm)', type: 'text', default: '6.0', pills: ['4.0','5.0','6.0'] },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO DORSAL HORIZONTAL SOB ${v.anestesia}`,
+    `ASSEPSIA E ANTISSEPSIA`,
+    `COLOCACAO DE CAMPOS ESTEREIS CONFORME ROTINA ORTOPEDICA`,
+    `ACESSO ANTERIOR (2) EM CRISTA DE TIBIA ${v.lado} PROXIMAIS AO FOCO DE FRATURA`,
+    `REALIZACAO DE CANAL COM PERFURADOR PARA PASSAGEM DE PINOS DE SCHANZ INTRAOSSEOS NOS RESPECTIVOS ACESSOS`,
+    `COLOCACAO DE 2 PINOS DE SCHANZ ${v.pinos} MM EM RESPECTIVOS ACESSOS`,
+    `ACESSO ANTERIOR (2) EM CRISTA DE TIBIA ${v.lado} DISTAIS AO FOCO DE FRATURA`,
+    `REALIZACAO DE CANAL COM PERFURADOR PARA PASSAGEM DE PINOS DE SCHANZ INTRAOSSEOS NOS RESPECTIVOS ACESSOS`,
+    `COLOCACAO DE 2 PINOS DE SCHANZ ${v.pinos} MM EM RESPECTIVOS ACESSOS`,
+    `MONTAGEM DE FIXADOR EXTERNO LINEAR TUBO A TUBO COM 1 HASTE`,
+    `REDUCAO DE FRATURA SOB AUXILIO DE RADIOSCOPIA`,
+    `ESTABILIZACAO DA MONTAGEM COM COLOCACAO DE 2A HASTE`,
+    `VERIFICADA BOA REDUCAO COM AUXILIO DE RADIOSCOPIA`,
+    `LIMPEZA COM DEGERMANTE E SF 0,9%`,
+    `CURATIVO ESTERIL`,
+    `AOS CUIDADOS DA REPAI.`,
+  ]
+},
+
+{
+  id: 'fixext_femur',
+  name: 'Fixador Externo Linear - Femur',
+  category: 'Trauma',
+  color: 'trauma',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'lado', label: 'Lado', type: 'select', options: ['DIREITA','ESQUERDA'] },
+    { key: 'pinos', label: 'Pinos de Schanz (mm)', type: 'text', default: '6.0', pills: ['5.0','6.0'] },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO DORSAL HORIZONTAL SOB ${v.anestesia}`,
+    `ASSEPSIA E ANTISSEPSIA`,
+    `COLOCACAO DE CAMPOS ESTEREIS CONFORME ROTINA ORTOPEDICA`,
+    `ACESSO ANTEROLATERAL (2) EM COXA ${v.lado} PROXIMAIS AO FOCO DE FRATURA`,
+    `REALIZACAO DE CANAL COM PERFURADOR PARA PASSAGEM DE PINOS DE SCHANZ INTRAOSSEOS NOS RESPECTIVOS ACESSOS`,
+    `COLOCACAO DE 2 PINOS DE SCHANZ ${v.pinos} MM EM RESPECTIVOS ACESSOS`,
+    `ACESSO ANTEROLATERAL EM COXA ${v.lado} DISTAIS AO FOCO DE FRATURA`,
+    `REALIZACAO DE CANAL COM PERFURADOR PARA PASSAGEM DE PINOS DE SCHANZ INTRAOSSEOS NOS RESPECTIVOS ACESSOS`,
+    `COLOCACAO DE 2 PINOS DE SCHANZ ${v.pinos} MM EM RESPECTIVOS ACESSOS`,
+    `MONTAGEM DE FIXADOR EXTERNO LINEAR TUBO A TUBO COM 1 HASTE`,
+    `REDUCAO DE FRATURA SOB AUXILIO DE RADIOSCOPIA`,
+    `ESTABILIZACAO DA MONTAGEM COM COLOCACAO DE 2A HASTE`,
+    `VERIFICADA BOA REDUCAO COM AUXILIO DE RADIOSCOPIA`,
+    `LIMPEZA COM DEGERMANTE E SF 0,9%`,
+    `CURATIVO ESTERIL`,
+    `AOS CUIDADOS DA REPAI.`,
+  ]
+},
+
+{
+  id: 'ilizarov_tibia',
+  name: 'Ilizarov - Tibia',
+  category: 'Trauma',
+  color: 'trauma',
+  fields: [
+    { key: 'anestesia', label: 'Anestesia', type: 'select', options: ANEST_GERAL },
+    { key: 'aneis', label: 'Numero de aneis', type: 'text', default: '3', pills: ['2','3','4','5'] },
+    { key: 'pinos', label: 'Pinos de Schanz (mm)', type: 'text', default: '6.0', pills: ['5.0','6.0'] },
+  ],
+  template: v => [
+    `PACIENTE EM DECUBITO DORSAL SOB ${v.anestesia}`,
+    `ASSEPSIA; ANTISSEPSIA`,
+    `COLOCACAO DE CAMPOS CIRURGICOS CONFORME ROTINA`,
+    `RETIRADA DE FIXADOR EXTERNO`,
+    `RETIRADA DE PINOS DE SCHANZ`,
+    `CURETAGEM DE TRAJETO DE PINOS`,
+    `LAVAGEM DE TRAJETO DE PINOS COM SF 0,9%`,
+    `INSTALADO FIXADOR EXTERNO ILIZAROV COM ${v.aneis} ANEIS, FIXADO COM PINOS DE SCHANZ ${v.pinos}MM`,
+    `CONFIGURADO APARELHO PARA TRANSPORTE OSSEO EM COMPRESSAO-DISTRACAO`,
+    `BROCAGEM PERCUTANEA DE FOCO DE RETARDO DE CONSOLIDACAO`,
+    `LAVAGEM COPIOSA DE FERIMENTOS CIRURGICOS COM SF 0,9%`,
+    `CURATIVO ESTERIL`,
+    `AOS CUIDADOS DA REPAI`,
+    `AGUARDA RX CONTROLE`,
+  ]
+},
+
+// ══════════════════════════════════════════════
+//  DESCRICAO LIVRE
+// ══════════════════════════════════════════════
+{
+  id: 'livre',
+  name: 'Descricao Livre',
+  category: 'Outros',
+  color: 'livre',
+  fields: [],
+  template: () => []
+},
+
+];
+
+// ============================================================
+//  APP
+// ============================================================
+let currentSurgery = null;
+let currentMode = 'fields';
+
+function renderCards() {
+  const container = document.getElementById('cardContainer');
+  const cats = {};
+  SURGERIES.forEach(s => { if (!cats[s.category]) cats[s.category] = []; cats[s.category].push(s); });
+  let html = '';
+  for (const [cat, items] of Object.entries(cats)) {
+    html += `<div class="category-section" data-cat="${cat}"><div class="category-label">${cat}</div><div class="cards-grid">`;
+    items.forEach(s => {
+      const n = s.fields.length;
+      const sub = n > 0 ? `${n} campos` : 'Texto livre';
+      html += `<div class="card" data-id="${s.id}" data-search="${s.name.toLowerCase()} ${s.category.toLowerCase()}" onclick="openSurgery('${s.id}')"><div class="card-dot ${s.color}"></div><div class="card-text"><h3>${s.name}</h3><p>${sub}</p></div></div>`;
+    });
+    html += `</div></div>`;
+  }
+  container.innerHTML = html;
+}
+
+function filterCards() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => c.classList.toggle('hidden', q && !c.dataset.search.includes(q)));
+  document.querySelectorAll('.category-section').forEach(s => { s.style.display = s.querySelectorAll('.card:not(.hidden)').length ? '' : 'none'; });
+}
+
+function openSurgery(id) {
+  currentSurgery = SURGERIES.find(s => s.id === id);
+  if (!currentSurgery) return;
+  document.getElementById('editorTitle').textContent = currentSurgery.name;
+  document.getElementById('mainView').classList.add('hidden');
+  document.getElementById('editorView').classList.add('active');
+  const toggle = document.getElementById('modeToggle');
+  if (currentSurgery.id === 'livre') { toggle.style.display = 'none'; setMode('free'); }
+  else { toggle.style.display = ''; setMode('fields'); }
+}
+
+function goBack() {
+  document.getElementById('mainView').classList.remove('hidden');
+  document.getElementById('editorView').classList.remove('active');
+  currentSurgery = null;
+  const btn = document.getElementById('btnCopy');
+  btn.classList.remove('copied');
+  btn.querySelector('.copy-label').textContent = 'Copiar';
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+  const split = document.getElementById('editorSplit');
+  const free = document.getElementById('freeEditor');
+  if (mode === 'free') {
+    split.classList.add('hidden-mode'); free.classList.add('active');
+    const ta = document.getElementById('freeTextarea');
+    if (currentSurgery.id !== 'livre') ta.value = generateText();
+    else if (!ta.value) ta.value = '';
+    ta.focus();
+  } else {
+    split.classList.remove('hidden-mode'); free.classList.remove('active');
+    renderFields(); updatePreview();
+  }
+}
+
+function renderFields() {
+  if (!currentSurgery) return;
+  const c = document.getElementById('editorFields');
+  const ff = currentSurgery.fields;
+  let html = '<div class="fields-section-title">Preencha os campos</div>';
+  let i = 0;
+  while (i < ff.length) {
+    const f = ff[i], f2 = ff[i+1];
+    if (f2 && canPair(f) && canPair(f2)) { html += `<div class="field-row">${fHTML(f)}${fHTML(f2)}</div>`; i += 2; }
+    else { html += fHTML(f); i++; }
+  }
+  c.innerHTML = html;
+  c.querySelectorAll('input,select').forEach(el => { el.addEventListener('input', updatePreview); el.addEventListener('change', updatePreview); });
+  c.querySelectorAll('.pill').forEach(p => {
+    p.addEventListener('click', function() {
+      const input = c.querySelector('#field_' + this.dataset.target);
+      if (input) { input.value = this.textContent; updatePreview(); }
+      // highlight active pill
+      this.parentElement.querySelectorAll('.pill').forEach(pp => pp.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+}
+
+function canPair(f) { return f.type === 'select' || (!f.pills && f.default && f.default.length < 15); }
+
+function fHTML(f) {
+  let inp;
+  if (f.type === 'select') {
+    inp = `<select id="field_${f.key}">${f.options.map(o => `<option value="${o}">${o}</option>`).join('')}</select>`;
+  } else {
+    inp = `<input type="text" id="field_${f.key}" value="${f.default||''}" autocomplete="off" spellcheck="false">`;
+  }
+  let pills = '';
+  if (f.pills && f.pills.length) {
+    pills = '<div class="quick-pills">' + f.pills.map(p => `<span class="pill" data-target="${f.key}">${p}</span>`).join('') + '</div>';
+  }
+  return `<div class="field-group"><label>${f.label}</label>${inp}${pills}</div>`;
+}
+
+function getVals() {
+  const v = {};
+  if (!currentSurgery) return v;
+  currentSurgery.fields.forEach(f => { const el = document.getElementById('field_' + f.key); v[f.key] = el ? el.value : (f.default||''); });
+  return v;
+}
+
+function generateText() {
+  if (!currentSurgery) return '';
+  return currentSurgery.template(getVals()).filter(l => l !== null).join('\n');
+}
+
+function generateHighlightedHTML() {
+  if (!currentSurgery) return '';
+  const v = getVals();
+  const lines = currentSurgery.template(v).filter(l => l !== null);
+  // Collect all field values sorted longest first to avoid partial matches
+  const vals = currentSurgery.fields.map(f => v[f.key]).filter(x => x && x.length >= 2);
+  vals.sort((a,b) => b.length - a.length);
+
+  return lines.map(line => {
+    let out = esc(line);
+    for (const val of vals) {
+      const ev = esc(val);
+      const re = new RegExp(escR(ev), 'g');
+      out = out.replace(re, `<span class="hl">${ev}</span>`);
+    }
+    return out;
+  }).join('\n');
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escR(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+function updatePreview() { const el = document.getElementById('previewText'); if (el) el.innerHTML = generateHighlightedHTML(); }
+
+function getFinalText() {
+  if (currentMode === 'free') return document.getElementById('freeTextarea').value;
+  return generateText();
+}
+
+function copyText() {
+  const text = getFinalText().toUpperCase();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('btnCopy');
+    btn.classList.add('copied');
+    btn.querySelector('.copy-label').textContent = 'Copiado!';
+    showToast();
+    setTimeout(() => { btn.classList.remove('copied'); btn.querySelector('.copy-label').textContent = 'Copiar'; }, 2000);
+  });
+}
+
+function showToast() { const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2200); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && currentSurgery) goBack();
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && currentSurgery) { e.preventDefault(); copyText(); }
+});
+
+renderCards();
+</script>
+</body>
+</html>
