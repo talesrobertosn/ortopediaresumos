@@ -160,6 +160,16 @@
       ],
       "arquivo": "pdfs/Luxacaodedo.pdf",
       "data": "2026-04-19"
+      {
+  "id": 18,
+  "titulo": "Fraturas do Tornozelo Pediátrico",
+  "especialidade": "pe",
+  "descricao": "Fraturas do tornozelo na criança e no adolescente, incluindo anatomia fisária, mecanismos de trauma, classificação, avaliação radiográfica e princípios de tratamento",
+  "fontes": [
+    "Rockwood and Wilkins' Fractures in Children"
+  ],
+  "arquivo": "pdfs/tornozeloped.pdf",
+  "data": "2026-05-18"
     }
   ]
 }
