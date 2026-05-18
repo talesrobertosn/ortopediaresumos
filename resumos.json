@@ -1,13 +1,37 @@
 {
   "especialidades": [
-    { "id": "mao", "nome": "Mao e Punho" },
-    { "id": "ombro", "nome": "Ombro" },
-    { "id": "cotovelo", "nome": "Cotovelo" },
-    { "id": "joelho", "nome": "Joelho" },
-    { "id": "quadril", "nome": "Quadril" },
-    { "id": "coluna", "nome": "Coluna" },
-    { "id": "pe", "nome": "Pe e Tornozelo" },
-    { "id": "trauma", "nome": "Trauma Geral" }
+    {
+      "id": "mao",
+      "nome": "Mao e Punho"
+    },
+    {
+      "id": "ombro",
+      "nome": "Ombro"
+    },
+    {
+      "id": "cotovelo",
+      "nome": "Cotovelo"
+    },
+    {
+      "id": "joelho",
+      "nome": "Joelho"
+    },
+    {
+      "id": "quadril",
+      "nome": "Quadril"
+    },
+    {
+      "id": "coluna",
+      "nome": "Coluna"
+    },
+    {
+      "id": "pe",
+      "nome": "Pe e Tornozelo"
+    },
+    {
+      "id": "trauma",
+      "nome": "Trauma Geral"
+    }
   ],
   "resumos": [
     {
@@ -66,7 +90,7 @@
         "Müller AO Classification of Long Bone Fractures",
         "OTA — Orthopaedic Trauma Association"
       ],
-      "arquivo": "pdfs/classfemur.pdf.pdf",
+      "arquivo": "pdfs/classfemur.pdf",
       "data": "2026-04-27"
     },
     {
@@ -160,16 +184,17 @@
       ],
       "arquivo": "pdfs/Luxacaodedo.pdf",
       "data": "2026-04-19"
-      {
-  "id": 18,
-  "titulo": "Fraturas do Tornozelo Pediátrico",
-  "especialidade": "pe",
-  "descricao": "Fraturas do tornozelo na criança e no adolescente, incluindo anatomia fisária, mecanismos de trauma, classificação, avaliação radiográfica e princípios de tratamento",
-  "fontes": [
-    "Rockwood and Wilkins' Fractures in Children"
-  ],
-  "arquivo": "pdfs/tornozeloped.pdf",
-  "data": "2026-05-18"
+    },
+    {
+      "id": 18,
+      "titulo": "Fraturas do Tornozelo Pediátrico",
+      "especialidade": "pe",
+      "descricao": "Fraturas do tornozelo na criança e no adolescente, incluindo anatomia fisária, mecanismos de trauma, classificação, avaliação radiográfica e princípios de tratamento",
+      "fontes": [
+        "Rockwood and Wilkins' Fractures in Children"
+      ],
+      "arquivo": "pdfs/tornozeloped.pdf",
+      "data": "2026-05-18"
     }
   ]
 }
