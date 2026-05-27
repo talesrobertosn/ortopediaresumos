@@ -185,7 +185,7 @@
       "arquivo": "pdfs/Luxacaodedo.pdf",
       "data": "2026-04-19"
     },
-    {
+{
       "id": 18,
       "titulo": "Fraturas do Tornozelo Pediátrico",
       "especialidade": "pe",
@@ -195,18 +195,18 @@
       ],
       "arquivo": "pdfs/tornozeloped.pdf",
       "data": "2026-05-18"
+    },
+    {
+      "id": 19,
+      "titulo": "Síndromes Compressivas do Membro Superior",
+      "especialidade": "mao",
+      "descricao": "Neuropatias compressivas dos nervos mediano, ulnar e radial: anatomia, quadro clínico, diagnóstico e tratamento",
+      "fontes": [
+        "Green's Operative Hand Surgery — 8ª edição",
+        "Rockwood & Green's Fractures in Adults — 10ª ed."
+      ],
+      "arquivo": "pdfs/sindcompressivas.pdf",
+      "data": "2026-05-27"
     }
-  {
-  "id": 19,
-  "titulo": "Síndromes Compressivas do Membro Superior",
-  "especialidade": "mao",
-  "descricao": "Neuropatias compressivas dos nervos mediano, ulnar e radial: anatomia, quadro clínico, diagnóstico e tratamento",
-  "fontes": [
-    "Green's Operative Hand Surgery — 8ª edição",
-    "Rockwood & Green's Fractures in Adults — 10ª ed."
-  ],
-  "arquivo": "pdfs/sindcompressivas.pdf",
-  "data": "2026-05-27"
-}
   ]
 }
