@@ -31,6 +31,10 @@
     {
       "id": "trauma",
       "nome": "Trauma Geral"
+    },
+    {
+      "id": "tumor",
+      "nome": "Oncologia"
     }
   ],
   "resumos": [
@@ -185,7 +189,7 @@
       "arquivo": "pdfs/Luxacaodedo.pdf",
       "data": "2026-04-19"
     },
-{
+    {
       "id": 18,
       "titulo": "Fraturas do Tornozelo Pediátrico",
       "especialidade": "pe",
@@ -207,6 +211,17 @@
       ],
       "arquivo": "pdfs/sindcompressivas.pdf",
       "data": "2026-05-27"
+    },
+    {
+      "id": 20,
+      "titulo": "Princípios de Imagem em Oncologia Ortopédica",
+      "especialidade": "tumor",
+      "descricao": "Abordagem por imagem das lesões ósseas e de partes moles: padrões de matriz, zona de transição, reação periosteal e estadiamento",
+      "fontes": [
+        "Differential Diagnosis in Orthopaedic Oncology"
+      ],
+      "arquivo": "pdfs/imagemonco.pdf",
+      "data": "2026-05-31"
     }
   ]
 }
