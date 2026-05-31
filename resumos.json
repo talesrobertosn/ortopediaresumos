@@ -200,28 +200,25 @@
       "arquivo": "pdfs/tornozeloped.pdf",
       "data": "2026-05-18"
     },
-    {
-      "id": 19,
-      "titulo": "Síndromes Compressivas do Membro Superior",
-      "especialidade": "mao",
-      "descricao": "Neuropatias compressivas dos nervos mediano, ulnar e radial: anatomia, quadro clínico, diagnóstico e tratamento",
-      "fontes": [
-        "Green's Operative Hand Surgery — 8ª edição",
-        "Rockwood & Green's Fractures in Adults — 10ª ed."
-      ],
-      "arquivo": "pdfs/sindcompressivas.pdf",
-      "data": "2026-05-27"
-    },
-    {
-      "id": 20,
-      "titulo": "Princípios de Imagem em Oncologia Ortopédica",
-      "especialidade": "tumor",
-      "descricao": "Abordagem por imagem das lesões ósseas e de partes moles: padrões de matriz, zona de transição, reação periosteal e estadiamento",
-      "fontes": [
-        "Differential Diagnosis in Orthopaedic Oncology"
-      ],
-      "arquivo": "pdfs/imagemonco.pdf",
-      "data": "2026-05-31"
-    }
-  ]
+{
+  "id": 20,
+  "titulo": "Princípios de Imagem em Oncologia Ortopédica",
+  "especialidade": "tumor",
+  "descricao": "Abordagem por imagem das lesões ósseas e de partes moles: padrões de matriz, zona de transição, reação periosteal e estadiamento",
+  "fontes": [
+    "Differential Diagnosis in Orthopaedic Oncology"
+  ],
+  "arquivo": "pdfs/imagemonco.pdf",
+  "data": "2026-05-31"
+},
+{
+  "id": 21,
+  "titulo": "Biópsia",
+  "especialidade": "tumor",
+  "descricao": "Biópsia de tumores musculoesqueléticos: planejamento do trajeto, escolha da técnica, princípios oncológicos, riscos diagnósticos e prevenção de contaminação dos compartimentos.",
+  "fontes": [
+    "Campbell's Operative Orthopaedics — 14ª ed. · Biópsia de tumores musculoesqueléticos · p. 896"
+  ],
+  "arquivo": "pdfs/biopsia.pdf",
+  "data": "2026-05-31"
 }
