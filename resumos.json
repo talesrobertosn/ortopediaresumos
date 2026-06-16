@@ -1,6 +1,3 @@
-Adicionei como `id: 22`, especialidade `ombro`, arquivo `pdf/clavicula.pdf` e data de hoje `2026-06-16`.
-
-```json
 {
   "especialidades": [
     {
@@ -239,4 +236,3 @@ Adicionei como `id: 22`, especialidade `ombro`, arquivo `pdf/clavicula.pdf` e da
     }
   ]
 }
-```
