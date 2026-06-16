@@ -1,238 +1,250 @@
 {
-  "especialidades": [
-    {
-      "id": "mao",
-      "nome": "Mão e Punho"
-    },
-    {
-      "id": "ombro",
-      "nome": "Ombro"
-    },
-    {
-      "id": "cotovelo",
-      "nome": "Cotovelo"
-    },
-    {
-      "id": "joelho",
-      "nome": "Joelho"
-    },
-    {
-      "id": "quadril",
-      "nome": "Quadril"
-    },
-    {
-      "id": "coluna",
-      "nome": "Coluna"
-    },
-    {
-      "id": "pe",
-      "nome": "Pé e Tornozelo"
-    },
-    {
-      "id": "trauma",
-      "nome": "Trauma Geral"
-    },
-    {
-      "id": "tumor",
-      "nome": "Oncologia"
-    }
-  ],
-  "resumos": [
-    {
-      "id": 1,
-      "titulo": "Fixador Externo de Pelve — Crista Ilíaca vs Supra-Acetabular",
-      "especialidade": "quadril",
-      "descricao": "Comparação das vias de fixação externa pélvica: anatomia, técnica e zonas de segurança",
-      "fontes": [
-        "Rockwood and Green's Fractures in Adults · 10ª ed.",
-        "Vias de Acesso em Cirurgia Ortopédica · Hoppenfeld, deBoer & Buckley",
-        "Aula: Zonas de Segurança — Pelve"
-      ],
-      "arquivo": "pdfs/fixadorexternopelve.pdf",
-      "data": "2026-04-15"
-    },
-    {
-      "id": 2,
-      "titulo": "Resumo - Artroplastia total do quadril",
-      "especialidade": "quadril",
-      "descricao": "Síntese e explicação do conteúdo das 156 páginas do capítulo de ATQ",
-      "fontes": [
-        "Campbell's Operative Orthopaedics — 14ª edição · Chapter 3: Arthroplasty of the Hip"
-      ],
-      "arquivo": "pdfs/ArtroplastiaDoQuadrilCompressed.pdf",
-      "data": "2026-04-16"
-    },
-    {
-      "id": 7,
-      "titulo": "Fraturas do metacarpo",
-      "especialidade": "mao",
-      "descricao": "Classificação, manejo conservador e indicações cirúrgicas das fraturas metacarpianas",
-      "fontes": [
-        "Rockwood & Green"
-      ],
-      "arquivo": "pdfs/Fraturas-do-metacarpo.pdf",
-      "data": "2025-04-17"
-    },
-    {
-      "id": 8,
-      "titulo": "Lista de coisas que eu não sei",
-      "especialidade": "trauma",
-      "descricao": "Lista pessoal de tópicos a estudar e revisar",
-      "fontes": [
-        "Praticamente tudo"
-      ],
-      "arquivo": "pdfs/lista.pdf",
-      "data": "2026-04-17"
-    },
-    {
-      "id": 9,
-      "titulo": "Fraturas por estresse",
-      "especialidade": "trauma",
-      "descricao": "Fisiopatologia, diagnóstico por imagem e tratamento das fraturas por estresse",
-      "fontes": [
-        "Rockwood & Green"
-      ],
-      "arquivo": "pdfs/fraturasestresse.pdf",
-      "data": "2026-04-17"
-    },
-    {
-      "id": 10,
-      "titulo": "Osteoporose and Metabolic Bone Disease",
-      "especialidade": "trauma",
-      "descricao": "Fisiopatologia, avaliação e tratamento da osteoporose e das doenças ósseas metabólicas",
-      "fontes": [
-        "Rockwood & Green"
-      ],
-      "arquivo": "pdfs/osteoporose.pdf",
-      "data": "2026-04-17"
-    },
-    {
-      "id": 11,
-      "titulo": "Resumo - Exame físico do quadril",
-      "especialidade": "quadril",
-      "descricao": "Inspeção, palpação, amplitude de movimento e testes especiais do quadril",
-      "fontes": [
-        "Exame físico em ortopedia, 3ª edição - Tarcísio E.P. de Barros"
-      ],
-      "arquivo": "pdfs/efquadril.pdf",
-      "data": "2026-04-18"
-    },
-    {
-      "id": 12,
-      "titulo": "Resumo - Luxação da Articulação Carpometacárpica (CMC) do Polegar",
-      "especialidade": "mao",
-      "descricao": "Anatomia, mecanismo de lesão, avaliação e tratamento das luxações da CMC do polegar",
-      "fontes": [
-        "Campbell's Operative Orthopaedics"
-      ],
-      "arquivo": "pdfs/luxacaopolegar_compressed.pdf",
-      "data": "2026-04-19"
-    },
-    {
-      "id": 13,
-      "titulo": "Resumo - Luxações das articulações IFP + IFD + CMC dos dedos",
-      "especialidade": "mao",
-      "descricao": "Avaliação e tratamento das luxações das articulações IFP, IFD e CMC dos dedos",
-      "fontes": [
-        "Rockwood & Green's Fractures in Adults – 10ª ed."
-      ],
-      "arquivo": "pdfs/Luxacaodedo.pdf",
-      "data": "2026-04-19"
-    },
-    {
-      "id": 14,
-      "titulo": "Fraturas do Anel Pélvico — Classificações e Aplicação Prática",
-      "especialidade": "quadril",
-      "descricao": "Classificações Tile, Young & Burgess, AOSpine sacro e OTA/AO aplicadas às fraturas do anel pélvico",
-      "fontes": [
-        "Rockwood and Green's Fractures in Adults · Cap. Pelvic Ring Injuries",
-        "Tile",
-        "Young & Burgess",
-        "AOSpine sacro",
-        "OTA/AO"
-      ],
-      "arquivo": "pdfs/anelpelvico.pdf",
-      "data": "2026-04-25"
-    },
-    {
-      "id": 15,
-      "titulo": "Resumo - Vias de Acesso ao Quadril",
-      "especialidade": "quadril",
-      "descricao": "Acessos cirúrgicos do quadril",
-      "fontes": [
-        "Campbell's Operative Orthopaedics · 14ª ed. · Acessos Cirúrgicos do Quadril"
-      ],
-      "arquivo": "pdfs/acessoquadril.pdf",
-      "data": "2026-04-26"
-    },
-    {
-      "id": 16,
-      "titulo": "Classificação AO/OTA — Fraturas do Fêmur",
-      "especialidade": "trauma",
-      "descricao": "Classificação AO/OTA aplicada às fraturas do fêmur, incluindo localização anatômica, padrões morfológicos e codificação das fraturas dos ossos longos",
-      "fontes": [
-        "AO Foundation",
-        "Müller AO Classification of Long Bone Fractures",
-        "OTA — Orthopaedic Trauma Association"
-      ],
-      "arquivo": "pdfs/classfemur.pdf",
-      "data": "2026-04-27"
-    },
-    {
-      "id": 17,
-      "titulo": "Anatomia da Pelve",
-      "especialidade": "quadril",
-      "descricao": "Anatomia ortopédica aplicada da pelve",
-      "fontes": [
-        "Netter's Concise Orthopaedic Anatomy · Cap. 7"
-      ],
-      "arquivo": "pdfs/anatomiapelve.pdf",
-      "data": "2026-05-03"
-    },
-    {
-      "id": 18,
-      "titulo": "Fraturas do Tornozelo Pediátrico",
-      "especialidade": "pe",
-      "descricao": "Fraturas do tornozelo na criança e no adolescente, incluindo anatomia fisária, mecanismos de trauma, classificação, avaliação radiográfica e princípios de tratamento",
-      "fontes": [
-        "Rockwood and Wilkins' Fractures in Children"
-      ],
-      "arquivo": "pdfs/tornozeloped.pdf",
-      "data": "2026-05-18"
-    },
-    {
-      "id": 20,
-      "titulo": "Princípios de Imagem em Oncologia Ortopédica",
-      "especialidade": "tumor",
-      "descricao": "Abordagem por imagem das lesões ósseas e de partes moles: padrões de matriz, zona de transição, reação periosteal e estadiamento",
-      "fontes": [
-        "Differential Diagnosis in Orthopaedic Oncology"
-      ],
-      "arquivo": "pdfs/imagemonco.pdf",
-      "data": "2026-05-31"
-    },
-    {
-      "id": 21,
-      "titulo": "Biópsia",
-      "especialidade": "tumor",
-      "descricao": "Biópsia de tumores musculoesqueléticos: planejamento do trajeto, escolha da técnica, princípios oncológicos, riscos diagnósticos e prevenção de contaminação dos compartimentos.",
-      "fontes": [
-        "Campbell's Operative Orthopaedics — 14ª ed. · Biópsia de tumores musculoesqueléticos · p. 896"
-      ],
-      "arquivo": "pdfs/biopsia.pdf",
-      "data": "2026-05-31"
-    },
-    {
-      "id": 22,
-      "titulo": "Fratura de Clavícula — Vias de Acesso",
-      "especialidade": "ombro",
-      "descricao": "Vias de acesso cirúrgico para fratura de clavícula, com anatomia aplicada, exposição anterior, planos de dissecção, estruturas neurovasculares em risco, princípios de redução e fixação.",
-      "fontes": [
-        "Hoppenfeld — Surgical Exposures in Orthopaedics · Cap. 1: The Shoulder · Anterior Approach to the Clavicle · p. 37–42",
-        "AO Principles of Fracture Management · 3ª ed. · Cap. 6.1.2: Clavicle — Ernest Kwek · p. 573–585"
-      ],
-      "arquivo": "pdfs/clavicula.pdf",
-      "data": "2026-06-16"
-    }
-  ]
+"especialidades": [
+{
+"id": "mao",
+"nome": "Mão e Punho"
+},
+{
+"id": "ombro",
+"nome": "Ombro"
+},
+{
+"id": "cotovelo",
+"nome": "Cotovelo"
+},
+{
+"id": "joelho",
+"nome": "Joelho"
+},
+{
+"id": "quadril",
+"nome": "Quadril"
+},
+{
+"id": "coluna",
+"nome": "Coluna"
+},
+{
+"id": "pe",
+"nome": "Pé e Tornozelo"
+},
+{
+"id": "trauma",
+"nome": "Trauma Geral"
+},
+{
+"id": "tumor",
+"nome": "Oncologia"
+}
+],
+"resumos": [
+{
+"id": 1,
+"titulo": "Fixador Externo de Pelve — Crista Ilíaca vs Supra-Acetabular",
+"especialidade": "quadril",
+"descricao": "Comparação das vias de fixação externa pélvica: anatomia, técnica e zonas de segurança",
+"fontes": [
+"Rockwood and Green's Fractures in Adults · 10ª ed.",
+"Vias de Acesso em Cirurgia Ortopédica · Hoppenfeld, deBoer & Buckley",
+"Aula: Zonas de Segurança — Pelve"
+],
+"arquivo": "pdfs/fixadorexternopelve.pdf",
+"data": "2026-04-15"
+},
+{
+"id": 2,
+"titulo": "Resumo - Artroplastia total do quadril",
+"especialidade": "quadril",
+"descricao": "Síntese e explicação do conteúdo das 156 páginas do capítulo de ATQ",
+"fontes": [
+"Campbell's Operative Orthopaedics — 14ª edição · Chapter 3: Arthroplasty of the Hip"
+],
+"arquivo": "pdfs/ArtroplastiaDoQuadrilCompressed.pdf",
+"data": "2026-04-16"
+},
+{
+"id": 7,
+"titulo": "Fraturas do metacarpo",
+"especialidade": "mao",
+"descricao": "Classificação, manejo conservador e indicações cirúrgicas das fraturas metacarpianas",
+"fontes": [
+"Rockwood & Green"
+],
+"arquivo": "pdfs/Fraturas-do-metacarpo.pdf",
+"data": "2025-04-17"
+},
+{
+"id": 8,
+"titulo": "Lista de coisas que eu não sei",
+"especialidade": "trauma",
+"descricao": "Lista pessoal de tópicos a estudar e revisar",
+"fontes": [
+"Praticamente tudo"
+],
+"arquivo": "pdfs/lista.pdf",
+"data": "2026-04-17"
+},
+{
+"id": 9,
+"titulo": "Fraturas por estresse",
+"especialidade": "trauma",
+"descricao": "Fisiopatologia, diagnóstico por imagem e tratamento das fraturas por estresse",
+"fontes": [
+"Rockwood & Green"
+],
+"arquivo": "pdfs/fraturasestresse.pdf",
+"data": "2026-04-17"
+},
+{
+"id": 10,
+"titulo": "Osteoporose and Metabolic Bone Disease",
+"especialidade": "trauma",
+"descricao": "Fisiopatologia, avaliação e tratamento da osteoporose e das doenças ósseas metabólicas",
+"fontes": [
+"Rockwood & Green"
+],
+"arquivo": "pdfs/osteoporose.pdf",
+"data": "2026-04-17"
+},
+{
+"id": 11,
+"titulo": "Resumo - Exame físico do quadril",
+"especialidade": "quadril",
+"descricao": "Inspeção, palpação, amplitude de movimento e testes especiais do quadril",
+"fontes": [
+"Exame físico em ortopedia, 3ª edição - Tarcísio E.P. de Barros"
+],
+"arquivo": "pdfs/efquadril.pdf",
+"data": "2026-04-18"
+},
+{
+"id": 12,
+"titulo": "Resumo - Luxação da Articulação Carpometacárpica (CMC) do Polegar",
+"especialidade": "mao",
+"descricao": "Anatomia, mecanismo de lesão, avaliação e tratamento das luxações da CMC do polegar",
+"fontes": [
+"Campbell's Operative Orthopaedics"
+],
+"arquivo": "pdfs/luxacaopolegar_compressed.pdf",
+"data": "2026-04-19"
+},
+{
+"id": 13,
+"titulo": "Resumo - Luxações das articulações IFP + IFD + CMC dos dedos",
+"especialidade": "mao",
+"descricao": "Avaliação e tratamento das luxações das articulações IFP, IFD e CMC dos dedos",
+"fontes": [
+"Rockwood & Green's Fractures in Adults – 10ª ed."
+],
+"arquivo": "pdfs/Luxacaodedo.pdf",
+"data": "2026-04-19"
+},
+{
+"id": 14,
+"titulo": "Fraturas do Anel Pélvico — Classificações e Aplicação Prática",
+"especialidade": "quadril",
+"descricao": "Classificações Tile, Young & Burgess, AOSpine sacro e OTA/AO aplicadas às fraturas do anel pélvico",
+"fontes": [
+"Rockwood and Green's Fractures in Adults · Cap. Pelvic Ring Injuries",
+"Tile",
+"Young & Burgess",
+"AOSpine sacro",
+"OTA/AO"
+],
+"arquivo": "pdfs/anelpelvico.pdf",
+"data": "2026-04-25"
+},
+{
+"id": 15,
+"titulo": "Resumo - Vias de Acesso ao Quadril",
+"especialidade": "quadril",
+"descricao": "Acessos cirúrgicos do quadril",
+"fontes": [
+"Campbell's Operative Orthopaedics · 14ª ed. · Acessos Cirúrgicos do Quadril"
+],
+"arquivo": "pdfs/acessoquadril.pdf",
+"data": "2026-04-26"
+},
+{
+"id": 16,
+"titulo": "Classificação AO/OTA — Fraturas do Fêmur",
+"especialidade": "trauma",
+"descricao": "Classificação AO/OTA aplicada às fraturas do fêmur, incluindo localização anatômica, padrões morfológicos e codificação das fraturas dos ossos longos",
+"fontes": [
+"AO Foundation",
+"Müller AO Classification of Long Bone Fractures",
+"OTA — Orthopaedic Trauma Association"
+],
+"arquivo": "pdfs/classfemur.pdf",
+"data": "2026-04-27"
+},
+{
+"id": 17,
+"titulo": "Anatomia da Pelve",
+"especialidade": "quadril",
+"descricao": "Anatomia ortopédica aplicada da pelve",
+"fontes": [
+"Netter's Concise Orthopaedic Anatomy · Cap. 7"
+],
+"arquivo": "pdfs/anatomiapelve.pdf",
+"data": "2026-05-03"
+},
+{
+"id": 18,
+"titulo": "Fraturas do Tornozelo Pediátrico",
+"especialidade": "pe",
+"descricao": "Fraturas do tornozelo na criança e no adolescente, incluindo anatomia fisária, mecanismos de trauma, classificação, avaliação radiográfica e princípios de tratamento",
+"fontes": [
+"Rockwood and Wilkins' Fractures in Children"
+],
+"arquivo": "pdfs/tornozeloped.pdf",
+"data": "2026-05-18"
+},
+{
+"id": 20,
+"titulo": "Princípios de Imagem em Oncologia Ortopédica",
+"especialidade": "tumor",
+"descricao": "Abordagem por imagem das lesões ósseas e de partes moles: padrões de matriz, zona de transição, reação periosteal e estadiamento",
+"fontes": [
+"Differential Diagnosis in Orthopaedic Oncology"
+],
+"arquivo": "pdfs/imagemonco.pdf",
+"data": "2026-05-31"
+},
+{
+"id": 21,
+"titulo": "Biópsia",
+"especialidade": "tumor",
+"descricao": "Biópsia de tumores musculoesqueléticos: planejamento do trajeto, escolha da técnica, princípios oncológicos, riscos diagnósticos e prevenção de contaminação dos compartimentos.",
+"fontes": [
+"Campbell's Operative Orthopaedics — 14ª ed. · Biópsia de tumores musculoesqueléticos · p. 896"
+],
+"arquivo": "pdfs/biopsia.pdf",
+"data": "2026-05-31"
+},
+{
+"id": 22,
+"titulo": "Fratura de Clavícula — Vias de Acesso",
+"especialidade": "ombro",
+"descricao": "Vias de acesso cirúrgico para fratura de clavícula, com anatomia aplicada, exposição anterior, planos de dissecção, estruturas neurovasculares em risco, princípios de redução e fixação.",
+"fontes": [
+"Hoppenfeld — Surgical Exposures in Orthopaedics · Cap. 1: The Shoulder · Anterior Approach to the Clavicle · p. 37–42",
+"AO Principles of Fracture Management · 3ª ed. · Cap. 6.1.2: Clavicle — Ernest Kwek · p. 573–585"
+],
+"arquivo": "pdfs/clavicula.pdf",
+"data": "2026-06-16"
+},
+{
+"id": 23,
+"titulo": "Reparo Aberto do Manguito Rotador — Vias de Acesso",
+"especialidade": "ombro",
+"descricao": "Vias de acesso para reparo aberto do manguito rotador, incluindo anatomia aplicada dos acessos anterolateral e lateral, intervalo deltopeitoral, planos de dissecção, estruturas em risco e exposição cirúrgica do ombro.",
+"fontes": [
+"Hoppenfeld — Surgical Exposures in Orthopaedics · Cap. 1: The Shoulder · Applied Surgical Anatomy of the Anterolateral and Lateral Approaches · p. 107–120",
+"Hoppenfeld — Surgical Exposures in Orthopaedics · Cap. 1: The Shoulder · Anterior Approach to the Shoulder Joint, intervalo deltopeitoral · p. 42–64"
+],
+"arquivo": "pdfs/manguito.pdf",
+"data": "2026-06-16"
+}
+]
 }
