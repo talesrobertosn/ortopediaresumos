@@ -1,6 +1,3 @@
-Adicionei o novo resumo (id 24) ao final do array `resumos`. Duas observações rápidas: classifiquei como `trauma` (Trauma Geral), já que é fratura diafisária de osso longo e não há categoria pediátrica/antebraço própria — se preferir em `mao`, é só trocar o campo `especialidade`. Também ajustei o caminho para `pdfs/antebraco.pdf` (com "s"), mantendo o padrão dos demais arquivos.
-
-```json
 {
 "especialidades": [
 {
@@ -262,4 +259,3 @@ Adicionei o novo resumo (id 24) ao final do array `resumos`. Duas observações 
 }
 ]
 }
-```
